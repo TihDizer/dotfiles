@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     # Core
     nixfmt # nix fmt
+    nixd # Nix LSP
     nil # Nix LSP (zed/vscode)
     nixpkgs-fmt # alejandra альтернатива
 
