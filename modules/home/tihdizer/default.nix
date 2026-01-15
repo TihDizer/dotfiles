@@ -22,7 +22,8 @@
     ./dev/go.nix
     ./dev/nix.nix
     ./dev/python.nix
-    ./dev/rust.nix
+    ./dev/rust/rust.nix
+    ./dev/dockerfile.nix
 
     # Utils + Apps
     ./bash/default.nix

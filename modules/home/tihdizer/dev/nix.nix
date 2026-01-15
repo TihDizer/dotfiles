@@ -1,4 +1,3 @@
-# ./home/tihdizer/dev/nix/default.nix
 { pkgs, ... }:
 
 {
@@ -7,29 +6,29 @@
     # Core
     nixfmt # nix fmt
     nixd # Nix LSP
-    nil # Nix LSP (zed/vscode)
-    nixpkgs-fmt # alejandra альтернатива
+    nil # Nix LSP
+    nixpkgs-fmt
 
     # Utils
-    nix-diff # сравнение генераций
-    nix-tree # дерево зависимостей
-    nix-du # размер store
-    nix-init # flake.nix generator
+    nix-diff
+    nix-tree
+    nix-du
+    nix-init
 
     # Advanced
     statix # linter
     deadnix # unused vars
   ];
 
-  # Shell integrations
-  programs.bash.shellAliases = {
-    nr = "nix run nixpkgs#";
-    ns = "nix shell nixpkgs#";
-    nf = "nix flake";
-  };
+  # # Shell integrations
+  # programs.bash.shellAliases = {
+  #   nr = "nix run nixpkgs#";
+  #   ns = "nix shell nixpkgs#";
+  #   nf = "nix flake";
+  # };
 
-  programs.zsh.initExtra = ''
-    nr() { nix run nixpkgs#$@; }
-    ns() { nix shell nixpkgs#$@; }
-  '';
+  # programs.zsh.initExtra = ''
+  #   nr() { nix run nixpkgs#$@; }
+  #   ns() { nix shell nixpkgs#$@; }
+  # '';
 }
