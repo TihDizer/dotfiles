@@ -11,8 +11,6 @@
       credential.helper = "store";
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
-    };
-    extraConfig = {
       url."git@github.com:".insteadOf = "https://github.com/";
     };
   };
