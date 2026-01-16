@@ -6,7 +6,6 @@
     # CLI essentials
     vim # Text editor
     wget # HTTP downloader
-    git # Version control
 
     pciutils # Hardware info
 

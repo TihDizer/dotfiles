@@ -7,7 +7,7 @@
 
 {
   imports = [
-    # Core (первым)
+    # Core
     ./home.nix # home.username
 
     # Desktop
@@ -24,6 +24,7 @@
     ./dev/python.nix
     ./dev/rust/rust.nix
     ./dev/dockerfile.nix
+    ./dev/git.nix
 
     # Utils + Apps
     ./bash/default.nix
