@@ -12,8 +12,8 @@
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
     };
-  };
-  extraConfig = {
-    url."git@github.com:".insteadOf = "https://github.com/";
+    extraConfig = {
+      url."git@github.com:".insteadOf = "https://github.com/";
+    };
   };
 }
