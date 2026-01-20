@@ -25,6 +25,7 @@
     ./dev/rust/rust.nix
     ./dev/dockerfile.nix
     ./dev/git.nix
+    ./dev/antigravity.nix
 
     # Utils + Apps
     ./bash/default.nix
