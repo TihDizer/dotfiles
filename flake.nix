@@ -17,6 +17,11 @@
       url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -27,6 +32,7 @@
       niri,
       winapps,
       zapret-discord-youtube,
+      antigravity-nix,
       ...
     }:
     let
@@ -41,6 +47,7 @@
             winapps
             zapret-discord-youtube
             system
+            antigravity-nix
             ;
         };
 
@@ -53,7 +60,7 @@
               backupFileExtension = "backup";
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit niri; };
+              extraSpecialArgs = { inherit niri antigravity-nix; };
 
               users.tihdizer = import ./modules/home/tihdizer/default.nix;
             };
