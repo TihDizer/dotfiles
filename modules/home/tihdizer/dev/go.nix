@@ -13,6 +13,7 @@
   # Go packages + tools
   home.packages = with pkgs; [
     go
+    gcc
 
     # Tools
     gotools # gofmt gdoc
