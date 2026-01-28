@@ -22,6 +22,12 @@
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rust-overlay.url = "github:oxalica/rust-overlay";
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+    };
   };
 
   outputs =
@@ -33,6 +39,8 @@
       winapps,
       zapret-discord-youtube,
       antigravity-nix,
+      rust-overlay,
+      flake-utils,
       ...
     }:
     let
@@ -48,6 +56,8 @@
             zapret-discord-youtube
             system
             antigravity-nix
+            rust-overlay
+            flake-utils
             ;
         };
 

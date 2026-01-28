@@ -5,12 +5,14 @@
   nixpkgs-unstable,
   niri-flake,
   zapret-discord-youtube,
+  specialArgs,
   ...
 }:
 
 with lib;
 
 {
+  nixpkgs.overlays = [ specialArgs.rust-overlay.overlays.default ];
   imports = [
     # Hardware
     ./hardware.nix
