@@ -10,5 +10,7 @@
 
     jellyfin-ffmpeg # Jellyfin FFmpeg build
     bluetuith # Bluetooth TUI manager
+
+    rustdesk # Remote desktop client
   ];
 }
