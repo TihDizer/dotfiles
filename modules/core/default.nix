@@ -13,5 +13,6 @@ with lib;
     ./bluetooth.nix
     ./bootloader.nix
     ./packages.nix
+    ./amd.nix
   ];
 }
