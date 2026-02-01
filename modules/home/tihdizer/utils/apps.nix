@@ -12,6 +12,5 @@
     bluetuith # Bluetooth TUI manager
 
     rustdesk # Remote desktop client
-    lact # Linux AMD monitor
   ];
 }
