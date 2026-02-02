@@ -14,5 +14,6 @@ with lib;
     ./bootloader.nix
     ./packages.nix
     ./amd.nix
+    ./usb.nix
   ];
 }
