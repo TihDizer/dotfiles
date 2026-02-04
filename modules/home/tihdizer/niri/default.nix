@@ -10,7 +10,7 @@ let
 in
 {
   imports = [
-    niri.homeModules.niri
+    # niri.homeModules.niri
     ./binds.nix
     ./env.nix
     ./input.nix
