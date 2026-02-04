@@ -4,7 +4,7 @@
     keyboard = {
       xkb = {
         layout = "us,ru";
-        options = "grp:ctrl_shift_toggle";
+        options = "grp:win_space_toggle";
       };
       numlock = true;
       repeat-delay = 500;
