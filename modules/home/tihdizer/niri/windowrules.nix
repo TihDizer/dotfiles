@@ -33,7 +33,7 @@
         clip-to-geometry = true;
       }
       {
-        matches = [ { app-id = "dev.zed.Zed"; } ];
+        matches = [ { app-id = "zed"; } ];
         default-column-width = {
           proportion = 2. / 3.;
         };
