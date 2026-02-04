@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=Niri (session)
-Comment=Wayland session for niri via niri-session wrapper
-Exec=niri-session
-Type=Application

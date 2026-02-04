@@ -33,6 +33,20 @@
         clip-to-geometry = true;
       }
       {
+        matches = [ { app-id = "dev.zed.Zed"; } ];
+        default-column-width = {
+          proportion = 2. / 3.;
+        };
+      }
+      {
+        matches = [ { app-id = "steam"; } ];
+        open-on-output = "DP-5";
+      }
+      {
+        matches = [ { app-id = "^discord(_canary)?$"; } ];
+        open-on-output = "DP-5";
+      }
+      {
         matches = [
           { app-id = "^(firefox|chromium-browser|chrome-.*|firefox-.*)$"; }
           { app-id = "^(xdg-desktop-portal-gtk)$"; }
@@ -55,7 +69,7 @@
         matches = [
           {
             title = "yazi";
-            app-id = "org.wezfurlong.wezterm";
+            app-id = "alacritty";
           }
         ];
         default-column-width = {
