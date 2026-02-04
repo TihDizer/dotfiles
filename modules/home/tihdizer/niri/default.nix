@@ -1,6 +1,6 @@
 {
   config,
-  inputs,
+  niri,
   pkgs,
   lib,
   ...
@@ -10,7 +10,7 @@ let
 in
 {
   imports = [
-    inputs.niri.homeModules.niri
+    niri.homeModules.niri
     ./binds.nix
     ./env.nix
     ./input.nix
@@ -19,7 +19,7 @@ in
     ./startup.nix
     ./windowrules.nix
   ];
-  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+  nixpkgs.overlays = [ niri.overlays.niri ];
 
   #= Setup Niri
   programs.niri = {
