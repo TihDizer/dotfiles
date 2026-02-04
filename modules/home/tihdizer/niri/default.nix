@@ -19,7 +19,7 @@ in
     ./startup.nix
     ./windowrules.nix
   ];
-  nixpkgs.overlays = [ niri.overlays.niri ];
+  # nixpkgs.overlays = [ niri.overlays.niri ];
 
   #= Setup Niri
   programs.niri = {
