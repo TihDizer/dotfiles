@@ -18,7 +18,7 @@ in
       background-color = "#333333";
 
       preset-window-heights = [
-        { proportion = 1.; }
+        # { proportion = 1.; }
         { proportion = 1. / 3.; }
         { proportion = 1. / 2.; }
         { proportion = 2. / 3.; }
