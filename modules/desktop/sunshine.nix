@@ -10,7 +10,7 @@
     enable = true;
     openFirewall = true;
     capSysAdmin = true;
-    autoStart = false;
+    autoStart = true;
     settings = {
       capture = "kms";
       output_name = "DP-3";

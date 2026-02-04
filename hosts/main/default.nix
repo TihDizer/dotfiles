@@ -38,7 +38,6 @@ with lib;
     # Games
     # todo ../modules/games/prism-launcher/default.nix
     ../../modules/games/steam.nix
-    ../../modules/games/gamescope.nix
 
     # Network/VPN/Proxy
     ../../modules/networking/zapret.nix

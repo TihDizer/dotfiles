@@ -13,9 +13,9 @@ in
 
       border.enable = false;
 
-      center-focused-column = "on-overflow";
+      center-focused-column = "never";
 
-      background-color = "transparent";
+      background-color = "#333333";
 
       preset-window-heights = [
         { proportion = 1.; }
@@ -56,16 +56,6 @@ in
 
     gestures = {
       hot-corners.enable = false;
-    };
-
-    overview = {
-      workspace-shadow = {
-        enable = true;
-        color = "#000000F2";
-        softness = 100;
-      };
-      zoom = 0.70;
-      backdrop-color = "00000040"; # transparent Changed for Black Color With 40% of Opacity
     };
 
     prefer-no-csd = true;

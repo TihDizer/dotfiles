@@ -81,9 +81,9 @@ in
 
         #= Actions
         "Mod+W".action = toggle-column-tabbed-display;
-        "Mod+Shift+W".action = toggle-overview;
+        "Mod+O".action = toggle-overview;
         "Mod+Q".action = close-window;
-        "Mod+S".action = switch-preset-column-width;
+        "Mod+R".action = switch-preset-column-width;
         "Mod+F".action = maximize-column;
         "Mod+Shift+F".action = fullscreen-window;
         "Mod+V".action = toggle-window-floating;
