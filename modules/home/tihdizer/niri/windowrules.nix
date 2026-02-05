@@ -43,6 +43,10 @@
         open-on-output = "DP-5";
       }
       {
+        matches = [ { app-id = "dota2"; } ];
+        open-on-output = "DP-3";
+      }
+      {
         matches = [ { app-id = "^discord(_canary)?$"; } ];
         open-on-output = "DP-5";
       }
