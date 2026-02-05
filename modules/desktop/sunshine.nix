@@ -14,6 +14,7 @@
     settings = {
       capture = "kms";
       output_name = "DP-3";
+      adapter_name = "/dev/dri/card1";
     };
   };
 }
