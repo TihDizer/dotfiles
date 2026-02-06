@@ -13,7 +13,7 @@
     autoStart = true;
     settings = {
       capture = "kms";
-      output_name = "DP-3";
+      output_name = 0;
       adapter_name = "/dev/dri/card1";
     };
   };
