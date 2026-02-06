@@ -38,5 +38,6 @@
     ./utils/communication.nix
     ./utils/usb.nix
     ./yazi/default.nix
+    ./walker/default.nix
   ];
 }
