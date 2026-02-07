@@ -11,7 +11,21 @@ in
         inactive.color = "#585b70";
       };
 
-      border.enable = false;
+      border = {
+        width = 2;
+        active.gradient = {
+          from = "#f38ba8";
+          to = "#f9e2af";
+          angle = 45;
+          relative-to = "workspace-view";
+        };
+        inactive.gradient = {
+          from = "#585b70";
+          to = "#7f849c";
+          angle = 45;
+          relative-to = "workspace-view";
+        };
+      };
 
       center-focused-column = "never";
 
