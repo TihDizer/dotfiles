@@ -49,7 +49,7 @@
           }
         ];
         default-column-width = {
-          fixed = 2./3.;
+          proportion = 2./3.;
         };
       }
       {
