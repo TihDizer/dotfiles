@@ -1,6 +1,6 @@
 {
   imports = [
-    ./style.nix
+    # ./style.nix
     # ./layout.nix
   ];
   services.walker = {

@@ -10,12 +10,6 @@
         matches = [ { namespace = "^wpaperd-eDP-1$"; } ];
         place-within-backdrop = true;
       }
-      #= Ironbar
-      # {
-      #   matches = [{namespace = "^ironbar$";}];
-      #   opacity = 0.90;
-      #   place-within-backdrop = true;
-      # }
     ];
     # See app-id with command = $ niri msg windows
     window-rules = [
@@ -33,14 +27,30 @@
         clip-to-geometry = true;
       }
       {
+        # todo: dont work
         matches = [ { app-id = "dev.zed.Zed"; } ];
         default-column-width = {
           proportion = 2. / 3.;
         };
       }
+      #= Steam and Games
       {
         matches = [ { app-id = "steam"; } ];
         open-on-output = "DP-5";
+        default-column-width = {
+          proportion = 1.0;
+        };
+      }
+      {
+        matches = [
+          {
+            title = "Friends List";
+            app-id = "steam";
+          }
+        ];
+        default-column-width = {
+          fixed = 2./3.;
+        };
       }
       {
         matches = [ { app-id = "dota2"; } ];
@@ -50,6 +60,7 @@
         matches = [ { app-id = "^discord(_canary)?$"; } ];
         open-on-output = "DP-5";
       }
+      #= Browsers
       {
         matches = [
           { app-id = "^(firefox|chromium-browser|chrome-.*|firefox-.*)$"; }
@@ -58,11 +69,15 @@
         scroll-factor = 0.5;
       }
       {
-        matches = [ { app-id = "firefox"; } ];
-        default-column-width = {
-          proportion = 1.0;
+        matches = [ { title = "Picture in Picture"; } ];
+        open-floating = true;
+        default-floating-position = {
+          x = 0;
+          y = 0;
+          relative-to = "bottom-right";
         };
       }
+      #= Terminal Emulators
       {
         matches = [ { app-id = "org.wezfurlong.wezterm"; } ];
         default-column-width = {
@@ -80,42 +95,7 @@
           proportion = 0.25;
         };
       }
-      {
-        matches = [ { app-id = "org.gnome.Nautilus"; } ];
-        default-column-width = {
-          proportion = 0.5;
-        };
-      }
-      {
-        matches = [ { app-id = "iwgtk"; } ];
-        default-column-width = {
-          proportion = 0.25;
-        };
-      }
-      {
-        matches = [ { app-id = "mpv"; } ];
-        default-column-width = {
-          fixed = 920;
-        };
-        open-maximized = true;
-      }
-      {
-        matches = [ { app-id = "steam"; } ];
-        default-column-width = {
-          proportion = 1.0;
-        };
-      }
-      {
-        matches = [
-          {
-            title = "Friends List";
-            app-id = "steam";
-          }
-        ];
-        default-column-width = {
-          fixed = 340;
-        };
-      }
+      #= Waydroid
       {
         matches = [ { app-id = "Waydroid"; } ];
         default-column-width = {

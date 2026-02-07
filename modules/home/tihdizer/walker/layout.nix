@@ -1,6 +1,6 @@
 {
   services.walker.theme = {
-    name = "mars";
+    name = "main";
     layout = {
       close_when_open = true;
       hotreload_theme = true;
