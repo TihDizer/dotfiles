@@ -69,12 +69,15 @@
         scroll-factor = 0.5;
       }
       {
-        matches = [ { title = "Picture in Picture"; } ];
+        matches = [ { title = "(?i)picture in picture"; } ];
         open-floating = true;
         default-floating-position = {
-          x = 0;
-          y = 0;
+          x = 2;
+          y = 2;
           relative-to = "bottom-right";
+        };
+        default-column-width = {
+          proportion = 2. / 3.;
         };
       }
       #= Terminal Emulators
