@@ -14,6 +14,10 @@
     #= Workspaces
     workspaces = {
       # Primary output
+      medias = {
+        name = "medias";
+        open-on-output = "DP-3";
+      };
       devs = {
         name = "devs";
         open-on-output = "DP-3";
@@ -22,12 +26,11 @@
         name = "games";
         open-on-output = "DP-3";
       };
-      medias = {
-        name = "medias";
-        open-on-output = "DP-3";
-      };
-
       # Secondary output
+      chats = {
+        name = "chats";
+        open-on-output = "DP-5";
+      };
       docs = {
         name = "docs";
         open-on-output = "DP-5";
@@ -38,10 +41,6 @@
       };
       launchers = {
         name = "launchers";
-        open-on-output = "DP-5";
-      };
-      chats = {
-        name = "chats";
         open-on-output = "DP-5";
       };
 
