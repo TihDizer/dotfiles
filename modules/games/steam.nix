@@ -20,4 +20,6 @@
     mesa-demos # glxinfo, glxgears
     vulkan-tools # vulkaninfo
   ];
+
+  services.speechd.enable = false;
 }
