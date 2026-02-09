@@ -26,17 +26,18 @@
         name = "games";
         open-on-output = "DP-3";
       };
+      vms = {
+        name = "vms";
+        open-on-output = "DP-3";
+      };
+
       # Secondary output
       chats = {
         name = "chats";
         open-on-output = "DP-5";
       };
       docs = {
-        name = "docs";
-        open-on-output = "DP-5";
-      };
-      metrics = {
-        name = "metrics";
+        name = "tools";
         open-on-output = "DP-5";
       };
       launchers = {
@@ -44,7 +45,7 @@
         open-on-output = "DP-5";
       };
 
-      #TV
+      #TV todo: kanshi mb
       tv = {
         name = "tv";
         open-on-output = "HDMI-A-1";
@@ -67,6 +68,9 @@
         clip-to-geometry = true;
       }
 
+      #= Medias
+
+      #= Devs
       {
         # todo: dont work
         matches = [ { app-id = "dev.zed.Zed"; } ];
@@ -76,13 +80,99 @@
         };
       }
 
-      #= Steam and Games
+      {
+        matches = [ { app-id = "jetbrains-rustrover"; } ];
+        open-on-workspace = "devs";
+        default-column-width = {
+          proportion = 2. / 3.;
+        };
+      }
+
+      #= Games
+      {
+        matches = [ { app-id = "^steam_app_\\d+"; } ]; # Steam pattern to test
+        open-on-workspace = "games";
+      }
+
+      {
+        matches = [ { app-id = "dota2"; } ];
+        open-on-workspace = "games";
+        open-on-output = "DP-3";
+      }
+
+      {
+        matches = [
+          { title = "Geometry Dash"; }
+        ];
+        open-on-workspace = "games";
+      }
+
+      #= VMs
+      {
+        matches = [ { app-id = ".virt-manager-wrapped"; } ];
+        open-on-workspace = "vms";
+        open-on-output = "DP-3";
+      }
+
+      #= Chats
+      {
+        matches = [ { app-id = "^discord(_canary)?$"; } ];
+        open-on-workspace = "chats";
+        open-on-output = "DP-5";
+        default-column-width = {
+          proportion = 2. / 3.;
+        };
+      }
+
+      {
+        matches = [ { app-id = "org.telegram.desktop"; } ];
+        default-column-width = {
+          proportion = 1. / 3.;
+        };
+        open-on-workspace = "chats";
+        open-on-output = "DP-5";
+      }
+
+      #= Tools
+      {
+        matches = [ { app-id = "io.github.ilya_zlobintsev.LACT"; } ];
+        open-on-workspace = "tools";
+        default-column-width = {
+          proportion = 2. / 3.;
+        };
+      }
+
+      {
+        matches = [ { app-id = ".blueman-manager-wrapped"; } ];
+        open-on-workspace = "tools";
+        default-column-width = {
+          proportion = 1. / 3.;
+        };
+      }
+
+      {
+        matches = [ { app-id = "org.pulseaudio.pavucontrol"; } ];
+        open-on-workspace = "tools";
+        default-column-width = {
+          proportion = 2. / 3.;
+        };
+      }
+
+      {
+        matches = [ { app-id = "Throne"; } ];
+        open-on-workspace = "tools";
+        default-column-width = {
+          proportion = 2. / 3.;
+        };
+      }
+
+      #= Launchers
       {
         matches = [ { app-id = "steam"; } ];
         open-on-output = "DP-5";
         open-on-workspace = "launchers";
         default-column-width = {
-          proportion = 1.0;
+          proportion = 2. / 3.;
         };
       }
 
@@ -99,22 +189,7 @@
         };
       }
 
-      {
-        matches = [ { app-id = "dota2"; } ];
-        open-on-workspace = "games";
-        open-on-output = "DP-3";
-      }
-
-      {
-        matches = [ { app-id = "^discord(_canary)?$"; } ];
-        open-on-workspace = "chats";
-        open-on-output = "DP-5";
-        default-column-width = {
-          proportion = 2. / 3.;
-        };
-      }
-
-      #= Browsers
+      #= Other (all workspaces)
       {
         matches = [
           { app-id = "^(firefox|chromium-browser|chrome-.*|firefox-.*)$"; }
@@ -135,17 +210,14 @@
           proportion = 2. / 3.;
         };
       }
-      #= Terminal Emulators
 
-      #= Communication
       {
-        matches = [ { app-id = "org.telegram.desktop"; } ];
+        matches = [ { app-id = "obsidian"; } ];
         default-column-width = {
-          proportion = 1. / 3.;
+          proportion = 2. / 3.;
         };
-        open-on-workspace = "chats";
-        open-on-output = "DP-5";
       }
+
     ];
   };
 }
