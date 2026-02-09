@@ -1,6 +1,7 @@
 {
   #= Displays (твои мониторы)
   programs.niri.settings.outputs = {
+    # Primary
     "DP-3" = {
       mode = {
         width = 1920;
@@ -11,9 +12,10 @@
       position = {
         x = 0;
         y = 0;
-      }; # Primary
+      };
     };
 
+    # Secondary
     "DP-5" = {
       mode = {
         width = 1920;
@@ -24,9 +26,10 @@
       position = {
         x = 1920;
         y = 0;
-      }; # Right
+      };
     };
 
+    # TV
     "HDMI-A-1" = {
       mode = {
         width = 3840;
@@ -37,7 +40,7 @@
       position = {
         x = 0;
         y = -1080;
-      }; # TV 4K
+      };
     };
   };
 }

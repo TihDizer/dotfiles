@@ -5,13 +5,14 @@ in
   programs.niri.settings = {
     layout = {
       focus-ring = {
-        enable = true;
+        enable = false;
         width = 2;
         active.color = "#74c7ec";
         inactive.color = "#585b70";
       };
 
       border = {
+        enable = true;
         width = 2;
         active.gradient = {
           from = "#f38ba8";
@@ -49,7 +50,7 @@ in
         proportion = 1.0 / 3.0;
       };
 
-      gaps = 4;
+      gaps = 2;
       struts = {
         left = 0;
         right = 0;

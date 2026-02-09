@@ -11,7 +11,48 @@
         place-within-backdrop = true;
       }
     ];
-    # See app-id with command = $ niri msg windows
+    #= Workspaces
+    workspaces = {
+      # Primary output
+      devs = {
+        name = "devs";
+        open-on-output = "DP-3";
+      };
+      games = {
+        name = "games";
+        open-on-output = "DP-3";
+      };
+      medias = {
+        name = "medias";
+        open-on-output = "DP-3";
+      };
+
+      # Secondary output
+      docs = {
+        name = "docs";
+        open-on-output = "DP-5";
+      };
+      metrics = {
+        name = "metrics";
+        open-on-output = "DP-5";
+      };
+      launchers = {
+        name = "launchers";
+        open-on-output = "DP-5";
+      };
+      chats = {
+        name = "chats";
+        open-on-output = "DP-5";
+      };
+
+      #TV
+      tv = {
+        name = "tv";
+        open-on-output = "HDMI-A-1";
+      };
+    };
+
+    # See app-id with command = $ niri msg windows / niri msg pick-window
     window-rules = [
       {
         geometry-corner-radius =
@@ -26,21 +67,26 @@
           };
         clip-to-geometry = true;
       }
+
       {
         # todo: dont work
         matches = [ { app-id = "dev.zed.Zed"; } ];
+        open-on-workspace = "devs";
         default-column-width = {
           proportion = 2. / 3.;
         };
       }
+
       #= Steam and Games
       {
         matches = [ { app-id = "steam"; } ];
         open-on-output = "DP-5";
+        open-on-workspace = "launchers";
         default-column-width = {
           proportion = 1.0;
         };
       }
+
       {
         matches = [
           {
@@ -48,18 +94,27 @@
             app-id = "steam";
           }
         ];
+        open-on-workspace = "launchers";
+        default-column-width = {
+          proportion = 1. / 3.;
+        };
+      }
+
+      {
+        matches = [ { app-id = "dota2"; } ];
+        open-on-workspace = "games";
+        open-on-output = "DP-3";
+      }
+
+      {
+        matches = [ { app-id = "^discord(_canary)?$"; } ];
+        open-on-workspace = "chats";
+        open-on-output = "DP-5";
         default-column-width = {
           proportion = 2. / 3.;
         };
       }
-      {
-        matches = [ { app-id = "dota2"; } ];
-        open-on-output = "DP-3";
-      }
-      {
-        matches = [ { app-id = "^discord(_canary)?$"; } ];
-        open-on-output = "DP-5";
-      }
+
       #= Browsers
       {
         matches = [
@@ -68,6 +123,7 @@
         ];
         scroll-factor = 0.5;
       }
+
       {
         matches = [ { title = "(?i)picture in picture"; } ];
         open-floating = true;
@@ -81,29 +137,15 @@
         };
       }
       #= Terminal Emulators
+
+      #= Communication
       {
-        matches = [ { app-id = "org.wezfurlong.wezterm"; } ];
+        matches = [ { app-id = "org.telegram.desktop"; } ];
         default-column-width = {
-          proportion = 1.0;
+          proportion = 1. / 3.;
         };
-      }
-      {
-        matches = [
-          {
-            title = "yazi";
-            app-id = "alacritty";
-          }
-        ];
-        default-column-width = {
-          proportion = 0.25;
-        };
-      }
-      #= Waydroid
-      {
-        matches = [ { app-id = "Waydroid"; } ];
-        default-column-width = {
-          fixed = 1256;
-        };
+        open-on-workspace = "chats";
+        open-on-output = "DP-5";
       }
     ];
   };
