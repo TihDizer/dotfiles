@@ -8,6 +8,6 @@
     { sh = "$POLKIT_BIN"; }
     { sh = "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all"; }
     { command = [ "${pkgs.google-chrome}/bin/google-chrome" ]; }
-    { command = [ "${pkgs.Telegram}/bin/Telegram" ]; }
+    { command = [ "${pkgs.telegram-desktop}/bin/Telegram" ]; }
   ];
 }
