@@ -18,6 +18,7 @@ in
     ./settings.nix
     ./startup.nix
     ./windowrules.nix
+    ./kanshi.nix
   ];
   # nixpkgs.overlays = [ niri.overlays.niri ];
 

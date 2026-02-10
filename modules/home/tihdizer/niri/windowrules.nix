@@ -73,7 +73,7 @@
       #= Devs
       {
         # todo: dont work
-        matches = [ { app-id = "dev.zed.Zed"; } ];
+        matches = [ { app-id = "zed"; } ];
         open-on-workspace = "devs";
         default-column-width = {
           proportion = 2. / 3.;
@@ -129,6 +129,7 @@
         default-column-width = {
           proportion = 1. / 3.;
         };
+        block-out-from = "screencast";
         open-on-workspace = "chats";
         open-on-output = "DP-5";
       }
