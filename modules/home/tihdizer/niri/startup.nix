@@ -7,6 +7,8 @@
     { sh = "sway-audio-idle-inhibit"; }
     { sh = "$POLKIT_BIN"; }
     { sh = "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all"; }
+    { command = [ "${pkgs.google-chrome}/bin/google-chrome" ]; }
+    { command = [ "${pkgs.telegram-desktop}/bin/Telegram" ]; }
   ];
 
   systemd.user.services.niri-workspaces = {

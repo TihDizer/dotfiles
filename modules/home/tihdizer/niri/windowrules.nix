@@ -213,12 +213,30 @@
       }
 
       {
-        matches = [ { app-id = "obsidian"; } ];
+        matches = [
+          {
+            app-id = "obsidian";
+            at-startup = true;
+          }
+        ];
         default-column-width = {
           proportion = 2. / 3.;
         };
       }
 
+      #= Startup
+      {
+        matches = [
+          {
+            app-id = "^(firefox|chromium-browser|chrome-.*|firefox-.*)$";
+            at-startup = true;
+          }
+        ];
+        default-column-width = {
+          proportion = 2. / 3.;
+        };
+        open-on-workspace = "medias";
+      }
     ];
   };
 }
