@@ -15,6 +15,25 @@
       local wezterm = require 'wezterm'
       local config = {}
       config.audible_bell = "Disabled"
+      config.window_close_confirmation = "NeverPrompt"
+
+      config.skip_close_confirmation_for_processes_named = {
+        'bash',
+        'sh',
+        'zsh',
+        'fish',
+        'tmux',
+        'nu',
+        'cmd.exe',
+        'pwsh.exe',
+        'powershell.exe',
+        'yazi',
+        'btop',
+      }
+
+      wezterm.on('mux-is-process-stateful', function(_proc)
+        return false
+      end)
 
       return {
         check_for_updates = false,
