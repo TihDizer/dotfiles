@@ -63,7 +63,6 @@
 
         modules = [
           ./hosts/main/default.nix
-
           home-manager.nixosModules.home-manager
           {
             home-manager = {
