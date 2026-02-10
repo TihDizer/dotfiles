@@ -29,6 +29,9 @@ with lib;
     # Base
     ../../modules/core/default.nix
 
+    # Shell
+    ../../modules/shell/default.nix
+
     # Desktop + niri
     ../../modules/desktop/appimage.nix
     ../../modules/desktop/winapps.nix
