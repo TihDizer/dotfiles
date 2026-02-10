@@ -73,7 +73,7 @@
       #= Devs
       {
         # todo: dont work
-        matches = [ { app-id = "zed"; } ];
+        matches = [ { app-id = "^dev\\.zed\\.Zed$"; } ]; # todo
         open-on-workspace = "devs";
         default-column-width = {
           proportion = 2. / 3.;
@@ -90,21 +90,14 @@
 
       #= Games
       {
-        matches = [ { app-id = "^steam_app_\\d+"; } ]; # Steam pattern to test
-        open-on-workspace = "games";
-      }
-
-      {
-        matches = [ { app-id = "dota2"; } ];
-        open-on-workspace = "games";
-        open-on-output = "DP-3";
-      }
-
-      {
         matches = [
-          { title = "Geometry Dash"; }
+          { app-id = "^steam_app_\\d+"; }
+          { app-id = "dota2"; }
+          { app-id = "cs2"; }
+          { title = "^Geometry Dash$"; }
         ];
         open-on-workspace = "games";
+        open-focused = false;
       }
 
       #= VMs
@@ -136,7 +129,11 @@
 
       #= Tools
       {
-        matches = [ { app-id = "io.github.ilya_zlobintsev.LACT"; } ];
+        matches = [
+          { app-id = "io.github.ilya_zlobintsev.LACT"; }
+          { app-id = "org.pulseaudio.pavucontrol"; }
+          { app-id = "Throne"; }
+        ];
         open-on-workspace = "tools";
         default-column-width = {
           proportion = 2. / 3.;
@@ -144,37 +141,33 @@
       }
 
       {
-        matches = [ { app-id = ".blueman-manager-wrapped"; } ];
+        matches = [
+          { app-id = ".blueman-manager-wrapped"; }
+          { app-id = "com.saivert.pwvucontrol"; }
+        ];
         open-on-workspace = "tools";
         default-column-width = {
           proportion = 1. / 3.;
         };
       }
 
-      {
-        matches = [ { app-id = "org.pulseaudio.pavucontrol"; } ];
-        open-on-workspace = "tools";
-        default-column-width = {
-          proportion = 2. / 3.;
-        };
-      }
-
-      {
-        matches = [ { app-id = "Throne"; } ];
-        open-on-workspace = "tools";
-        default-column-width = {
-          proportion = 2. / 3.;
-        };
-      }
-
       #= Launchers
       {
-        matches = [ { app-id = "steam"; } ];
-        open-on-output = "DP-5";
+        matches = [
+          {
+            title = "Steam";
+            app-id = "steam";
+          }
+          {
+            title = "Launching...";
+            app-id = "steam";
+          }
+        ];
         open-on-workspace = "launchers";
         default-column-width = {
           proportion = 2. / 3.;
         };
+        open-focused = false;
       }
 
       {
@@ -188,6 +181,7 @@
         default-column-width = {
           proportion = 1. / 3.;
         };
+        open-focused = false;
       }
 
       #= Other (all workspaces)
@@ -210,6 +204,7 @@
         default-column-width = {
           proportion = 2. / 3.;
         };
+        open-focused = false;
       }
 
       {
@@ -236,6 +231,21 @@
           proportion = 2. / 3.;
         };
         open-on-workspace = "medias";
+        open-focused = false;
+      }
+
+      {
+        matches = [
+          {
+            app-id = "org.telegram.desktop";
+            at-startup = true;
+          }
+        ];
+        default-column-width = {
+          proportion = 1. / 3.;
+        };
+        open-on-workspace = "medias";
+        open-focused = false;
       }
     ];
   };
