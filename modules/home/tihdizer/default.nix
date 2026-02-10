@@ -32,7 +32,6 @@
     ./utils/packages.nix
     ./utils/apps.nix
     ./utils/archives.nix
-    ./utils/audio.nix
     ./utils/communication.nix
     ./utils/usb.nix
     ./yazi/default.nix
