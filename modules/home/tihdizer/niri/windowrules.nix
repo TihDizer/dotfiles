@@ -228,7 +228,7 @@
       {
         matches = [
           {
-            app-id = "^(firefox|chromium-browser|chrome-.*|firefox-.*)$";
+            app-id = "^(firefox|chromium-browser|google-chrome|chrome-.*|firefox-.*)$";
             at-startup = true;
           }
         ];
