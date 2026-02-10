@@ -244,7 +244,7 @@
         default-column-width = {
           proportion = 1. / 3.;
         };
-        open-on-workspace = "medias";
+        open-on-workspace = "chats";
         open-focused = false;
       }
     ];
