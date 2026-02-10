@@ -3,6 +3,7 @@
 {
   users.users.tihdizer = {
     isNormalUser = true;
+    shell = pkgs.fish;
     description = "TihDizer";
     extraGroups = [
       "wheel"
