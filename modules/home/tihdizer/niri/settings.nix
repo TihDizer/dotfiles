@@ -33,17 +33,17 @@ in
       background-color = "#333333";
 
       preset-window-heights = [
-        # { proportion = 1.; }
         { proportion = 1. / 3.; }
         { proportion = 1. / 2.; }
         { proportion = 2. / 3.; }
+        # { proportion = 1.; }
       ];
 
       preset-column-widths = [
-        { proportion = 1.0 / 3.0; }
-        { proportion = 1.0 / 2.0; }
-        { proportion = 2.0 / 3.0; }
-        { proportion = 1.0; }
+        { proportion = 1. / 3.; }
+        { proportion = 1. / 2.; }
+        { proportion = 2. / 3.; }
+        # { proportion = 1.; }
       ];
 
       default-column-width = {
