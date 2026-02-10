@@ -24,8 +24,6 @@
         --delete-generations +3
       '';
     };
-
-    daemonCPUSchedulingPriority = 19;
   };
 
   nixpkgs.config.allowUnfree = true;

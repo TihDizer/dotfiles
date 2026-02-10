@@ -4,14 +4,23 @@
   programs.zed-editor = {
     enable = true;
     package = zed.packages.${pkgs.system}.default;
-    extensions = [
-      "nix"
-      "rust"
-      "toml"
-      "markdown"
-      "dockerfile"
-    ];
     userSettings = {
+      auto_install_extensions = {
+        "dockerfile" = true;
+        "toml" = true;
+        "html" = true;
+        "git-firefly" = true;
+        "nix" = true;
+        "docker-compose" = true;
+        "sql" = true;
+        "terraform" = true;
+        "latex" = true;
+        "csv" = true;
+        "ansible" = true;
+        "rust-snippets" = true;
+        "rust-go-snippets" = true;
+        "python-snippets" = true;
+      };
       edit_predictions = {
         mode = "subtle";
       };
