@@ -28,6 +28,11 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
+
+    zed = {
+      url = "github:zed-industries/zed";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -41,6 +46,7 @@
       antigravity-nix,
       rust-overlay,
       flake-utils,
+      zed,
       ...
     }:
     let
@@ -58,6 +64,7 @@
             antigravity-nix
             rust-overlay
             flake-utils
+            zed
             ;
         };
 
@@ -69,7 +76,7 @@
               backupFileExtension = "backup";
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit niri antigravity-nix; };
+              extraSpecialArgs = { inherit niri antigravity-nix zed; };
 
               users.tihdizer = import ./modules/home/tihdizer/default.nix;
             };
