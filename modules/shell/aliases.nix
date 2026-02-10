@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
   environment.shellAliases = {
+    #= Nix
+    snrs = "sudo nixos-rebuild switch --flake .\$hostname";
+
     #= Stats
     ping = "${pkgs.gping}/bin/gping";
     top = "${pkgs.bottom}/bin/btm";

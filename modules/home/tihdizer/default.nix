@@ -37,5 +37,8 @@
     ./utils/usb.nix
     ./yazi/default.nix
     ./walker/default.nix
+
+    # Shell
+    ./shell/default.nix
   ];
 }

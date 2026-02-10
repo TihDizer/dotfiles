@@ -11,9 +11,9 @@ let
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   launcher = getExe pkgs.fuzzel;
   browser = getExe pkgs.google-chrome;
-  term = getExe pkgs.alacritty;
-  lock = getExe pkgs.hyprlock;
-  logout = getExe pkgs.wlogout;
+  term = getExe pkgs.wezterm;
+  # lock = getExe pkgs.hyprlock;
+  # logout = getExe pkgs.wlogout;
 in
 {
   programs.niri.settings.binds =
