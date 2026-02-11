@@ -73,7 +73,7 @@
       #= Devs
       {
         # todo: dont work
-        matches = [ { app-id = "^dev\\.zed\\.Zed-Nightly$"; } ]; # todo
+        matches = [ { app-id = "^dev.zed.Zed-Nightly$"; } ]; # todo
         open-on-workspace = "devs";
         default-column-width = {
           proportion = 2. / 3.;
@@ -118,7 +118,12 @@
       }
 
       {
-        matches = [ { app-id = "org.telegram.desktop"; title = "Telegram"; } ];
+        matches = [
+          {
+            app-id = "org.telegram.desktop";
+            title = "Telegram";
+          }
+        ];
         default-column-width = {
           proportion = 1. / 3.;
         };
