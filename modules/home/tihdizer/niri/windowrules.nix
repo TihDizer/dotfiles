@@ -118,7 +118,7 @@
       }
 
       {
-        matches = [ { app-id = "org.telegram.desktop"; } ];
+        matches = [ { app-id = "org.telegram.desktop"; title = "Telegram"; } ];
         default-column-width = {
           proportion = 1. / 3.;
         };
