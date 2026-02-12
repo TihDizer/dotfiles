@@ -8,12 +8,12 @@
 {
   # Bluetooth
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
-  # Blueman — GUI
-  services.blueman.enable = true;
-  # systemd.user.services.obex = {
-  #   enable = true;
-  #   description = "Bluetooth OBEX daemon";
-  #   serviceConfig.ExecStart = "${pkgs.bluez}/libexec/bluetooth/obexd --root=%h/Downloads --auto-accept";
-  # };
+  boot.kernelParams = [ "btusb.enable_autosuspend=n" ];
+
+  environment.systemPackages = with pkgs; [
+    bluetuith
+    # bluetui
+  ];
 }

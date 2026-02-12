@@ -3,9 +3,7 @@
     "antigravity-nix": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1770196631,
@@ -142,9 +140,7 @@
     },
     "home-manager": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1770818644,
@@ -359,10 +355,7 @@
     },
     "rust-overlay_2": {
       "inputs": {
-        "nixpkgs": [
-          "zed",
-          "nixpkgs"
-        ]
+        "nixpkgs": ["zed", "nixpkgs"]
       },
       "locked": {
         "lastModified": 1770001842,
@@ -443,9 +436,7 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils_3",
         "nix-filter": "nix-filter",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "lastModified": 1769341600,
@@ -534,9 +525,7 @@
       "inputs": {
         "crane": "crane",
         "flake-parts": "flake-parts",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": ["nixpkgs"],
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
