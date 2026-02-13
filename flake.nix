@@ -72,6 +72,7 @@
           ./hosts/main/default.nix
           home-manager.nixosModules.home-manager
           {
+            system.configurationRevision = self.rev or self.dirtyRev or null;
             home-manager = {
               backupFileExtension = "backup";
               useGlobalPkgs = true;
