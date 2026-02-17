@@ -37,6 +37,7 @@ with lib;
     ../../modules/desktop/winapps.nix
     ../../modules/desktop/niri/default.nix
     ../../modules/desktop/sunshine.nix
+    ../../modules/desktop/chrome-remote.nix
 
     # Games
     # todo ../modules/games/prism-launcher/default.nix
