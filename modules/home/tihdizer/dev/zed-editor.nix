@@ -46,7 +46,7 @@
         show_whitespaces = "all";
       };
       agent = {
-        default_profile = "write";
+        default_profile = "ask";
         default_model = {
           provider = "openrouter";
           model = "openrouter/free";
