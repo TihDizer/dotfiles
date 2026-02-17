@@ -164,6 +164,10 @@
             app-id = "steam";
           }
           {
+            title = "Special Offers";
+            app-id = "steam";
+          }
+          {
             title = "Launching...";
             app-id = "steam";
           }
