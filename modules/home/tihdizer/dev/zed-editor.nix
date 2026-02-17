@@ -45,6 +45,15 @@
         remove_trailing_whitespace_on_save = false;
         show_whitespaces = "all";
       };
+      agent = {
+        default_profile = "write";
+        default_model = {
+          provider = "openrouter";
+          model = "openrouter/free";
+        };
+        favorite_models = [ ];
+        model_parameters = [ ];
+      };
     };
   };
 }
