@@ -9,7 +9,7 @@ let
   inherit (lib) getExe mkMerge mkIf;
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
-  launcher = getExe pkgs.fuzzel;
+  launcher = getExe pkgs.walker;
   browser = getExe pkgs.google-chrome;
   term = getExe pkgs.wezterm;
   # lock = getExe pkgs.hyprlock;
