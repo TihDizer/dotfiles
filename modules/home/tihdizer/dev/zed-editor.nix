@@ -20,6 +20,7 @@
         "rust-snippets" = true;
         "rust-go-snippets" = true;
         "python-snippets" = true;
+        "color-highlight" = true;
       };
       edit_predictions = {
         mode = "subtle";
