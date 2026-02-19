@@ -86,7 +86,14 @@
               backupFileExtension = "backup";
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit niri antigravity-nix zed; };
+              extraSpecialArgs = {
+                inherit
+                  niri
+                  antigravity-nix
+                  zed
+                  walker
+                  ;
+              };
 
               users.tihdizer = import ./modules/home/tihdizer/default.nix;
             };
