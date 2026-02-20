@@ -30,6 +30,8 @@
       appearance = {
         font = "JetBrains Mono Nerd Font 14";
         theme = "dark";
+        icon-theme = "Papirus-Dark";
+        icon-size = 48;
         corner-radius = 12;
         width = 800;
         height = 600;
