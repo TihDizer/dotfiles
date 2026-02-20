@@ -51,9 +51,9 @@ in
     wlr-randr
     wayland-utils
     xcb-util-cursor
-    xorg.libxcb
-    xorg.xprop
-    xorg.xkbcomp
+    libxcb
+    xprop
+    xkbcomp
 
     # Wayland desktop (niri)
     fuzzel # Wayland launcher (rofi-wayland аналог)
