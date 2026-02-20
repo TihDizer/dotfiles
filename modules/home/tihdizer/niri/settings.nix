@@ -4,10 +4,9 @@ in
 {
   programs.niri.settings = {
     cursor = {
-      hide-after-inactive-ms = 1000;
+      hide-after-inactive-ms = 3000;
       hide-when-typing = true;
     };
-
     layout = {
       focus-ring = {
         enable = false;
