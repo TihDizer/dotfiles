@@ -3,6 +3,11 @@ let
 in
 {
   programs.niri.settings = {
+    cursor = {
+      hide-after-inactive-ms = 1000;
+      hide-when-typing = true;
+    };
+
     layout = {
       focus-ring = {
         enable = false;
@@ -36,7 +41,7 @@ in
         { proportion = 1. / 3.; }
         { proportion = 1. / 2.; }
         { proportion = 2. / 3.; }
-        # { proportion = 1.; }
+        { proportion = 1.; }
       ];
 
       preset-column-widths = [
