@@ -54,6 +54,7 @@
         favorite_models = [ ];
         model_parameters = [ ];
       };
+      vim_mode = true;
     };
   };
 }
