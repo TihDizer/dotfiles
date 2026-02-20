@@ -16,5 +16,19 @@
       output_name = 0;
       adapter_name = "/dev/dri/card1";
     };
+
+    applications = {
+      apps = [
+        {
+          name = "Primary Monitor";
+        }
+        {
+          name = "Secondary Monitor";
+        }
+        {
+          name = "TV";
+        }
+      ];
+    };
   };
 }
