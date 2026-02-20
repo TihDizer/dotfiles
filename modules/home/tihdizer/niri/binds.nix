@@ -77,7 +77,7 @@ in
 
         #= Screenshots
         "Mod+Shift+S".action.screenshot.show-pointer = true;
-        # "Ctrl+Print".action.screenshot-window.write-to-disk = true;
+        "Mod+Ctrl+S".action.screenshot-window.write-to-disk = true;
 
         #= Actions
         "Mod+W".action = toggle-column-tabbed-display;
