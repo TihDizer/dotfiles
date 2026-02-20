@@ -1,5 +1,6 @@
 {
   niri,
+  walker,
   ...
 }:
 
@@ -11,6 +12,9 @@
     # Desktop
     ./niri/default.nix
     niri.homeModules.niri
+
+    ./walker/default.nix
+    walker.homeManagerModules.default
 
     # Editor
     ./dev/zed-editor.nix
@@ -35,7 +39,6 @@
     ./utils/communication.nix
     ./utils/usb.nix
     ./yazi/default.nix
-    ./walker/default.nix
 
     # Shell
     ./shell/default.nix

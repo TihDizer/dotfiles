@@ -1,19 +1,20 @@
 {
   pkgs,
   lib,
-  walker,
   ...
 }:
 {
   imports = [
     # ./style.nix
     # ./layout.nix
+
   ];
 
   programs.walker = {
     enable = true;
+    runAsService = true;
 
-    settings = {
+    config = {
       providers = {
         calculator.enable = true;
         files.enable = true;
@@ -39,7 +40,5 @@
         fuzzy = true;
       };
     };
-
-    package = walker.packages.${pkgs.system}.default;
   };
 }
