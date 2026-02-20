@@ -2,8 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    pkgs.sunshine
-    pkgs.moonlight-qt
+    moonlight-qt # Client
   ];
 
   services.sunshine = {
@@ -11,11 +10,6 @@
     openFirewall = true;
     capSysAdmin = true;
     autoStart = true;
-    settings = {
-      capture = "kms";
-      output_name = 0;
-      adapter_name = "/dev/dri/card1";
-    };
 
     applications = {
       apps = [
