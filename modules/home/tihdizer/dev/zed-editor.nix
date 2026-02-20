@@ -55,6 +55,7 @@
         model_parameters = [ ];
       };
       vim_mode = true;
+      restore_on_startup = "empty_tab";
     };
   };
 }
