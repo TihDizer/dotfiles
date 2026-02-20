@@ -7,7 +7,6 @@
   imports = [
     # ./style.nix
     # ./layout.nix
-
   ];
 
   programs.walker = {
