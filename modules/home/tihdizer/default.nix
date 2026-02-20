@@ -16,6 +16,8 @@
     ./walker/default.nix
     walker.homeManagerModules.default
 
+    ./utils/icons.nix
+
     # Editor
     ./dev/zed-editor.nix
     ./helix/default.nix
