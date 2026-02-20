@@ -11,6 +11,12 @@
     capSysAdmin = true;
     autoStart = true;
 
+    settings = {
+      capture = "kms";
+      output_name = 0;
+      adapter_name = "/dev/dri/card1";
+    };
+
     applications = {
       apps = [
         {
