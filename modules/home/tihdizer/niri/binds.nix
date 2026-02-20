@@ -94,8 +94,7 @@ in
 
         "Mod+Shift+Slash".action = show-hotkey-overlay;
 
-        "Mod+Comma".action = consume-window-into-column;
-        "Mod+Period".action = expel-window-from-column;
+        "Mod+Comma".action = consume-or-expel-window-left;
         "Mod+C".action = center-column;
         "Mod+Ctrl+C".action = center-visible-columns;
 
