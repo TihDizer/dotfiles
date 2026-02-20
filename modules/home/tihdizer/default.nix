@@ -20,7 +20,6 @@
 
     # Editor
     ./dev/zed-editor.nix
-    ./helix/default.nix
 
     # Dev
     ./dev/go.nix
