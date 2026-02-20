@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) getExe mkMerge mkIf;
+  inherit (lib) getExe mkMerge;
   wpctl = "${pkgs.wireplumber}/bin/wpctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   launcher = "${pkgs.walker}/bin/walker";

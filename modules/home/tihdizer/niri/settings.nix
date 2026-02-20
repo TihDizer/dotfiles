@@ -1,6 +1,3 @@
-{ config, ... }:
-let
-in
 {
   programs.niri.settings = {
     cursor = {
@@ -61,6 +58,7 @@ in
         top = 0;
         bottom = 0;
       };
+
       tab-indicator = {
         hide-when-single-tab = true;
         place-within-column = true;
