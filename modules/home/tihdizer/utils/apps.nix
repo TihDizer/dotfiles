@@ -11,5 +11,6 @@
     mission-center # System monitor GUI
     citrix_workspace # Citrix Workspace
     jellyfin-ffmpeg # Jellyfin FFmpeg build
+    qbittorrent # BitTorrent client
   ];
 }
