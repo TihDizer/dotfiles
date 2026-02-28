@@ -17,10 +17,13 @@
     publicShare = "$HOME/shared";
   };
 
-  home.activation.createMedias = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.createDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p ~/medias/{music,pictures,videos}
+    mkdir -p ~/downloads/{git}
     mkdir -p ~/documents/templates
-    mkdir -p ~/downloads ~/documents ~/shared
+    mkdir -p ~/shared
+    mkdir -p ~/projects
+    mkdir -p ~/notes ~/vms ~/usb
   '';
 
   # home.file."downloads".source =
