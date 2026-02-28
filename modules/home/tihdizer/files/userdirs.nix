@@ -14,7 +14,7 @@
     pictures = "$HOME/medias/pictures";
     videos = "$HOME/medias/videos";
     templates = "$HOME/documents/templates";
-    public = "$HOME/shared";
+    publicShare = "$HOME/shared";
   };
 
   home.activation.createMedias = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
