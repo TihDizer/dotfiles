@@ -46,14 +46,11 @@
     ];
   };
 
-  fileSystems."/home/tihdizer/hdd1" = {
-    device = "/dev/disk/by-uuid/FEF04EFEF04EBCA1";
-    fsType = "ntfs-3g";
+  fileSystems."/home/tihdizer/hdd-files" = {
+    device = "/dev/disk/by-uuid/e8bb6b8e-e9d1-4f9f-bd4a-dea817cce2f8";
+    fsType = "ext4";
     options = [
-      "uid=1000"
-      "gid=100"
-      "dmask=022"
-      "fmask=133"
+      "defaults"
       "nofail"
     ];
   };
