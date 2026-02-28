@@ -11,6 +11,7 @@
     extraGroups = [
       "wheel"
       "libvirtd"
+      "kvm"
       "docker"
       "networkmanager"
       "audio"
