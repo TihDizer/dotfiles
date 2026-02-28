@@ -18,11 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    antigravity-nix = {
-      url = "github:jacopone/antigravity-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     flake-utils = {
@@ -50,7 +45,6 @@
       niri,
       winapps,
       zapret-discord-youtube,
-      antigravity-nix,
       rust-overlay,
       flake-utils,
       zed,
@@ -69,7 +63,6 @@
             winapps
             zapret-discord-youtube
             system
-            antigravity-nix
             rust-overlay
             flake-utils
             zed
@@ -89,7 +82,6 @@
               extraSpecialArgs = {
                 inherit
                   niri
-                  antigravity-nix
                   zed
                   walker
                   ;
