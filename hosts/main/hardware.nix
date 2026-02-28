@@ -52,6 +52,9 @@
     options = [
       "defaults"
       "nofail"
+      "uid=1000"
+      "gid=101"
+      "umask=022"
     ];
   };
 
