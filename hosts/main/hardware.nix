@@ -46,15 +46,12 @@
     ];
   };
 
-  fileSystems."/home/tihdizer/hdd-files" = {
-    device = "/dev/disk/by-uuid/e8bb6b8e-e9d1-4f9f-bd4a-dea817cce2f8";
+  fileSystems."/mnt/hdd1" = {
+    device = "/dev/disk/by-label/hdd1";
     fsType = "ext4";
     options = [
       "defaults"
       "nofail"
-      "uid=1000"
-      "gid=101"
-      "umask=022"
     ];
   };
 
@@ -70,8 +67,8 @@
     ];
   };
 
-  fileSystems."/home/tihdizer/nvme" = {
-    device = "/dev/disk/by-label/NVMeGames";
+  fileSystems."/mnt/nvme" = {
+    device = "/dev/disk/by-label/nvme";
     fsType = "ext4";
     options = [
       "nofail"
