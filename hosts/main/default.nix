@@ -28,7 +28,7 @@
     ../../modules/desktop/appimage.nix
     ../../modules/desktop/winapps.nix
     ../../modules/desktop/niri/default.nix
-    ../../modules/desktop/sunshine.nix
+    # ../../modules/desktop/sunshine.nix
 
     # Games
     # todo ../modules/games/prism-launcher/default.nix
