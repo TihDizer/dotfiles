@@ -18,6 +18,8 @@
 
     ./utils/icons.nix
 
+    ./files
+
     # Editor
     ./dev/zed-editor.nix
 
