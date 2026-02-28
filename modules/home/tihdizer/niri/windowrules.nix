@@ -73,7 +73,10 @@
       #= Devs
       {
         # todo: dont work
-        matches = [ { app-id = "^dev.zed.Zed-Nightly$"; } ]; # todo
+        matches = [
+          { app-id = "^dev.zed.Zed-Nightly$"; }
+          { title = "empty project"; }
+        ]; # todo
         open-on-workspace = "devs";
         default-column-width = {
           proportion = 2. / 3.;
@@ -138,6 +141,7 @@
           { app-id = "io.github.ilya_zlobintsev.LACT"; }
           { app-id = "org.pulseaudio.pavucontrol"; }
           { app-id = "Throne"; }
+          { app-id = "org.qbittorrent.qBittorrent"; }
         ];
         open-on-workspace = "tools";
         default-column-width = {
