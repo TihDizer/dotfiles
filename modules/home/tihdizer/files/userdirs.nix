@@ -19,11 +19,11 @@
 
   home.activation.createDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p ~/medias/{music,pictures,videos}
-    mkdir -p ~/downloads/{git}
+    mkdir -p ~/downloads/{git,}
     mkdir -p ~/documents/templates
     mkdir -p ~/shared
     mkdir -p ~/projects
-    mkdir -p ~/notes ~/vms ~/usb
+    mkdir -p ~/notes ~/vms ~/.mnt/{usbs,}
   '';
 
   # home.file."downloads".source =
