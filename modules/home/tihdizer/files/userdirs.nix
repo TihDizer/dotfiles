@@ -23,6 +23,7 @@
     mkdir -p ~/documents/templates
     mkdir -p ~/shared
     mkdir -p ~/projects
+    mkdir -p ~/dotfiles
     mkdir -p ~/notes ~/vms ~/.mnt/{usbs,}
   '';
 
