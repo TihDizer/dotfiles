@@ -20,6 +20,7 @@
   home.activation.createMedias = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p ~/medias/{music,pictures,videos}
     mkdir -p ~/documents/templates
+    mkdir -p ~/downloads ~/documents ~/shared
   '';
 
   # home.file."downloads".source =
