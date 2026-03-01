@@ -24,7 +24,7 @@
     mkdir -p ~/shared
     mkdir -p ~/projects
     mkdir -p ~/dotfiles
-    mkdir -p ~/notes ~/vms ~/.mnt/{usbs,}
+    mkdir -p ~/notes ~/vms ~/mnt/{usbs, nvme, storage, medias}
   '';
 
   # home.file."downloads".source =
