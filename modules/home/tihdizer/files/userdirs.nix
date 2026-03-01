@@ -24,7 +24,8 @@
     mkdir -p ~/shared
     mkdir -p ~/projects
     mkdir -p ~/dotfiles
-    mkdir -p ~/notes ~/vms ~/mnt/{usbs, nvme, storage, medias}
+    mkdir -p ~/notes ~/vms
+    mkdir -p ~/mnt/{usbs,nvme,storage,medias}
   '';
   home.file."mnt/storage".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd1/tihdizer";
   # home.file."downloads".source =
