@@ -49,10 +49,13 @@
 
   fileSystems."/mnt/hdd1" = {
     device = "/dev/disk/by-label/hdd1";
-    fsType = "ext4";
+    fsType = "btrfs";
     options = [
       "defaults"
       "nofail"
+      "compress=zstd:1"
+      "space_cache=v2"
+      "autodefrag"
     ];
   };
 
