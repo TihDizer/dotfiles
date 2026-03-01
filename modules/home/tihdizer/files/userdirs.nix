@@ -26,7 +26,7 @@
     mkdir -p ~/dotfiles
     mkdir -p ~/notes ~/vms ~/mnt/{usbs, nvme, storage, medias}
   '';
-
+  home.file."mnt/storage".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd1/tihdizer";
   # home.file."downloads".source =
   #   config.lib.file.mkOutOfStoreSymlink "/hdd2/media/downloads";
 }
