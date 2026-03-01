@@ -59,15 +59,12 @@
     ];
   };
 
-  fileSystems."/home/tihdizer/hdd2" = {
-    device = "/dev/disk/by-uuid/80AC848CAC847F02";
+  fileSystems."/mnt/hdd2" = {
+    device = "/dev/disk/by-label/hdd2";
     fsType = "ntfs-3g";
     options = [
-      "uid=1000"
-      "gid=100"
-      "dmask=022"
-      "fmask=133"
       "nofail"
+      "noatime"
     ];
   };
 
