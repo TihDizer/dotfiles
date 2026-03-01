@@ -16,5 +16,6 @@
 
     # Hardware/VM
     lm_sensors # Hardware monitoring
+    btrfs-progs # BTRFS filesystem utilities
   ];
 }
