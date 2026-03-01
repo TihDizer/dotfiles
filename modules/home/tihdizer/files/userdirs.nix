@@ -39,6 +39,7 @@
   home.file."medias".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd2/tihdizer/medias";
   home.file."games/hdd".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd2/tihdizer/games";
   home.file."shared/medias".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd2/shared";
+  home.file."vms/hdd".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd2/tihdizer/vms";
 
   home.file."mnt/nvme".source = config.lib.file.mkOutOfStoreSymlink "/mnt/nvme/tihdizer";
   home.file."vms/nvme".source = config.lib.file.mkOutOfStoreSymlink "/mnt/nvme/tihdizer/vms";
