@@ -25,6 +25,7 @@
     mkdir -p ~/projects
     mkdir -p ~/dotfiles
     mkdir -p ~/notes ~/vms
+    mkdir -p ~/games{nvme,hdd}
     mkdir -p ~/mnt/{usbs,nvme,storage,medias}
   '';
   home.file."mnt/storage".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd1/tihdizer";
