@@ -30,6 +30,7 @@
     "k10temp" # Ryzen CPU sensors
     "nvme" # NVMe SSD
   ];
+  boot.supportedFilesystems = [ "btrfs" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
