@@ -61,7 +61,7 @@
 
   fileSystems."/mnt/hdd2" = {
     device = "/dev/disk/by-label/hdd2";
-    fsType = "ntfs-3g";
+    fsType = "ext4";
     options = [
       "nofail"
       "noatime"
