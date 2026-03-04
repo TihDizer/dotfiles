@@ -11,46 +11,6 @@
         place-within-backdrop = true;
       }
     ];
-    #= Workspaces
-    workspaces = {
-      # Primary output
-      medias = {
-        name = "medias";
-        open-on-output = "DP-3";
-      };
-      devs = {
-        name = "devs";
-        open-on-output = "DP-3";
-      };
-      games = {
-        name = "games";
-        open-on-output = "DP-3";
-      };
-      vms = {
-        name = "vms";
-        open-on-output = "DP-3";
-      };
-
-      # Secondary output
-      chats = {
-        name = "chats";
-        open-on-output = "DP-5";
-      };
-      docs = {
-        name = "tools";
-        open-on-output = "DP-5";
-      };
-      launchers = {
-        name = "launchers";
-        open-on-output = "DP-5";
-      };
-
-      #TV todo: kanshi mb
-      tv = {
-        name = "tv";
-        open-on-output = "HDMI-A-1";
-      };
-    };
 
     # See app-id with command = $ niri msg windows / niri msg pick-window
     window-rules = [
@@ -77,7 +37,6 @@
           { app-id = "^dev.zed.Zed-Nightly$"; }
           { title = "empty project"; }
         ]; # todo
-        open-on-workspace = "devs";
         default-column-width = {
           proportion = 2. / 3.;
         };
@@ -85,7 +44,6 @@
 
       {
         matches = [ { app-id = "jetbrains-rustrover"; } ];
-        open-on-workspace = "devs";
         default-column-width = {
           proportion = 2. / 3.;
         };
@@ -99,21 +57,19 @@
           { app-id = "cs2"; }
           { title = "^Geometry Dash$"; }
         ];
-        open-on-workspace = "games";
+        open-on-output = "DP-3";
         open-focused = false;
       }
 
       #= VMs
       {
         matches = [ { app-id = ".virt-manager-wrapped"; } ];
-        open-on-workspace = "vms";
         open-on-output = "DP-3";
       }
 
       #= Chats
       {
         matches = [ { app-id = "^discord(_canary)?$"; } ];
-        open-on-workspace = "chats";
         open-on-output = "DP-5";
         default-column-width = {
           proportion = 2. / 3.;
@@ -131,7 +87,6 @@
           proportion = 1. / 3.;
         };
         block-out-from = "screencast";
-        open-on-workspace = "chats";
         open-on-output = "DP-5";
       }
 
@@ -143,7 +98,7 @@
           { app-id = "Throne"; }
           { app-id = "org.qbittorrent.qBittorrent"; }
         ];
-        open-on-workspace = "tools";
+        open-on-output = "DP-5";
         default-column-width = {
           proportion = 2. / 3.;
         };
@@ -154,7 +109,7 @@
           { app-id = ".blueman-manager-wrapped"; }
           { app-id = "com.saivert.pwvucontrol"; }
         ];
-        open-on-workspace = "tools";
+        open-on-output = "DP-5";
         default-column-width = {
           proportion = 1. / 3.;
         };
@@ -176,7 +131,7 @@
             app-id = "steam";
           }
         ];
-        open-on-workspace = "launchers";
+        open-on-output = "DP-5";
         default-column-width = {
           proportion = 2. / 3.;
         };
@@ -190,7 +145,7 @@
             app-id = "steam";
           }
         ];
-        open-on-workspace = "launchers";
+        open-on-output = "DP-5";
         default-column-width = {
           proportion = 1. / 3.;
         };
@@ -243,7 +198,6 @@
         default-column-width = {
           proportion = 2. / 3.;
         };
-        open-on-workspace = "medias";
         open-focused = false;
       }
 
@@ -257,7 +211,6 @@
         default-column-width = {
           proportion = 1. / 3.;
         };
-        open-on-workspace = "chats";
         open-focused = false;
       }
     ];
