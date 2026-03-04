@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   programs.niri.settings.spawn-at-startup = [
     { sh = "systemctl --user reset-failed"; }
