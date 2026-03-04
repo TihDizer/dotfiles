@@ -5,6 +5,7 @@
       hide-when-typing = true;
     };
     layout = {
+      empty-workspace-above-first = true;
       focus-ring = {
         enable = false;
         width = 2;
@@ -76,7 +77,6 @@
     };
 
     prefer-no-csd = true;
-    empty-workspace-above-first = true;
     hotkey-overlay.skip-at-startup = true;
     screenshot-path = "~/medias/pictures/screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
   };
