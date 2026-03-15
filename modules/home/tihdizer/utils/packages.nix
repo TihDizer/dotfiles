@@ -6,6 +6,7 @@
 {
   home.packages = with pkgs; [
     tray-tui # System tray TUI
+    solaar # Logitech control panel
     rpm # RPM package manager
     dpkg # Debian package manager
     cpufetch # CPU architecture viewer
