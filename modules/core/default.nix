@@ -10,5 +10,6 @@
     ./packages.nix
     ./amd.nix
     ./usb.nix
+    ./peripherals.nix
   ];
 }
