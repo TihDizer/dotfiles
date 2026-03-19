@@ -20,16 +20,8 @@
 
     ./files
 
-    # Editor
-    ./dev/zed-editor.nix
-
     # Dev
-    ./dev/go.nix
-    ./dev/nix.nix
-    ./dev/python.nix
-    ./dev/rust.nix
-    ./dev/dockerfile.nix
-    ./dev/git.nix
+    ./dev
 
     # Utils + Apps
     ./bash/default.nix
