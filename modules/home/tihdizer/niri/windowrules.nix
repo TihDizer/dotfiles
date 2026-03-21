@@ -28,14 +28,18 @@
         clip-to-geometry = true;
       }
 
-      #= Medias
-
-      #= Devs
+      #= All Monitors
       {
         # todo: dont work
         matches = [
-          { app-id = "^dev.zed.Zed-Nightly$"; }
-          { title = "empty project"; }
+          {
+            title = "empty project";
+            app-id = "dev.zed.Zed-Nightly";
+          }
+          { app-id = "jetbrains-rustrover"; }
+          {
+            app-id = "obsidian";
+          }
         ]; # todo
         default-column-width = {
           proportion = 2. / 3.;
@@ -43,13 +47,28 @@
       }
 
       {
-        matches = [ { app-id = "jetbrains-rustrover"; } ];
+        matches = [
+          { app-id = "^(firefox|chromium-browser|chrome-.*|firefox-.*)$"; }
+          { app-id = "^(xdg-desktop-portal-gtk)$"; }
+        ];
+        scroll-factor = 0.5;
+      }
+
+      {
+        matches = [ { title = "(?i)picture in picture"; } ];
+        open-floating = true;
+        default-floating-position = {
+          x = 2;
+          y = 2;
+          relative-to = "bottom-right";
+        };
         default-column-width = {
           proportion = 2. / 3.;
         };
+        open-focused = false;
       }
 
-      #= Games
+      #= Primary Monitor (DP-3)
       {
         matches = [
           { app-id = "^steam_app_\\d+"; }
@@ -61,13 +80,12 @@
         open-focused = false;
       }
 
-      #= VMs
       {
         matches = [ { app-id = ".virt-manager-wrapped"; } ];
         open-on-output = "DP-3";
       }
 
-      #= Chats
+      #= Secondary Monitor (DP-5)
       {
         matches = [ { app-id = "^discord(_canary)?$"; } ];
         open-on-output = "DP-5";
@@ -90,7 +108,6 @@
         open-on-output = "DP-5";
       }
 
-      #= Tools
       {
         matches = [
           { app-id = "io.github.ilya_zlobintsev.LACT"; }
@@ -118,7 +135,6 @@
         };
       }
 
-      #= Launchers
       {
         matches = [
           {
@@ -155,41 +171,6 @@
         open-focused = false;
       }
 
-      #= Other (all workspaces)
-      {
-        matches = [
-          { app-id = "^(firefox|chromium-browser|chrome-.*|firefox-.*)$"; }
-          { app-id = "^(xdg-desktop-portal-gtk)$"; }
-        ];
-        scroll-factor = 0.5;
-      }
-
-      {
-        matches = [ { title = "(?i)picture in picture"; } ];
-        open-floating = true;
-        default-floating-position = {
-          x = 2;
-          y = 2;
-          relative-to = "bottom-right";
-        };
-        default-column-width = {
-          proportion = 2. / 3.;
-        };
-        open-focused = false;
-      }
-
-      {
-        matches = [
-          {
-            app-id = "obsidian";
-            at-startup = true;
-          }
-        ];
-        default-column-width = {
-          proportion = 2. / 3.;
-        };
-      }
-
       #= Startup
       {
         matches = [
@@ -215,6 +196,7 @@
           proportion = 1. / 3.;
         };
         open-focused = false;
+        block-out-from = "screencast";
       }
     ];
   };
