@@ -96,7 +96,10 @@
           { app-id = "io.github.ilya_zlobintsev.LACT"; }
           { app-id = "org.pulseaudio.pavucontrol"; }
           { app-id = "Throne"; }
-          { app-id = "org.qbittorrent.qBittorrent"; }
+          {
+            title = "qBittorrent";
+            app-id = "org.qbittorrent.qBittorrent";
+          }
         ];
         open-on-output = "DP-5";
         default-column-width = {
