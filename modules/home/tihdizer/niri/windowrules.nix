@@ -30,7 +30,6 @@
 
       #= All Monitors
       {
-        # todo: dont work
         matches = [
           {
             title = "empty project";
@@ -40,18 +39,10 @@
           {
             app-id = "obsidian";
           }
-        ]; # todo
+        ];
         default-column-width = {
           proportion = 2. / 3.;
         };
-      }
-
-      {
-        matches = [
-          { app-id = "^(firefox|chromium-browser|chrome-.*|firefox-.*)$"; }
-          { app-id = "^(xdg-desktop-portal-gtk)$"; }
-        ];
-        scroll-factor = 0.5;
       }
 
       {
