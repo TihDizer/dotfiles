@@ -25,7 +25,7 @@
 
     # Utils + Apps
     ./bash/default.nix
-    ./chrome/default.nix
+    ./web
     ./fonts/default.nix
     ./utils/packages.nix
     ./utils/apps.nix
