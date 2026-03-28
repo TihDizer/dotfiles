@@ -12,7 +12,6 @@
     jellyfin-ffmpeg # Jellyfin FFmpeg build
     qbittorrent # BitTorrent client
     mpv # Video player
-    bottles # Wine-based Windows app emulator
     postman
   ];
 }
