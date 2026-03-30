@@ -165,14 +165,14 @@
       {
         matches = [
           {
-            title = "r#^notificationtoasts_\d+_desktop$#";
+            title = "notificationtoasts";
             app-id = "steam";
           }
         ];
         open-floating = true;
         default-floating-position = {
-          x = 2;
-          y = 2;
+          x = 10;
+          y = 10;
           relative-to = "bottom-right";
         };
         open-on-output = "DP-5";
