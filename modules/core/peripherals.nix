@@ -4,9 +4,6 @@
 }:
 
 {
-  # Logitech G102
-  services.ratbagd.enable = true;
-
   boot.kernelModules = [
     "hid-generic"
     "usbhid"
