@@ -4,6 +4,10 @@
 }:
 
 {
+  environment.systemPackages = with pkgs; [
+    dfu-util
+  ];
+
   boot.kernelModules = [
     "hid-generic"
     "usbhid"
