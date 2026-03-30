@@ -12,6 +12,7 @@
       "wheel"
       "libvirtd"
       "kvm"
+      "plugdev"
       "docker"
       "networkmanager"
       "audio"
