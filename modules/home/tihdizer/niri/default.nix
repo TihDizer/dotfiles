@@ -32,6 +32,7 @@ in
     extraPortals = with pkgs; [
       xdg-desktop-portal-gnome
     ];
+    xdgOpenUsePortal = true;
   };
 
   #= Used Packages
