@@ -7,8 +7,12 @@
   # Logitech G102
   services.ratbagd.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    piper # Logitech control panel
-    libratbag # Logitech ratbag daemon
+  boot.kernelModules = [
+    "hid-generic"
+    "usbhid"
   ];
+
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666", GROUP="users"
+  '';
 }
