@@ -162,6 +162,23 @@
         open-focused = false;
       }
 
+      {
+        matches = [
+          {
+            title = "r#^notificationtoasts_\d+_desktop$#";
+            app-id = "steam";
+          }
+        ];
+        open-floating = true;
+        default-floating-position = {
+          x = 2;
+          y = 2;
+          relative-to = "bottom-right";
+        };
+        open-on-output = "DP-5";
+        open-focused = false;
+      }
+
       #= Startup
       {
         matches = [
