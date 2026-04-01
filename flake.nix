@@ -11,6 +11,11 @@
 
     niri.url = "github:sodiboo/niri-flake";
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
 
     winapps = {
@@ -49,6 +54,7 @@
       flake-utils,
       zed,
       walker,
+      stylix,
       ...
     }:
     let
@@ -67,12 +73,14 @@
             flake-utils
             zed
             walker
+            stylix
             ;
         };
 
         modules = [
           ./hosts/main/default.nix
           home-manager.nixosModules.home-manager
+          stylix.nixosModules.stylix
           {
             system.configurationRevision = self.rev or self.dirtyRev or null;
             home-manager = {

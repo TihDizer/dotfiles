@@ -10,6 +10,7 @@
     ./packages.nix
     ./amd.nix
     ./usb.nix
+    ./stylix.nix
     ./peripherals
   ];
 }
