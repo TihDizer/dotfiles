@@ -1,19 +1,18 @@
-{ pkgs, ... }:
+{
+  nixcord,
+  pkgs,
+  ...
+}:
 
 {
+  imports = [ nixcord.homeModules.nixcord ];
   programs.nixcord = {
     enable = true;
     discord.equicord.enable = true;
+    discord.vencord.enable = false;
     config = {
       useQuickCss = true;
       frameless = true;
-      plugins = {
-        hideAttachments.enable = true;
-        ignoreActivities = {
-          enable = true;
-          ignorePlaying = true;
-        };
-      };
     };
   };
 

@@ -85,7 +85,6 @@
           ./hosts/main/default.nix
           home-manager.nixosModules.home-manager
           stylix.nixosModules.stylix
-          nixcord.homeModules.nixcord
           {
             system.configurationRevision = self.rev or self.dirtyRev or null;
             home-manager = {
@@ -97,6 +96,7 @@
                   niri
                   zed
                   walker
+                  nixcord
                   ;
               };
 
