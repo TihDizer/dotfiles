@@ -1,38 +1,34 @@
 {
+  config,
+  ...
+}:
+
+let
+  scheme = config.lib.stylix.colors;
+in
+
+{
   programs.niri.settings = {
     cursor = {
       hide-after-inactive-ms = 3000;
       hide-when-typing = true;
+      theme = config.stylix.cursor.name;
     };
     layout = {
       empty-workspace-above-first = true;
-      focus-ring = {
-        enable = false;
-        width = 2;
-        active.color = "#74c7ec";
-        inactive.color = "#585b70";
-      };
+      focus-ring.enable = false;
 
       border = {
         enable = true;
         width = 2;
-        active.gradient = {
-          from = "#f38ba8";
-          to = "#f9e2af";
-          angle = 45;
-          relative-to = "workspace-view";
-        };
-        inactive.gradient = {
-          from = "#585b70";
-          to = "#7f849c";
-          angle = 45;
-          relative-to = "workspace-view";
-        };
+        active.color = scheme.base0D;
+        inactive.color = scheme.base03;
+        urgent.color = scheme.base08;
       };
 
       center-focused-column = "never";
 
-      background-color = "#333333";
+      background-color = scheme.base01;
 
       preset-window-heights = [
         { proportion = 1. / 3.; }
