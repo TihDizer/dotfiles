@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 }:
@@ -14,16 +15,17 @@
     };
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.override { fonts = [ "JetBrainsMono" ]; };
+        package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font Mono";
       };
       sansSerif = {
         package = pkgs.dejavu_fonts;
         name = "DejaVu Sans";
       };
-      serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
+      serif = config.stylix.fonts.sansSerif;
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
       };
     };
     # image = ../../assets/;
