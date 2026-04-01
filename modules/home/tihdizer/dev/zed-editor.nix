@@ -34,13 +34,6 @@
         metrics = false;
       };
       base_keymap = "JetBrains";
-      ui_font_size = 16;
-      buffer_font_size = 15;
-      theme = {
-        mode = "system";
-        light = "One Light";
-        dark = "One Dark";
-      };
       autosave = "on_focus_change";
       languages.Markdown = {
         remove_trailing_whitespace_on_save = false;

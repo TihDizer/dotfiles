@@ -4,7 +4,10 @@
 }:
 
 {
-  stylix.base16Scheme = "${pkgs.base16-scheme}/share/themes/ashes.yaml";
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
+    # image = ../../assets/;
+  };
 
-  # stylix.image = ../../assets/;
 }
