@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   # Optional inputs for this module.
   flake-file.inputs = {
