@@ -8,7 +8,7 @@
         rpm # RPM package manager
         dpkg # Debian package manager
         cpufetch # CPU architecture viewer
-        neofetch # System info display
+        fastfetch # System info display
 
         # zoom-us # Zoom video conferencing
         tty-clock # Terminal clock screensaver

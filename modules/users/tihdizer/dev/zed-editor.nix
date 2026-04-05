@@ -12,7 +12,7 @@
     {
       programs.zed-editor = {
         enable = true;
-        package = inputs.zed.packages.${pkgs.system}.default;
+        package = inputs.zed.packages.${pkgs.stdenv.hostPlatform.system}.default;
         userSettings = {
           auto_install_extensions = {
             "dockerfile" = true;

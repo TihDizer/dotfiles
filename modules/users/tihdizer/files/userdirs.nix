@@ -15,19 +15,6 @@
         publicShare = "$HOME/shared";
       };
 
-      # home.activation.createDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      #   mkdir -p ~/medias/{music,pictures,videos}
-      #   mkdir -p ~/downloads/{git,}
-      #   mkdir -p ~/documents/templates
-      #   mkdir -p ~/shared{storage,medias}
-      #   mkdir -p ~/projects
-      #   mkdir -p ~/dotfiles
-      #   mkdir -p ~/notes ~/vms
-      #   mkdir -p ~/games{nvme,hdd}
-      #   mkdir -p ~/mnt/{usbs,nvme,storage,medias}
-      # '';
-
-
       home.file."mnt/storage".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd1/tihdizer";
       home.file."downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd1/tihdizer/downloads";
       home.file."notes".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd1/tihdizer/notes";

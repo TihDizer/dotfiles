@@ -17,6 +17,7 @@
       # services-sunshine
 
       programs-games-steam
+      # programs-games-prism-launcher
 
       services-networking-zapret
       services-networking-throne
