@@ -1,18 +1,11 @@
-{ inputs, ... }:
+{ ... }:
 {
-  flake-file.inputs = {
-    zed = {
-      url = "github:zed-industries/zed";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
   flake.modules.homeManager.hm-tihdizer-dev-zed-editor =
     { pkgs, ... }:
     {
       programs.zed-editor = {
         enable = true;
-        package = inputs.zed.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        package = pkgs.zed-editor;
         userSettings = {
           auto_install_extensions = {
             "dockerfile" = true;
