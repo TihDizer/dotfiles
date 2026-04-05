@@ -13,5 +13,6 @@
     qbittorrent # BitTorrent client
     mpv # Video player
     postman
+    codex
   ];
 }
