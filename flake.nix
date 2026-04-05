@@ -1,109 +1,28 @@
+# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# Use `nix run .#write-flake` to regenerate it.
 {
-  description = "TihDizer NixOS + Home";
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
+    elephant.url = "github:abenz1267/elephant";
+    flake-file.url = "github:vic/flake-file";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    import-tree.url = "github:vic/import-tree";
     niri.url = "github:sodiboo/niri-flake";
-
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
-
-    winapps = {
-      url = "github:winapps-org/winapps";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    rust-overlay.url = "github:oxalica/rust-overlay";
-
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-    };
-
-    zed = {
-      url = "github:zed-industries/zed";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixcord.url = "github:FlameFlag/nixcord";
-
-    elephant.url = "github:abenz1267/elephant";
-
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    rust-overlay.url = "github:oxalica/rust-overlay";
     walker = {
       url = "github:abenz1267/walker";
       inputs.elephant.follows = "elephant";
     };
-  };
-
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      niri,
-      winapps,
-      zapret-discord-youtube,
-      rust-overlay,
-      flake-utils,
-      zed,
-      walker,
-      stylix,
-      nixcord,
-      ...
-    }:
-    let
-      system = "x86_64-linux";
-    in
-    {
-      nixosConfigurations.main = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {
-          inherit
-            niri
-            winapps
-            zapret-discord-youtube
-            system
-            rust-overlay
-            flake-utils
-            zed
-            walker
-            stylix
-            nixcord
-            ;
-        };
-
-        modules = [
-          ./hosts/main/default.nix
-          home-manager.nixosModules.home-manager
-          stylix.nixosModules.stylix
-          {
-            system.configurationRevision = self.rev or self.dirtyRev or null;
-            home-manager = {
-              backupFileExtension = "backup";
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                inherit
-                  niri
-                  zed
-                  walker
-                  nixcord
-                  ;
-              };
-
-              users.tihdizer = import ./modules/home/tihdizer/default.nix;
-            };
-          }
-        ];
-      };
+    zed = {
+      url = "github:zed-industries/zed";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+  };
 }
