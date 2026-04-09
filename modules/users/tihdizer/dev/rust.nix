@@ -35,7 +35,5 @@
         RUST_SRC_PATH = "~/.rust-rover/toolchain/lib/rustlib/src/rust/library";
         PATH = "$HOME/.cargo/bin:$PATH";
       };
-
-      programs.helix.languages.rust.language-server = "${rustToolchain}/bin/rust-analyzer";
     };
 }
