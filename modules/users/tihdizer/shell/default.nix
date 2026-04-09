@@ -4,6 +4,7 @@
     imports = with inputs.self.modules.homeManager; [
       hm-tihdizer-shell-wezterm
       hm-tihdizer-shell-session-variables
+      hm-tihdizer-shell-starship
     ];
   };
 }
