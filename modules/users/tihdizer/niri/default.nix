@@ -59,15 +59,9 @@
         libxcb
         xprop
         xkbcomp
-
         # Wayland desktop (niri)
-        fuzzel # Wayland launcher (rofi-wayland аналог)
         swaylock-effects # Screen locker с эффектами
         nautilus # File manager (GNOME)
-        # gnome-keyring # GNOME keyring daemon
-        # copyq # Clipboard manager
-        # clipmenu # Wayland clipboard manager (menu)
-        # wl-clipboard # Wayland clipboard tools
       ];
     };
 }
