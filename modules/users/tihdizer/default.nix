@@ -29,7 +29,7 @@
         programs-chrome
         tihdizer-utils-packages
         tihdizer-utils-apps
-        tihdizer-utils-archives
+        utils-archives
         tihdizer-utils-communication
         tihdizer-utils-usb
         tihdizer-yazi
