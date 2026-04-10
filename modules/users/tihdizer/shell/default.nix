@@ -1,10 +1,10 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-shell = {
+  flake.modules.homeManager.tihdizer-shell = {
     imports = with inputs.self.modules.homeManager; [
-      hm-tihdizer-shell-wezterm
-      hm-tihdizer-shell-session-variables
-      hm-tihdizer-shell-starship
+      tihdizer-shell-wezterm
+      tihdizer-shell-session-variables
+      tihdizer-shell-starship
     ];
   };
 }

@@ -1,7 +1,12 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-niri-binds =
-    { config, pkgs, lib, ... }:
+  flake.modules.homeManager.tihdizer-niri-binds =
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     let
       inherit (lib) getExe mkMerge;
       wpctl = "${pkgs.wireplumber}/bin/wpctl";

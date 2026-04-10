@@ -14,25 +14,27 @@
   flake.modules.homeManager.tihdizer = {
     imports =
       (with inputs.self.modules.homeManager; [
-        hm-tihdizer-home
+        tihdizer-home
 
-        hm-tihdizer-niri
-        hm-tihdizer-walker
+        tihdizer-niri
+        tihdizer-walker
 
-        hm-tihdizer-utils-icons
-        hm-tihdizer-files
-        hm-tihdizer-dev
+        tihdizer-utils-icons
+        tihdizer-files
+        tihdizer-dev
+        tihdizer-git
 
-        hm-tihdizer-bash
-        hm-tihdizer-web
-        hm-tihdizer-utils-packages
-        hm-tihdizer-utils-apps
-        hm-tihdizer-utils-archives
-        hm-tihdizer-utils-communication
-        hm-tihdizer-utils-usb
-        hm-tihdizer-yazi
+        tihdizer-bash
+        programs-firefox
+        programs-chrome
+        tihdizer-utils-packages
+        tihdizer-utils-apps
+        tihdizer-utils-archives
+        tihdizer-utils-communication
+        tihdizer-utils-usb
+        tihdizer-yazi
 
-        hm-tihdizer-shell
+        tihdizer-shell
       ])
       ++ [
         inputs.niri.homeModules.niri

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-niri-startup =
+  flake.modules.homeManager.tihdizer-niri-startup =
     { pkgs, ... }:
     {
       programs.niri.settings.spawn-at-startup = [

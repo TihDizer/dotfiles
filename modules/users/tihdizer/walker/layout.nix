@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-walker-layout =
+  flake.modules.homeManager.tihdizer-walker-layout =
     { ... }:
     {
       # TODO: add walker layout overrides

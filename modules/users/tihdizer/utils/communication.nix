@@ -4,7 +4,7 @@
     nixcord.url = "github:FlameFlag/nixcord";
   };
 
-  flake.modules.homeManager.hm-tihdizer-utils-communication =
+  flake.modules.homeManager.tihdizer-utils-communication =
     { pkgs, ... }:
     {
       # imports = [ inputs.nixcord.homeModules.nixcord ];

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-shell-session-variables =
+  flake.modules.homeManager.tihdizer-shell-session-variables =
     { ... }:
     {
       # TODO: move in virtualisation

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-shell-starship =
+  flake.modules.homeManager.tihdizer-shell-starship =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [ starship ];

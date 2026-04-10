@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-utils-icons =
+  flake.modules.homeManager.tihdizer-utils-icons =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

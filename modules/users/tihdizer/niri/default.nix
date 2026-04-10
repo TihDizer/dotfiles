@@ -1,19 +1,19 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-niri =
+  flake.modules.homeManager.tihdizer-niri =
     { pkgs, lib, ... }:
     let
       inherit (lib) getExe;
     in
     {
       imports = with inputs.self.modules.homeManager; [
-        hm-tihdizer-niri-binds
-        hm-tihdizer-niri-env
-        hm-tihdizer-niri-input
-        hm-tihdizer-niri-outputs
-        hm-tihdizer-niri-settings
-        hm-tihdizer-niri-startup
-        hm-tihdizer-niri-windowrules
+        tihdizer-niri-binds
+        tihdizer-niri-env
+        tihdizer-niri-input
+        tihdizer-niri-outputs
+        tihdizer-niri-settings
+        tihdizer-niri-startup
+        tihdizer-niri-windowrules
       ];
 
       #= Setup Niri

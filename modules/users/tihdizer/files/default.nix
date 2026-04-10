@@ -1,8 +1,8 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-files = {
+  flake.modules.homeManager.tihdizer-files = {
     imports = with inputs.self.modules.homeManager; [
-      hm-tihdizer-files-userdirs
+      tihdizer-files-userdirs
     ];
   };
 }

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-niri-settings =
+  flake.modules.homeManager.tihdizer-niri-settings =
     { config, ... }:
     let
       scheme = config.lib.stylix.colors;

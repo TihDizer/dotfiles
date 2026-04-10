@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-niri-input =
+  flake.modules.homeManager.tihdizer-niri-input =
     { ... }:
     {
       programs.niri.settings.input = {

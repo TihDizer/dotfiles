@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-niri-outputs =
+  flake.modules.homeManager.tihdizer-niri-outputs =
     { ... }:
     {
       #= Displays

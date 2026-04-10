@@ -1,11 +1,11 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-walker =
+  flake.modules.homeManager.tihdizer-walker =
     { ... }:
     {
       imports = [
-        # inputs.self.modules.homeManager.hm-tihdizer-walker-style
-        # inputs.self.modules.homeManager.hm-tihdizer-walker-layout
+        # inputs.self.modules.homeManager.tihdizer-walker-style
+        # inputs.self.modules.homeManager.tihdizer-walker-layout
       ];
 
       programs.walker = {

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-shell-wezterm =
+  flake.modules.homeManager.tihdizer-shell-wezterm =
     { pkgs, ... }:
     {
       # imports = [ ./theme.nix ];

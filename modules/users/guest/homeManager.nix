@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-guest =
+  flake.modules.homeManager.guest =
     { ... }:
     {
       # TODO: guest home-manager configuration

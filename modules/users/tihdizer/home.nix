@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-home =
+  flake.modules.homeManager.tihdizer-home =
     { ... }:
     {
       home.username = "tihdizer";

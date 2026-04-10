@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-utils-usb =
+  flake.modules.homeManager.tihdizer-utils-usb =
     { ... }:
     {
       services.udiskie = {

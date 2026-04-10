@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-niri-env =
+  flake.modules.homeManager.tihdizer-niri-env =
     { ... }:
     {
       programs.niri.settings = {

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-niri-windowrules =
+  flake.modules.homeManager.tihdizer-niri-windowrules =
     { ... }:
     {
       programs.niri.settings = {
