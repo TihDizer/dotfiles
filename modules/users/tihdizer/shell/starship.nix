@@ -11,8 +11,12 @@
           add_newline = false;
           command_timeout = 1300;
           right_format = "$all";
-          format = "$character";
+          format = "$shlvl$character";
           scan_timeout = 50;
+          shell = {
+            disabled = false;
+            bash_indicator = "bsh";
+          };
           shlvl = {
             disabled = false;
             format = "$symbol";
