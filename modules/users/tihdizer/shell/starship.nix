@@ -13,8 +13,9 @@
           format = "$all$character";
           scan_timeout = 50;
           character = {
-            success_symbol = "[](bold green) ";
-            error_symbol = "[✗](bold red) ";
+            # TODO: Stylix
+            success_symbol = "";
+            error_symbol = "✗";
           };
         };
       };

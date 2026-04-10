@@ -8,9 +8,10 @@
         generateCompletions = true;
         shellAbbrs = {
         };
+        # TODO: move in starship
         interactiveShellInit = "
           function fish_greeting
-            fastfetch
+            starship init fish | source
           end
         ";
       };
