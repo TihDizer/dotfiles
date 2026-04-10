@@ -28,6 +28,10 @@
             # TODO: Stylix
             success_symbol = "❯";
             error_symbol = "";
+            vimcmd_symbol = "❮";
+          };
+          directory = {
+            read_only = " ";
           };
         };
       };
