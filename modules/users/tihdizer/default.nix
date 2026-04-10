@@ -21,7 +21,7 @@
 
         tihdizer-utils-icons
         tihdizer-files
-        tihdizer-dev
+        programs-dev
         tihdizer-git
 
         tihdizer-bash
