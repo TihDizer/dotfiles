@@ -3,6 +3,8 @@
   flake.modules.nixos.system-peripherals =
     { pkgs, ... }:
     {
+      services.hardware.openrgb.enable = true;
+
       environment.systemPackages = with pkgs; [
         dfu-util
       ];
