@@ -29,6 +29,8 @@
         programs-chrome
         tihdizer-utils-packages
         tihdizer-utils-apps
+        utils-mpv
+        programs-office
         utils-archives
         tihdizer-utils-communication
         tihdizer-utils-usb
