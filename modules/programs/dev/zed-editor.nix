@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-dev-zed-editor =
+  flake.modules.homeManager.programs-zed-editor =
     { pkgs, ... }:
     {
       programs.zed-editor = {

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-dev-nix =
+  flake.modules.homeManager.programs-dev-nix =
     { pkgs, ... }:
     {
       # Nix tooling
@@ -21,17 +21,5 @@
         statix # linter
         deadnix # unused vars
       ];
-
-      # # Shell integrations
-      # programs.bash.shellAliases = {
-      #   nr = "nix run nixpkgs#";
-      #   ns = "nix shell nixpkgs#";
-      #   nf = "nix flake";
-      # };
-
-      # programs.zsh.initExtra = ''
-      #   nr() { nix run nixpkgs#$@; }
-      #   ns() { nix shell nixpkgs#$@; }
-      # '';
     };
 }

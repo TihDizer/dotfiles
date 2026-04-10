@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.hm-tihdizer-dev-rust =
+  flake.modules.homeManager.programs-dev-rust =
     { lib, pkgs, ... }:
     let
       rustToolchain = (
