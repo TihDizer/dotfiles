@@ -10,7 +10,7 @@
           mode = {
             width = 1920;
             height = 1080;
-            refresh = null;
+            refresh = 60.;
           };
           scale = 1.0;
           position = {
@@ -24,7 +24,7 @@
           mode = {
             width = 1920;
             height = 1080;
-            refresh = null;
+            refresh = 60.;
           };
           scale = 1.0;
           position = {
@@ -38,7 +38,7 @@
           mode = {
             width = 3840;
             height = 2160;
-            refresh = null;
+            refresh = 60.;
           };
           scale = 2.0;
           position = {
