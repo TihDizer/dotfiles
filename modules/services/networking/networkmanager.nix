@@ -3,11 +3,9 @@
   flake.modules.nixos.services-networking-networkmanager =
     { pkgs, ... }:
     {
-      # Network
       networking.networkmanager.enable = true;
 
       environment.systemPackages = with pkgs; [
-        # Network diagnostics
         iptables # Firewall rules
         iproute2 # Network routing
         inetutils # Network utils
