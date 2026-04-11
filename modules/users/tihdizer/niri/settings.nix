@@ -11,7 +11,7 @@
         cursor = {
           hide-after-inactive-ms = 3000;
           hide-when-typing = true;
-          theme = config.stylix.cursor.name;
+          # theme = config.stylix.cursor.name;
         };
         layout = {
           empty-workspace-above-first = true;
@@ -20,14 +20,14 @@
           border = {
             enable = true;
             width = 2;
-            active.color = scheme.base0D;
-            inactive.color = scheme.base03;
-            urgent.color = scheme.base08;
+            # active.color = scheme.base0D;
+            # inactive.color = scheme.base03;
+            # urgent.color = scheme.base08;
           };
 
           center-focused-column = "never";
 
-          background-color = scheme.base01;
+          # background-color = scheme.base01;
 
           preset-window-heights = [
             { proportion = 1. / 3.; }
