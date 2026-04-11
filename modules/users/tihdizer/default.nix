@@ -32,7 +32,7 @@
         utils-mpv
         programs-office
         utils-archives
-        tihdizer-utils-communication
+        programs-nixcord
         tihdizer-utils-usb
         tihdizer-yazi
 
