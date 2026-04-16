@@ -24,7 +24,6 @@
         programs-dev
         tihdizer-git
 
-        tihdizer-bash
         programs-firefox
         programs-chrome
         tihdizer-utils-packages
