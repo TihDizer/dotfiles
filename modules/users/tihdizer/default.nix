@@ -31,6 +31,7 @@
         tihdizer-utils-apps
         utils-mpv
         programs-office
+        programs-obs
         utils-archives
         programs-nixcord
         tihdizer-utils-usb
