@@ -4,6 +4,7 @@
     { ... }:
     {
       nix = {
+        channel.enable = false;
         settings = {
           cores = 4;
           max-jobs = 2;
