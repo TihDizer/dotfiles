@@ -1,21 +1,20 @@
 { ... }:
 {
-  # Optional inputs for this module.
-  flake-file.inputs = {
-    # example.url = "github:owner/repo";
-  };
-
-  # NixOS module template (rename "example" as needed).
-  flake.modules.nixos.example =
+  flake.modules.nixos.programs-shell-zsh =
     { ... }:
     {
-      # Module body
+      programs.zsh = {
+        enable = true;
+        enableCompletion = true;
+      };
     };
 
-  # Home Manager module template (rename "example" as needed).
-  flake.modules.homeManager.example =
+  flake.modules.homeManager.programs-shell-zsh =
     { ... }:
     {
-      # Module body
+      programs.zsh = {
+        enable = true;
+        enableCompletion = true;
+      };
     };
 }
