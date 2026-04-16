@@ -13,7 +13,12 @@
 
       services.zapret-discord-youtube = {
         enable = true;
-        configName = "general(ALT)";
+        configName = "general (FAKE_TLS_AUTO)";
+
+        listGeneral = [
+          "telegram.org"
+          "youtube.com"
+        ];
       };
     };
 }
