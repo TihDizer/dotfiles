@@ -35,7 +35,7 @@
         programs-nixcord
         tihdizer-utils-usb
         tihdizer-yazi
-
+        programs-shell
         tihdizer-shell
       ])
       ++ [
