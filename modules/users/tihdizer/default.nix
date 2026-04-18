@@ -26,15 +26,14 @@
 
         programs-firefox
         programs-chrome
+        programs-yazi
         tihdizer-utils-packages
         tihdizer-utils-apps
         utils-mpv
         programs-office
         programs-obs
-        utils-archives
         programs-nixcord
         tihdizer-utils-usb
-        tihdizer-yazi
         programs-shell
         tihdizer-shell
       ])
