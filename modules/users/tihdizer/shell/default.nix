@@ -5,6 +5,7 @@
       tihdizer-shell-wezterm
       tihdizer-shell-session-variables
       tihdizer-shell-starship
+      tihdizer-shell-fish
     ];
   };
 }
