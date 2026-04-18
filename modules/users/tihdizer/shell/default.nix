@@ -6,6 +6,7 @@
       tihdizer-shell-session-variables
       tihdizer-shell-starship
       tihdizer-shell-fish
+      tihdizer-shell-zsh
     ];
   };
 }

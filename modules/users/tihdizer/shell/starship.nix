@@ -10,11 +10,8 @@
     {
       programs.fish.enable = lib.mkDefault true;
       programs.zsh.enable = lib.mkDefault true;
-      programs.zsh.initContent = lib.mkAfter ''
-        ZLE_RPROMPT_INDENT=0
-      '';
-
       home.packages = with pkgs; [ starship ];
+
       programs.starship = {
         enable = true;
         package = pkgs.starship;
