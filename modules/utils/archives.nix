@@ -4,6 +4,7 @@
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
+        ouch # Painless compression and decompression in the terminal
         zip # ZIP archiver
         unzip # ZIP extractor
         arj # ARJ archiver
@@ -16,6 +17,7 @@
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
+        ouch # Painless compression and decompression in the terminal
         zip # ZIP archiver
         unzip # ZIP extractor
         arj # ARJ archiver
