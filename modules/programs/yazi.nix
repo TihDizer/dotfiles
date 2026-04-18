@@ -25,6 +25,7 @@
 
       home.packages = with pkgs; [
         ouch # Painless compression and decompression in the terminal
+        jellyfin-ffmpeg
         poppler # PDF rendering library
         fd # Fast find alternative
         file # File type detector
