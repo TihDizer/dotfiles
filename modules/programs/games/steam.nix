@@ -25,5 +25,6 @@
       ];
 
       services.speechd.enable = false;
+
     };
 }

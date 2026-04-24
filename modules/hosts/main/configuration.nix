@@ -28,6 +28,7 @@
       services-virtualization-qemu
 
       home-manager
+      niri-scratchpad
     ];
 
     networking.hostName = "main";

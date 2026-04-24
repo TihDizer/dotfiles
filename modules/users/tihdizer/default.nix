@@ -15,7 +15,6 @@
     imports =
       (with inputs.self.modules.homeManager; [
         tihdizer-home
-
         tihdizer-niri
         tihdizer-walker
 

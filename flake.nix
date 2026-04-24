@@ -14,6 +14,7 @@
     impermanence.url = "github:nix-community/impermanence";
     import-tree.url = "github:vic/import-tree";
     niri.url = "github:sodiboo/niri-flake";
+    niri-scratchpad.url = "github:argosnothing/niri-scratchpad";
     nixcord.url = "github:FlameFlag/nixcord";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     rust-overlay.url = "github:oxalica/rust-overlay";

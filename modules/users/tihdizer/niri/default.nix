@@ -41,7 +41,6 @@
 
       #= Used Packages
       home.packages = with pkgs; [
-        alacritty # Terminal
         # Wayland Output Mirror Client
         wl-mirror
         # Prevents swayidle from sleeping while any application is outputting or receiving audio.

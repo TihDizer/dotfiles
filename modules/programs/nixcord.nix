@@ -11,12 +11,12 @@
     }:
     {
       imports = [ inputs.nixcord.homeModules.nixcord ];
-      programs.nixcord = {
-        enable = true;
-        discord.package = pkgs.discord;
-        discord.equicord.enable = true;
-        discord.vencord.enable = false;
-      };
+      # programs.nixcord = {
+      #   enable = true;
+      #   discord.package = pkgs.discord;
+      #   discord.equicord.enable = true;
+      #   discord.vencord.enable = false;
+      # };
       # TODO: replace in new file
       home.packages = with pkgs; [
         telegram-desktop # Telegram Desktop
