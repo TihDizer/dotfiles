@@ -31,13 +31,14 @@
         file.hasExt "nix"
         && file.name != "flake.nix"
         && !lib.hasPrefix "_" file.name;
+        && !lib.hasPrefix "templates" file.path;
 
       importTree = path:
         toList (fileFilter isNixModule path);
 
       mkFlake = inputs.flake-parts.lib.mkFlake { inherit inputs; };
     in
-      mkFlake { imports = importTree ./modules; }
+      mkFlake { imports = importTree ./.; }
   '';
 
   # set flake.systems
