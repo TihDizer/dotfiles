@@ -7,13 +7,18 @@
       inherit (inputs.nixpkgs) lib;
       inherit (lib.fileset) toList fileFilter;
 
-      isNixModule = file: file.hasExt "nix" && file.name != "flake.nix" && !lib.hasPrefix "_" file.name;
+      isNixModule =
+        file:
+        file.hasExt "nix"
+        && file.name != "flake.nix"
+        && !lib.hasPrefix "_" file.name
+        && !lib.hasSuffix "template" file.name;
 
       importTree = path: toList (fileFilter isNixModule path);
 
       mkFlake = inputs.flake-parts.lib.mkFlake { inherit inputs; };
     in
-    mkFlake { imports = importTree ./modules; };
+    mkFlake { imports = importTree ./.; };
 
   inputs = {
     elephant.url = "github:abenz1267/elephant";
