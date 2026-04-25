@@ -3,7 +3,6 @@
   flake.modules.nixos.appimage =
     { pkgs, ... }:
     {
-      # AppImage
       programs.appimage = {
         enable = true;
         binfmt = true;

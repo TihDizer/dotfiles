@@ -29,7 +29,7 @@
         firefox
         chrome
         yazi
-        utils-mpv
+        mpv
         obsidian
         obs
         nixcord
