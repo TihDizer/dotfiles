@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.tihdizer-utils-usb =
+  flake.modules.homeManager.tihdizer-usb =
     { ... }:
     {
       # TODO: move in modules
