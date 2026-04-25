@@ -20,20 +20,20 @@
         tihdizer-utils-icons
         tihdizer-files
         tihdizer-git
+        tihdizer-utils-apps
+        tihdizer-utils-packages
+        tihdizer-utils-usb
+        tihdizer-shell
 
         dev
         firefox
         chrome
         yazi
-        tihdizer-utils-packages
-        tihdizer-utils-apps
         utils-mpv
         obsidian
         obs
         nixcord
-        tihdizer-utils-usb
         shell
-        tihdizer-shell
       ])
       ++ [
         inputs.niri.homeModules.niri
