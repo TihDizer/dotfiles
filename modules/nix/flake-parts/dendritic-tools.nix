@@ -11,13 +11,9 @@
   # Generate flake.nix from module options.
   # https://github.com/vic/flake-file
 
-  # Import all nix files in a directory tree.
-  # https://github.com/vic/import-tree
-
   flake-file.inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-file.url = "github:vic/flake-file";
-    import-tree.url = "github:vic/import-tree";
   };
 
   imports = [
@@ -25,9 +21,23 @@
     inputs.flake-file.flakeModules.default
   ];
 
-  # import all modules recursively with import-tree
+  # import all modules recursively
   flake-file.outputs = ''
-    inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules)
+    inputs: let
+      inherit (inputs.nixpkgs) lib;
+      inherit (lib.fileset) toList fileFilter;
+
+      isNixModule = file:
+        file.hasExt "nix"
+        && file.name != "flake.nix"
+        && !lib.hasPrefix "_" file.name;
+
+      importTree = path:
+        toList (fileFilter isNixModule path);
+
+      mkFlake = inputs.flake-parts.lib.mkFlake { inherit inputs; };
+    in
+      mkFlake { imports = importTree ./modules; }
   '';
 
   # set flake.systems

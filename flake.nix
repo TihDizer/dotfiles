@@ -1,7 +1,19 @@
 # DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+  outputs =
+    inputs:
+    let
+      inherit (inputs.nixpkgs) lib;
+      inherit (lib.fileset) toList fileFilter;
+
+      isNixModule = file: file.hasExt "nix" && file.name != "flake.nix" && !lib.hasPrefix "_" file.name;
+
+      importTree = path: toList (fileFilter isNixModule path);
+
+      mkFlake = inputs.flake-parts.lib.mkFlake { inherit inputs; };
+    in
+    mkFlake { imports = importTree ./modules; };
 
   inputs = {
     elephant.url = "github:abenz1267/elephant";
@@ -11,8 +23,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    impermanence.url = "github:nix-community/impermanence";
-    import-tree.url = "github:vic/import-tree";
     niri.url = "github:sodiboo/niri-flake";
     niri-scratchpad.url = "github:argosnothing/niri-scratchpad";
     nixcord.url = "github:FlameFlag/nixcord";
