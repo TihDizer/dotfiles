@@ -7,9 +7,9 @@
     { ... }:
     {
       imports = with inputs.self.modules.homeManager; [
-        icons
-        packages
-        usb
+        tihdizer-icons
+        tihdizer-packages
+        tihdizer-usb
       ];
     };
 }
