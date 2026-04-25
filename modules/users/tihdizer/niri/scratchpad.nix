@@ -11,7 +11,7 @@
     { pkgs, ... }:
     {
       environment.systemPackages = [
-        inputs.niri-scratchpad.packages.${pkgs.system}.default
+        inputs.niri-scratchpad.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
     };
 }
