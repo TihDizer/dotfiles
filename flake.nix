@@ -18,7 +18,9 @@
 
       mkFlake = inputs.flake-parts.lib.mkFlake { inherit inputs; };
     in
-    mkFlake { imports = importTree ./.; };
+    mkFlake {
+      imports = importTree ./.;
+    };
 
   inputs = {
     elephant.url = "github:abenz1267/elephant";

@@ -31,6 +31,8 @@
 
     networking.hostName = "main";
 
+    system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
+
     home-manager.users.tihdizer = inputs.self.modules.homeManager.tihdizer;
   };
 }
