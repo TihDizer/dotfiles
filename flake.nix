@@ -17,6 +17,7 @@
     niri-scratchpad.url = "github:argosnothing/niri-scratchpad";
     nixcord.url = "github:FlameFlag/nixcord";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nvf.url = "github:notashelf/nvf";
     rust-overlay.url = "github:oxalica/rust-overlay";
     stylix = {
       url = "github:nix-community/stylix";
@@ -31,6 +32,5 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     yazi.url = "github:sxyazi/yazi";
-    zapret-discord-youtube.url = "github:kartavkun/zapret-discord-youtube";
   };
 }
