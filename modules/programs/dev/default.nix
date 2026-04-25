@@ -1,10 +1,10 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.programs-dev = {
+  flake.modules.homeManager.dev = {
     imports = with inputs.self.modules.homeManager; [
-      programs-dev-zed-editor
-      programs-dev-nix
-      programs-dev-rust
+      zed-editor
+      nix
+      rust
     ];
   };
 }

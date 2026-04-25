@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.programs-dev-rust =
+  flake.modules.homeManager.rust =
     { lib, pkgs, ... }:
     let
       rustToolchain = (

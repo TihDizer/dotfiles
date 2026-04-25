@@ -3,9 +3,9 @@
   flake-file.inputs = {
   };
 
-  flake.modules.nixos.services-networking-zapret =
+  flake.modules.nixos.zapret =
     { ... }:
     {
-      # Unimplemented
+      # TODO: Unimplemented
     };
 }

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.services-networking-throne =
+  flake.modules.nixos.throne =
     { ... }:
     {
       # VPN/Proxy (Nekoray fork)

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.services-sunshine =
+  flake.modules.nixos.sunshine =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.programs-desktop-appimage =
+  flake.modules.nixos.appimage =
     { pkgs, ... }:
     {
       # AppImage

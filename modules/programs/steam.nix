@@ -1,7 +1,7 @@
 { ... }:
 {
   # TODO: mb generic
-  flake.modules.nixos.programs-games-steam =
+  flake.modules.nixos.steam =
     { pkgs, ... }:
     {
       programs.steam = {

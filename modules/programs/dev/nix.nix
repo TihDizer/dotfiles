@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.programs-dev-nix =
+  flake.modules.homeManager.nix =
     { pkgs, ... }:
     {
       # Nix tooling

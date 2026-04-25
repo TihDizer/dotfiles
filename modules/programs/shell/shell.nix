@@ -1,18 +1,18 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.programs-shell = {
+  flake.modules.nixos.shell = {
     imports = with inputs.self.modules.nixos; [
-      programs-shell-fish
-      programs-shell-zsh
-      programs-shell-bash
+      fish
+      zsh
+      bash
     ];
   };
 
-  flake.modules.homeManager.programs-shell = {
+  flake.modules.homeManager.shell = {
     imports = with inputs.self.modules.homeManager; [
-      programs-shell-fish
-      programs-shell-zsh
-      programs-shell-bash
+      fish
+      zsh
+      bash
     ];
   };
 }

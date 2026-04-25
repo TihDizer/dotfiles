@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.programs-games-prism-launcher =
+  flake.modules.nixos.prism-launcher =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [

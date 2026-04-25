@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.services-networking-firewall =
+  flake.modules.nixos.firewall =
     { ... }:
     {
       networking = {
@@ -12,14 +12,7 @@
             67
             68
           ];
-          trustedInterfaces = [ "docker0" ];
           checkReversePath = "loose";
-        };
-
-        nat = {
-          enable = true;
-          externalInterface = "enp42s0";
-          internalInterfaces = [ "docker0" ];
         };
       };
 

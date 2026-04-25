@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.programs-shell-bash =
+  flake.modules.nixos.bash =
     { ... }:
     {
       programs.bash = {
@@ -9,7 +9,7 @@
       };
     };
 
-  flake.modules.homeManager.programs-shell-bash =
+  flake.modules.homeManager.bash =
     { ... }:
     {
       programs.bash = {

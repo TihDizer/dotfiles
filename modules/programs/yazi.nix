@@ -4,7 +4,7 @@
     yazi.url = "github:sxyazi/yazi";
   };
 
-  flake.modules.homeManager.programs-yazi =
+  flake.modules.homeManager.yazi =
     { pkgs, ... }:
     {
       programs.yazi = {

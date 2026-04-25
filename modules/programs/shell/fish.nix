@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.programs-shell-fish =
+  flake.modules.nixos.fish =
     { ... }:
     {
       programs.fish = {
@@ -17,7 +17,7 @@
       };
     };
 
-  flake.modules.homeManager.programs-shell-fish =
+  flake.modules.homeManager.fish =
     { ... }:
     {
       programs.fish = {

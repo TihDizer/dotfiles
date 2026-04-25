@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.services-virtualization-docker =
+  flake.modules.nixos.docker =
     { ... }:
     {
       virtualisation.docker = {

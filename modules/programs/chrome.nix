@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.programs-chrome =
+  flake.modules.homeManager.chrome =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

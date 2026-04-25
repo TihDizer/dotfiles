@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.programs-obs =
+  flake.modules.nixos.obs =
     { ... }:
     {
       programs.obs-studio = {
@@ -8,7 +8,7 @@
       };
     };
 
-  flake.modules.homeManager.programs-obs =
+  flake.modules.homeManager.obs =
     { ... }:
     {
       programs.obs-studio = {

@@ -17,23 +17,22 @@
         tihdizer-home
         tihdizer-niri
         tihdizer-walker
-
         tihdizer-utils-icons
         tihdizer-files
-        programs-dev
         tihdizer-git
 
-        programs-firefox
-        programs-chrome
-        programs-yazi
+        dev
+        firefox
+        chrome
+        yazi
         tihdizer-utils-packages
         tihdizer-utils-apps
         utils-mpv
-        programs-office
-        programs-obs
-        programs-nixcord
+        obsidian
+        obs
+        nixcord
         tihdizer-utils-usb
-        programs-shell
+        shell
         tihdizer-shell
       ])
       ++ [

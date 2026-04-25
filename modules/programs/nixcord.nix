@@ -4,7 +4,7 @@
     nixcord.url = "github:FlameFlag/nixcord";
   };
 
-  flake.modules.homeManager.programs-nixcord =
+  flake.modules.homeManager.nixcord =
     {
       pkgs,
       ...

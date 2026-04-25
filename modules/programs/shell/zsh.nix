@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.programs-shell-zsh =
+  flake.modules.nixos.zsh =
     { ... }:
     {
       programs.zsh = {
@@ -9,7 +9,7 @@
       };
     };
 
-  flake.modules.homeManager.programs-shell-zsh =
+  flake.modules.homeManager.zsh =
     { ... }:
     {
       programs.zsh = {

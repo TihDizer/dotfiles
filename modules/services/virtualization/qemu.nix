@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.services-virtualization-qemu =
+  flake.modules.nixos.qemu =
     { pkgs, ... }:
     {
       boot.binfmt.emulatedSystems = [

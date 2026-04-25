@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.services-networking-cloudflared =
+  flake.modules.nixos.cloudflared =
     { ... }:
     {
       # TODO: add cloudflared configuration

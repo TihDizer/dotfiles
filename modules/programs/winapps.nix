@@ -7,7 +7,7 @@
     };
   };
 
-  flake.modules.nixos.programs-desktop-winapps =
+  flake.modules.nixos.winapps =
     { pkgs, ... }:
     {
       environment.systemPackages = [

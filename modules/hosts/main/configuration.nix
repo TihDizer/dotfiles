@@ -9,22 +9,20 @@
 
       system-default
 
-      programs-shell
-
-      programs-desktop-appimage
-      programs-desktop-winapps
+      shell
+      appimage
+      winapps
       programs-desktop-niri
       # services-sunshine
 
-      programs-games-steam
-      # programs-games-prism-launcher
+      steam
+      # prism-launcher
 
-      services-networking-zapret
-      services-networking-throne
-      services-networking-firewall
-      services-networking-networkmanager
+      throne
+      firewall
+      networkmanager
 
-      services-virtualization-qemu
+      qemu
       nvf
 
       home-manager

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.programs-dev-zed-editor =
+  flake.modules.homeManager.zed-editor =
     { pkgs, ... }:
     {
       programs.zed-editor = {
