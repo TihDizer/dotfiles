@@ -11,7 +11,7 @@
     { ... }:
     {
       imports = [
-        inputs.nvf.nixosModule.default
+        inputs.nvf.nixosModules.default
       ];
       programs.nvf = {
         enable = true;

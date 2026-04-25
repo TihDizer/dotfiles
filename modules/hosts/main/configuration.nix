@@ -24,8 +24,8 @@
       services-networking-firewall
       services-networking-networkmanager
 
-      services-virtualization-docker
       services-virtualization-qemu
+      nvf
 
       home-manager
       niri-scratchpad
