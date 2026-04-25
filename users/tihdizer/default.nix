@@ -14,15 +14,11 @@
   flake.modules.homeManager.tihdizer = {
     imports =
       (with inputs.self.modules.homeManager; [
-        tihdizer-home
         tihdizer-niri
         tihdizer-walker
-        tihdizer-utils-icons
         tihdizer-files
         tihdizer-git
-        tihdizer-utils-apps
-        tihdizer-utils-packages
-        tihdizer-utils-usb
+        tihdizer-utils
         tihdizer-shell
 
         dev
@@ -39,5 +35,9 @@
         inputs.niri.homeModules.niri
         inputs.walker.homeManagerModules.default
       ];
+
+    home.username = "tihdizer";
+    home.homeDirectory = "/home/tihdizer";
+    home.stateVersion = "26.05";
   };
 }

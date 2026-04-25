@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.tihdizer-shell-fish =
+  flake.modules.homeManager.tihdizer-fish =
     { ... }:
     {
       programs.fish.interactiveShellInit = ''

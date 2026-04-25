@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.tihdizer-shell-zsh =
+  flake.modules.homeManager.tihdizer-zsh =
     {
       lib,
       ...

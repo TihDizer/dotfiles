@@ -1,8 +1,15 @@
-{ ... }:
+{
+  inputs,
+  ...
+}:
 {
   flake.modules.homeManager.tihdizer-utils =
     { ... }:
     {
-      # TODO: add shared utils module imports if needed
+      imports = with inputs.self.modules.homeManager; [
+        icons
+        packages
+        usb
+      ];
     };
 }
