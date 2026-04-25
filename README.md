@@ -1,1 +1,1 @@
-My Personal NixOS + Niri flake
+My Personal NixOS flake
