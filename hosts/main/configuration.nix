@@ -12,6 +12,9 @@
       shell
       appimage
       winapps
+
+      docker
+
       programs-desktop-niri
       # services-sunshine
 
