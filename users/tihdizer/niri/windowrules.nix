@@ -50,6 +50,25 @@
           }
 
           {
+            matches = [
+              { app-id = "org.pulseaudio.pavucontrol"; }
+              { app-id = "com.saivert.pwvucontrol"; }
+            ];
+            open-floating = true;
+            default-floating-position = {
+              x = 0;
+              y = 180;
+              relative-to = "top";
+            };
+            default-column-width = {
+              proportion = 2. / 3.;
+            };
+            default-window-height = {
+              proportion = 2. / 3.;
+            };
+          }
+
+          {
             matches = [ { title = "(?i)picture in picture"; } ];
             open-floating = true;
             default-floating-position = {
@@ -106,7 +125,6 @@
           {
             matches = [
               { app-id = "io.github.ilya_zlobintsev.LACT"; }
-              { app-id = "org.pulseaudio.pavucontrol"; }
               { app-id = "Throne"; }
               {
                 title = "qBittorrent";
@@ -122,7 +140,6 @@
           {
             matches = [
               { app-id = ".blueman-manager-wrapped"; }
-              { app-id = "com.saivert.pwvucontrol"; }
             ];
             open-on-output = "DP-5";
             default-column-width = {
