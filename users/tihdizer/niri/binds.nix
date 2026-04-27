@@ -14,6 +14,7 @@
       launcher = "${pkgs.walker}/bin/walker";
       browser = getExe pkgs.google-chrome;
       term = getExe pkgs.wezterm;
+      volume = getExe pkgs.pavucontrol;
       # lock = getExe pkgs.hyprlock;
       # logout = getExe pkgs.wlogout;
     in
@@ -74,6 +75,7 @@
             ];
             "Mod+B".action.spawn = [ browser ];
             "Mod+D".action.spawn = [ launcher ];
+            "Mod+P".action.spawn = [ volume ];
             # "Mod+Shift+Q".action.spawn = [ lock ];
             # "Mod+Shift+M".action.spawn = [ logout ];
 
