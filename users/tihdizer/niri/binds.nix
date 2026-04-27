@@ -14,7 +14,7 @@
       launcher = "${pkgs.walker}/bin/walker";
       browser = getExe pkgs.google-chrome;
       term = getExe pkgs.wezterm;
-      volume = getExe pkgs.pavucontrol;
+      volume = getExe pkgs.pwvucontrol;
       # lock = getExe pkgs.hyprlock;
       # logout = getExe pkgs.wlogout;
     in
