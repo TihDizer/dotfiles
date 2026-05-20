@@ -43,6 +43,9 @@
               {
                 app-id = "obsidian";
               }
+              {
+                app-id = "chromium-browser";
+              }
             ];
             default-column-width = {
               proportion = 2. / 3.;
