@@ -9,6 +9,7 @@
         qbittorrent # BitTorrent client
         codex # AI code assistant
         antigravity # AI code assistant
+        gemini-cli # AI code assistant
       ];
 
       programs.btop = {
