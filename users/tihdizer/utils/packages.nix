@@ -8,6 +8,7 @@
         cosmic-files # Wayland file manager
         qbittorrent # BitTorrent client
         codex # AI code assistant
+        antigravity # AI code assistant
       ];
 
       programs.btop = {
