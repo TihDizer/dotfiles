@@ -6,7 +6,7 @@
       home.packages = with pkgs; [
         fastfetch # System info display
         cosmic-files # Wayland file manager
-        qbittorrent # BitTorrent client
+        transmission # BitTorrent client
         codex # AI code assistant
         antigravity # AI code assistant
         gemini-cli # AI code assistant
