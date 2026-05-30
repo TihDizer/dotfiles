@@ -9,9 +9,21 @@
         package = pkgs.wezterm;
         extraConfig = ''
           local wezterm = require 'wezterm'
-          local config = {}
+          local config = wezterm.config_builder()
+
           config.audible_bell = "Disabled"
           config.window_close_confirmation = "NeverPrompt"
+
+          config.check_for_updates = false
+          config.enable_wayland = true
+          config.enable_tab_bar = false
+          config.window_background_opacity = 1.0
+          config.hide_tab_bar_if_only_one_tab = true
+
+          -- Smooth cursor blink animations
+          config.cursor_blink_ease_in = "EaseIn"
+          config.cursor_blink_ease_out = "EaseOut"
+          config.cursor_blink_rate = 500
 
           config.skip_close_confirmation_for_processes_named = {
             'bash',
@@ -31,13 +43,7 @@
             return false
           end)
 
-          return {
-            check_for_updates = false,
-            enable_wayland = true,
-            enable_tab_bar = false,
-            window_background_opacity = 1.0,
-            hide_tab_bar_if_only_one_tab = true,
-          }
+          return config
         '';
       };
 

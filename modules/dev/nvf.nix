@@ -35,6 +35,10 @@
                 package = pkgs.vimPlugins.tv-nvim;
                 setup = "require('tv').setup {}";
               };
+              smear-cursor = {
+                package = pkgs.vimPlugins.smear-cursor-nvim;
+                setup = "require('smear_cursor').setup {}";
+              };
             };
 
             keymaps = [
