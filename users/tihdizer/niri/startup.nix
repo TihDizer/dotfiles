@@ -13,6 +13,7 @@
         { command = [ "${pkgs.google-chrome}/bin/google-chrome" ]; }
         { command = [ "${pkgs.telegram-desktop}/bin/Telegram" ]; }
         { command = [ "${pkgs.throne}/bin/Throne" ]; }
+        { command = [ "${pkgs.ghostty}/bin/ghostty" ]; }
       ];
     };
 }
