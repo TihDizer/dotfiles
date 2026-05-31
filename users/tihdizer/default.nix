@@ -30,6 +30,7 @@
         obs
         nixcord
         shell
+        television
       ])
       ++ [
         inputs.niri.homeModules.niri
