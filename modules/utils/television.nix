@@ -7,6 +7,7 @@
         television
         ripgrep
         fd
+        gtk3
       ];
       home.file.".config/television/cable/apps.toml".text = ''
         [metadata]
@@ -23,7 +24,7 @@
         enter = "actions:launch"
 
         [actions.launch]
-        command = "gtk-launch '{}' &"
+        command = "nohup gtk-launch '{}' > ~/.cache/television-launch.log 2>&1 &"
         mode = "execute"
       '';
 
