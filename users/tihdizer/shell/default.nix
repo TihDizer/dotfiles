@@ -3,6 +3,7 @@
   flake.modules.homeManager.tihdizer-shell = {
     imports = with inputs.self.modules.homeManager; [
       tihdizer-wezterm
+      tihdizer-ghostty
       tihdizer-session-variables
       tihdizer-starship
       tihdizer-fish
