@@ -41,6 +41,7 @@
             popups = 12;
           };
         };
+        targets.kmscon.enable = false;
         polarity = "dark";
         # image = ../../assets/;
       };
