@@ -214,6 +214,7 @@
             default-column-width = {
               proportion = 2. / 3.;
             };
+            open-on-output = "DP-3";
             open-focused = false;
           }
 
