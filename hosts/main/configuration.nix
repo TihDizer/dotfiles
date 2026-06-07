@@ -16,7 +16,7 @@
       docker
 
       programs-desktop-niri
-      # services-sunshine
+      sunshine
 
       steam
       # prism-launcher
