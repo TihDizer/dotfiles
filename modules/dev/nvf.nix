@@ -71,6 +71,9 @@
               nix.enable = true;
               python.enable = true;
               rust.enable = true;
+              terraform.enable = true;
+              yaml.enable = true;
+              toml.enable = true;
             };
 
             lsp = {
