@@ -1,5 +1,6 @@
 { ... }:
 {
+  # TODO: quick-terminal
   flake.modules.homeManager.tihdizer-ghostty =
     { pkgs, ... }:
     {
