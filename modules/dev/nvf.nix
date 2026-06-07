@@ -14,11 +14,12 @@
         inputs.nvf.nixosModules.default
       ];
 
-      environment.systemPackages = [
-        pkgs.yazi
-        pkgs.television
-        pkgs.ripgrep
-        pkgs.fd
+      environment.systemPackages = with pkgs; [
+        yazi
+        television
+        ripgrep
+        fd
+        lazygit
       ];
 
       programs.nvf = {
@@ -95,12 +96,16 @@
                   local mf = require('mini.files')
                   mf.setup({
                     windows = {
-                      preview = true,      -- Turns on the live file preview panel
-                      width_focus = 30,    -- Width of the active folder column
-                      width_preview = 80,  -- Width of the file preview window
+                      preview = true,
+                      width_focus = 30,
+                      width_preview = 80,
                     },
                   })
                 '';
+              };
+              lazygit = {
+                package = pkgs.vimPlugins.lazygit-nvim;
+                setup = "";
               };
             };
 
@@ -128,6 +133,12 @@
                 mode = "n";
                 action = "<cmd>Tv text<cr>";
                 desc = "Television Live Grep (Text Search)";
+              }
+              {
+                key = "<leader>g";
+                mode = "n";
+                action = "<cmd>LazyGit<cr>";
+                desc = "Open LazyGit Panel";
               }
             ];
           };
