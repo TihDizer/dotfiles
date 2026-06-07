@@ -17,9 +17,6 @@
         [source]
         command = 'printf "%s\n%s\n%s\n%s\n" "$XDG_DATA_DIRS" "$HOME/.local/share" "$HOME/.local/share/flatpak/exports/share" "/var/lib/flatpak/exports/share" | tr ":" "\n" | xargs -d "\n" -I {} find {}/applications -name "*.desktop" 2>/dev/null | xargs -d "\n" -I {} basename {} .desktop | sort -u'
 
-        [preview]
-        command = 'printf "%s\n%s\n%s\n%s\n" "$XDG_DATA_DIRS" "$HOME/.local/share" "$HOME/.local/share/flatpak/exports/share" "/var/lib/flatpak/exports/share" | tr ":" "\n" | xargs -d "\n" -I {} find {}/applications -name "{}.desktop" 2>/dev/null | head -n1 | xargs -d "\n" -I {} grep -E "^(Name|Comment|Exec)=" 2>/dev/null'
-
         [keybindings]
         enter = "actions:launch"
 
