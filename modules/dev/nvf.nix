@@ -34,6 +34,7 @@
               shiftwidth = 2;
               expandtab = true;
               smartindent = true;
+              scrolloff = 5;
             };
 
             visuals = {
@@ -68,7 +69,13 @@
               enableTreesitter = true;
               enableExtraDiagnostics = true;
 
-              nix.enable = true;
+              nix = {
+                enable = true;
+                lsp = {
+                  enable = true;
+                  server = "nixd";
+                };
+              };
               python.enable = true;
               rust.enable = true;
               terraform.enable = true;
@@ -107,6 +114,20 @@
               lazygit = {
                 package = pkgs.vimPlugins.lazygit-nvim;
                 setup = "";
+              };
+
+              supermaven = {
+                package = pkgs.vimPlugins.supermaven-nvim;
+                setup = ''
+                  require("supermaven-nvim").setup({
+                    keymaps = {
+                      accept_suggestion = "<Tab>",
+                      clear_suggestion = "<C-]>",
+                      accept_word = "<C-j>",
+                    },
+                    ignore_filetypes = {},
+                  })
+                '';
               };
             };
 
