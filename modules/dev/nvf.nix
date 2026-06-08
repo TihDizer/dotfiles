@@ -29,6 +29,10 @@
             viAlias = true;
             vimAlias = true;
             preventJunkFiles = true;
+            clipboard = {
+              enable = true;
+              registers = "unnamedplus";
+            };
             options = {
               tabstop = 2;
               shiftwidth = 2;
@@ -71,9 +75,10 @@
 
               nix = {
                 enable = true;
+                format.enable = true;
                 lsp = {
                   enable = true;
-                  server = "nixd";
+                  servers = [ "nixd" ];
                 };
               };
               python.enable = true;
@@ -115,7 +120,6 @@
                 package = pkgs.vimPlugins.lazygit-nvim;
                 setup = "";
               };
-
               supermaven = {
                 package = pkgs.vimPlugins.supermaven-nvim;
                 setup = ''
