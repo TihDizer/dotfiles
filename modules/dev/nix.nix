@@ -8,8 +8,6 @@
         # Core
         nixfmt # nix fmt
         nixd # Nix LSP
-        nil # Nix LSP
-        nixpkgs-fmt
 
         # Utils
         nix-diff
