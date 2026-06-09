@@ -22,6 +22,11 @@
         lazygit
       ];
 
+      environment.variables = {
+        EDITOR = "vim";
+        VISUAL = "vim";
+      };
+
       programs.nvf = {
         enable = true;
         settings = {
