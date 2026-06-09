@@ -5,6 +5,7 @@
       fish
       zsh
       bash
+      cli
     ];
   };
 
@@ -13,6 +14,7 @@
       fish
       zsh
       bash
+      cli
     ];
   };
 }
