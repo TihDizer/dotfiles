@@ -11,6 +11,7 @@
         telegram-desktop # Telegram desktop client
         antigravity # AI code assistant
         gemini-cli # AI code assistant
+        antigravity-cli # AI code assistant
       ];
 
       programs.btop = {
