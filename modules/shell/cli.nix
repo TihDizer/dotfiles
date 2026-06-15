@@ -25,6 +25,7 @@ let
       dust # replacement for du
       gping # replacement for ping
       httpie # replacement for curl
+      tldr # replacement for man
     ];
 in
 {
