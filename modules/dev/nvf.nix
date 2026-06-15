@@ -22,7 +22,7 @@
         lazygit
       ];
 
-      environment.variables = {
+      environment.sessionVariables = {
         EDITOR = "vim";
         VISUAL = "vim";
       };
