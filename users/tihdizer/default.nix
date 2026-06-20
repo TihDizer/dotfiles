@@ -28,6 +28,7 @@
         tihdizer-utils
         tihdizer-shell
 
+        sops
         dev
         firefox
         chrome

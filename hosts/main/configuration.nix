@@ -12,6 +12,7 @@
       shell
       appimage
       winapps
+      sops
 
       docker
 
@@ -22,6 +23,7 @@
       # prism-launcher
 
       throne
+      dae
       firewall
       networkmanager
 
