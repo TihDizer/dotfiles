@@ -13,7 +13,7 @@
       playerctl = "${pkgs.playerctl}/bin/playerctl";
       launcher = "${pkgs.walker}/bin/walker";
       browser = getExe pkgs.google-chrome;
-      term = getExe pkgs.wezterm;
+      term = getExe pkgs.kitty;
       volume = getExe pkgs.pwvucontrol;
       # lock = getExe pkgs.hyprlock;
       # logout = getExe pkgs.wlogout;
