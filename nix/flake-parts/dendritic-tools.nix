@@ -14,11 +14,9 @@
   flake-file.inputs = {
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-file = {
       url = "github:vic/flake-file";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

@@ -27,14 +27,8 @@
       url = "github:abenz1267/elephant";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-file = {
-      url = "github:vic/flake-file";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    flake-file.url = "github:vic/flake-file";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
