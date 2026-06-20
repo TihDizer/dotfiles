@@ -1,7 +1,10 @@
 { inputs, ... }:
 {
   flake-file.inputs = {
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   flake.modules.nixos.system-default =

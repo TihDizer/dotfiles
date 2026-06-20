@@ -1,7 +1,10 @@
 { inputs, ... }:
 {
   flake-file.inputs = {
-    yazi.url = "github:sxyazi/yazi";
+    yazi = {
+      url = "github:sxyazi/yazi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   flake.modules.homeManager.yazi =

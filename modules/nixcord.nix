@@ -1,12 +1,14 @@
 { inputs, ... }:
 {
   flake-file.inputs = {
-    nixcord.url = "github:FlameFlag/nixcord";
+    nixcord = {
+      url = "github:FlameFlag/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   flake.modules.homeManager.nixcord =
     {
-      pkgs,
       ...
     }:
     {

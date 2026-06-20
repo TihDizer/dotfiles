@@ -8,7 +8,10 @@
         ripgrep
         fd
         gtk3
+        chafa
+        file
       ];
+
       home.file.".config/television/cable/apps.toml".text = ''
         [metadata]
         name = "apps"
@@ -21,26 +24,26 @@
         enter = "actions:launch"
 
         [actions.launch]
-        command = "XDG_DATA_DIRS=\"$HOME/.local/share:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS\" nohup gtk-launch '{}' > ~/.cache/television-launch.log 2>&1 &"
+        command = "XDG_DATA_DIRS=\"$HOME/.local/share:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:$XDG_DATA_DIRS\" nohup gtk-launch {} > ~/.cache/television-launch.log 2>&1 &"
         mode = "execute"
       '';
 
-      home.file.".config/television/cable/clipboard.toml".text = ''
+      home.file.".config/television/cable/clip.toml".text = ''
         [metadata]
         name = "clipboard"
         description = "Clipboard history manager (cliphist)"
 
         [source]
-        command = "sh -c 'res=$(cliphist list 2>/dev/null); if [ -z \"$res\" ]; then echo \"[Clipboard is empty]\"; else echo \"$res\"; fi'"
+        command = "cliphist list"
 
         [preview]
-        command = "sh -c 'tmp=$(mktemp); echo \"{}\" | cliphist decode > \"$tmp\" 2>/dev/null; if file --mime-type \"$tmp\" | grep -q \"image/\"; then chafa --size=60x30 \"$tmp\" 2>/dev/null || echo \"[Image: $(file -b \"$tmp\")]\"; else cat \"$tmp\"; fi; rm -f \"$tmp\"'"
+        command = "sh -c 'tmp=''$(mktemp); cliphist decode ''$1 > ''$tmp 2>/dev/null; if file --mime-type ''$tmp | grep -q \"image/\"; then chafa --size=60x30 ''$tmp 2>/dev/null; else cat ''$tmp; fi; rm -f ''$tmp' -- {}"
 
         [keybindings]
         enter = "actions:copy"
 
         [actions.copy]
-        command = "echo '{}' | cliphist decode 2>/dev/null | wl-copy"
+        command = "sh -c 'cliphist decode ''$1 | wl-copy' -- {}"
         mode = "execute"
       '';
 

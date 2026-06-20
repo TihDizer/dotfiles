@@ -1,13 +1,20 @@
 { inputs, ... }:
 {
   flake-file.inputs = {
-    niri.url = "github:sodiboo/niri-flake";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    elephant.url = "github:abenz1267/elephant";
+    elephant = {
+      url = "github:abenz1267/elephant";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     walker = {
       url = "github:abenz1267/walker";
       inputs.elephant.follows = "elephant";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

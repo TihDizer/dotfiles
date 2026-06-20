@@ -12,8 +12,14 @@
   # https://github.com/vic/flake-file
 
   flake-file.inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    flake-file.url = "github:vic/flake-file";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-file = {
+      url = "github:vic/flake-file";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   imports = [
