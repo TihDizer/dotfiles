@@ -5,12 +5,9 @@
     {
       home.packages = with pkgs; [
         fastfetch # System info display
-        cosmic-files # Wayland file manager
         transmission_4-qt6 # BitTorrent client
         codex # AI code assistant
         telegram-desktop # Telegram desktop client
-        antigravity # AI code assistant
-        gemini-cli # AI code assistant
         antigravity-cli # AI code assistant
       ];
 
