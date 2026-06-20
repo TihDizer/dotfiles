@@ -8,14 +8,78 @@
   };
 
   flake.modules.homeManager.yazi =
-    { pkgs, ... }:
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
+    let
+      yazi-wrapper = pkgs.writeShellScriptBin "yazi-wrapper" ''
+        set -e
+
+        multiple="$1"
+        directory="$2"
+        save="$3"
+        path="$4"
+        out="$5"
+
+        if [ "$save" = "1" ]; then
+            set -- --chooser-file="$out" "$path"
+        elif [ "$directory" = "1" ]; then
+            set -- --chooser-file="$out" --cwd-file="$out" "$path"
+        else
+            set -- --chooser-file="$out" "$path"
+        fi
+
+        exec ${lib.getExe pkgs.kitty} --class=file_chooser -e ${lib.getExe config.programs.yazi.package} "$@"
+      '';
+    in
     {
       programs.yazi = {
         enable = true;
         package = inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+        enableFishIntegration = true;
+      };
+
+      home.sessionVariables = {
+        GTK_USE_PORTAL = "1";
+        QT_QPA_PLATFORMTHEME = lib.mkForce "xdgdesktopportal";
+        TDESKTOP_USE_GTK_FILE_DIALOG = "1";
+      };
+
+      xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "inode/directory" = [ "yazi.desktop" ];
+          "application/x-directory" = [ "yazi.desktop" ];
+        };
+      };
+
+      xdg.portal = {
+        extraPortals = [ pkgs.xdg-desktop-portal-termfilechooser ];
+        config = {
+          common = {
+            "org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
+          };
+          niri = {
+            "org.freedesktop.impl.portal.FileChooser" = [ "termfilechooser" ];
+          };
+        };
+      };
+
+      xdg.configFile."xdg-desktop-portal-termfilechooser/config" = {
+        text = ''
+          [filechooser]
+          cmd=${yazi-wrapper}/bin/yazi-wrapper
+          default_dir=$HOME
+        '';
       };
 
       home.packages = with pkgs; [
+        trash-cli # Trash manager
         ouch # Painless compression and decompression in the terminal
         jellyfin-ffmpeg
         poppler # PDF rendering library

@@ -70,6 +70,8 @@
             "Mod+T".action.spawn = [ term ];
             "Mod+E".action.spawn = [
               term
+              "--class"
+              "yazi-floating"
               "-e"
               "yazi"
             ];

@@ -56,6 +56,7 @@
             matches = [
               { app-id = "org.pulseaudio.pavucontrol"; }
               { app-id = "com.saivert.pwvucontrol"; }
+              { app-id = "yazi-floating"; }
             ];
             open-floating = true;
             default-floating-position = {
@@ -68,6 +69,19 @@
             };
             default-window-height = {
               proportion = 2. / 3.;
+            };
+          }
+
+          {
+            matches = [
+              { app-id = "file_chooser"; }
+            ];
+            open-floating = true;
+            default-column-width = {
+              proportion = 1. / 3.;
+            };
+            default-window-height = {
+              proportion = 1. / 2.;
             };
           }
 
