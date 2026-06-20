@@ -23,7 +23,6 @@
       # prism-launcher
 
       throne
-      dae
       firewall
       networkmanager
 
