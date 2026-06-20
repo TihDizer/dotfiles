@@ -20,7 +20,7 @@
 
           group {
             proxy {
-              filter: subtag(proxy) # Имя 'proxy' должно совпадать с тем, что в блоке subscription
+              filter: subtag(proxy)
               policy: min_moving_avg
             }
           }
@@ -38,15 +38,6 @@
             fallback: direct
           }
         '';
-      };
-
-      systemd.services.dae = {
-        after = [ "network-online.target" ];
-        wants = [ "network-online.target" ];
-        serviceConfig = {
-          EnvironmentFile = "/var/lib/dae/dae.env";
-          PassEnvironment = "DAE_SUB_URL";
-        };
       };
     };
 }
