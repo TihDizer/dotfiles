@@ -6,6 +6,7 @@
       zsh
       bash
       cli
+      kitty
     ];
   };
 
@@ -15,6 +16,7 @@
       zsh
       bash
       cli
+      kitty
     ];
   };
 }
