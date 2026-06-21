@@ -36,9 +36,17 @@
           {
             matches = [
               {
-                title = "empty project";
-                app-id = "dev.zed.Zed-Nightly";
+                app-id = "org.telegram.desktop";
+                title = "Telegram";
               }
+            ];
+            default-column-width = {
+              proportion = 1. / 3.;
+            };
+            block-out-from = "screencast";
+          }
+          {
+            matches = [
               { app-id = "jetbrains-rustrover"; }
               {
                 app-id = "obsidian";
@@ -123,20 +131,6 @@
             default-column-width = {
               proportion = 2. / 3.;
             };
-          }
-
-          {
-            matches = [
-              {
-                app-id = "org.telegram.desktop";
-                title = "Telegram";
-              }
-            ];
-            default-column-width = {
-              proportion = 1. / 3.;
-            };
-            block-out-from = "screencast";
-            open-on-output = "DP-5";
           }
 
           {
