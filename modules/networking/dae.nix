@@ -12,7 +12,7 @@ let
       tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1,2606:4700:4700::1111'
       tcp_check_http_method: HEAD
       udp_check_dns: 'dns.google:53,8.8.8.8,2001:4860:4860::8888'
-      check_interval: 30s
+      check_interval: 5m
       check_tolerance: 50ms
     }
 
@@ -22,12 +22,10 @@ let
 
     dns {
       upstream {
-        alidns: 'udp://dns.alidns.com:53'
         googledns: 'tcp+udp://dns.google:53'
       }
       routing {
         request {
-          qname(geosite:cn) -> alidns
           fallback: googledns
         }
       }
@@ -38,30 +36,41 @@ let
         filter: subtag(proxy)
         policy: min_moving_avg
       }
+
+      germany_proxy {
+        filter: name(regex: '.*\\xd0\\x93\\xd0\\xb5\\xd1\\x80\\xd0\\xbc\\xd0\\xb0\\xd0\\xbd\\xd0\\xb8\\xd1\\x8f.*')
+        filter: name(regex: '.*🇩🇪.*')
+        policy: min_moving_avg
+      }
     }
 
     routing {
+      #system
       pname(NetworkManager) -> direct
       dip(224.0.0.0/3, 'ff00::/8') -> direct
       dip(geoip:private) -> direct
 
       l4proto(udp) && dport(443) -> block
 
+      #direct
+      domain(nixos.org, nix.dev, search.nixos.org) -> direct
+
+      #germany_proxy
+      domain(geosite:google) -> germany_proxy
+
+      #proxy
       domain(suffix: discord.com, suffix: discordapp.com, suffix: discordapp.net, suffix: discord.gg) -> proxy
       domain(suffix: discord.media, suffix: discordcdn.com, suffix: discordstatus.com) -> proxy
-
-      domain(nixos.org, nix.dev, search.nixos.org) -> direct
-      domain(kick.com, dashboard.kick.com, givefreely.com, trustedhousesitters.com, perplexity.ai, linkedin.com, britishcouncil.org, whatismyipaddress.com, b4mcx2ml.net, notebooklm.google, chatgpt.com, zoom.us, app.zoom.us, google.zoom.us, dub.co, partners.dub.co, annas-archive.li) -> proxy
-      domain(suffix: amazonaws.com, suffix: google.com, suffix: b-cdn.net) -> proxy
+      domain(annas-archive.li, b4mcx2ml.net, britishcouncil.org, chatgpt.com, dashboard.kick.com, dub.co, givefreely.com, google.zoom.us, kick.com, linkedin.com, partners.dub.co, perplexity.ai, throne.me, trustedhousesitters.com, whatismyipaddress.com, zoom.us, app.zoom.us) -> proxy
+      domain(suffix: amazonaws.com, suffix: b-cdn.net, suffix: throne.me) -> proxy
+      domain(suffix: t.me, suffix: telegram.org, suffix: telegram.dog) -> proxy
+      domain(suffix: speedtest.net) -> proxy
 
       pname(Telegram) -> proxy
       pname(.Telegram-wrapped) -> proxy
-      domain(suffix: t.me, suffix: telegram.org, suffix: telegram.dog) -> proxy
 
-      dip(geoip:cn) -> direct
-      domain(geosite:cn) -> direct
-
-      fallback: proxy
+      #direct
+      fallback: direct
     }
   '';
 in

@@ -15,7 +15,6 @@
         { sh = "uwsm finalize"; }
         { command = [ "${pkgs.google-chrome}/bin/google-chrome" ]; }
         { command = [ "${pkgs.telegram-desktop}/bin/Telegram" ]; }
-        { sh = "Throne"; }
       ];
     };
 }

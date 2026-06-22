@@ -25,6 +25,7 @@
       throne
       firewall
       networkmanager
+      dae
 
       qemu
       nvf
