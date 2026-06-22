@@ -23,9 +23,11 @@ let
     dns {
       upstream {
         googledns: 'tcp+udp://dns.google:53'
+        landns: 'tcp+udp://77.88.8.8:53'
       }
       routing {
         request {
+          qname(suffix: ru, suffix: su, suffix: xn--p1ai) -> landns
           fallback: googledns
         }
       }
@@ -52,13 +54,16 @@ let
 
       l4proto(udp) && dport(443) -> block
 
-      #direct
+      dip(77.88.8.8) -> direct
+      dip(geoip:ru) -> direct
+      domain(suffix: ru, suffix: su, suffix: xn--p1ai) -> direct
       domain(nixos.org, nix.dev, search.nixos.org) -> direct
 
       #germany_proxy
       domain(geosite:google) -> germany_proxy
 
       #proxy
+      domain(geosite:discord) -> proxy
       domain(suffix: discord.com, suffix: discordapp.com, suffix: discordapp.net, suffix: discord.gg) -> proxy
       domain(suffix: discord.media, suffix: discordcdn.com, suffix: discordstatus.com) -> proxy
       domain(annas-archive.li, b4mcx2ml.net, britishcouncil.org, chatgpt.com, dashboard.kick.com, dub.co, givefreely.com, google.zoom.us, kick.com, linkedin.com, partners.dub.co, perplexity.ai, throne.me, trustedhousesitters.com, whatismyipaddress.com, zoom.us, app.zoom.us) -> proxy
