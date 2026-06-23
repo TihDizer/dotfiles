@@ -59,10 +59,8 @@ let
       domain(suffix: ru, suffix: su, suffix: xn--p1ai) -> direct
       domain(nixos.org, nix.dev, search.nixos.org) -> direct
 
-      #germany_proxy
-      domain(geosite:google) -> germany_proxy
-
       #proxy
+      domain(geosite:youtube) -> proxy
       domain(geosite:discord) -> proxy
       domain(suffix: discord.com, suffix: discordapp.com, suffix: discordapp.net, suffix: discord.gg) -> proxy
       domain(suffix: discord.media, suffix: discordcdn.com, suffix: discordstatus.com) -> proxy
@@ -73,6 +71,9 @@ let
 
       pname(Telegram) -> proxy
       pname(.Telegram-wrapped) -> proxy
+
+      #germany_proxy
+      domain(geosite:google) -> germany_proxy
 
       #direct
       fallback: direct
