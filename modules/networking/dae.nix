@@ -13,6 +13,7 @@ let
       udp_check_dns: 'dns.google:53,8.8.8.8,2001:4860:4860::8888'
       check_interval: 5m
       check_tolerance: 50ms
+      disable_waiting_network: true
     }
 
     subscription {
@@ -45,9 +46,9 @@ let
       }
 
       youtube {
-        filter: subtag(proxy)
+        filter: name(regex: '(?i).*reality.*')
         policy: min_moving_avg
-        tcp_check_url: 'https://www.youtube.com/generate_204,142.250.154.91,2a00:1450:4010:c0a::5b'
+        tcp_check_url: 'https://www.youtube.com/'
         check_interval: 30s
         check_tolerance: 50ms
       }
