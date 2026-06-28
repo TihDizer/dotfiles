@@ -9,8 +9,8 @@ let
       auto_config_kernel_parameter: true
       dial_mode: domain
       tls_implementation: tls
-      tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1,2606:4700:4700::1111'
-      udp_check_dns: 'dns.google:53,8.8.8.8,2001:4860:4860::8888'
+      tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1'
+      udp_check_dns: 'dns.google:53,8.8.8.8'
       check_interval: 5m
       check_tolerance: 50ms
       disable_waiting_network: true
@@ -21,12 +21,14 @@ let
     }
 
     dns {
+      ipversion_prefer: 4
       upstream {
         googledns: 'tcp+udp://dns.google:53'
         landns: 'tcp+udp://77.88.8.8:53'
       }
       routing {
         request {
+          qtype(aaaa) -> reject
           qname(suffix: ru, suffix: su, suffix: xn--p1ai) -> landns
           fallback: googledns
         }
@@ -48,9 +50,6 @@ let
       youtube {
         filter: name(regex: '(?i).*reality.*')
         policy: min_moving_avg
-        tcp_check_url: 'https://www.youtube.com/'
-        check_interval: 30s
-        check_tolerance: 50ms
       }
     }
 
@@ -78,10 +77,11 @@ let
       pname(.Telegram-wrapped) -> proxy
 
       #youtube
-      domain(geosite:youtube) -> youtube
+      domain(suffix: googlevideo.com, suffix: youtube.com, suffix: ytimg.com, suffix: youtu.be, geosite:youtube) -> youtube
 
       #germany
       domain(geosite:google) -> germany
+      pname(agy) -> germany
 
       #direct
       fallback: direct
