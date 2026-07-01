@@ -37,7 +37,7 @@ let
 
     group {
       proxy {
-        filter: subtag(proxy)
+        filter: subtag(proxy) && !name(regex: '(?i).*🇷🇺.*')
         policy: min_moving_avg
       }
 
