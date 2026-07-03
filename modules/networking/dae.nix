@@ -72,6 +72,7 @@ let
       domain(suffix: amazonaws.com, suffix: b-cdn.net, suffix: throne.me) -> proxy
       domain(suffix: t.me, suffix: telegram.org, suffix: telegram.dog) -> proxy
       domain(suffix: speedtest.net) -> proxy
+      domain(suffix: kinozal.tv) -> proxy
 
       pname(Telegram) -> proxy
       pname(.Telegram-wrapped) -> proxy
@@ -84,6 +85,10 @@ let
       pname(agy) -> germany
 
       #direct
+      pname(.transmission-q) -> direct
+      domain(suffix: local, keyword: torrent) -> direct
+
+      #fallback
       fallback: direct
     }
   '';
