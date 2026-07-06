@@ -72,6 +72,7 @@ let
       domain(suffix: amazonaws.com, suffix: b-cdn.net, suffix: throne.me) -> proxy
       domain(suffix: t.me, suffix: telegram.org, suffix: telegram.dog) -> proxy
       domain(suffix: speedtest.net) -> proxy
+      domain(suffix: 1flex.org, suffix: primevideo.com, suffix: roku.com, suffix: justwatch.com, suffix: ororo.tv, suffix: amazon.com) -> proxy
       domain(suffix: kinozal.tv) -> proxy
       domain(suffix: tor4me.info, suffix: tor2me.info, suffix: torrent4me.com, suffix: retracker.local) -> proxy
 
