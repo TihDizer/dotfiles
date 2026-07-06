@@ -73,6 +73,7 @@ let
       domain(suffix: t.me, suffix: telegram.org, suffix: telegram.dog) -> proxy
       domain(suffix: speedtest.net) -> proxy
       domain(suffix: kinozal.tv) -> proxy
+      domain(suffix: tor4me.info, suffix: tor2me.info, suffix: torrent4me.com, suffix: retracker.local) -> proxy
 
       pname(Telegram) -> proxy
       pname(.Telegram-wrapped) -> proxy
