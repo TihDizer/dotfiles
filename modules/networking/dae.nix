@@ -76,6 +76,7 @@ let
       domain(suffix: 1flex.org, suffix: primevideo.com, suffix: roku.com, suffix: justwatch.com, suffix: ororo.tv, suffix: amazon.com) -> proxy
       domain(suffix: kinozal.tv) -> proxy
       domain(suffix: tor4me.info, suffix: tor2me.info, suffix: torrent4me.com, suffix: retracker.local) -> proxy
+      domain(suffix: jetbrain.com) -> proxy
 
       pname(Telegram) -> proxy
       pname(.Telegram-wrapped) -> proxy
