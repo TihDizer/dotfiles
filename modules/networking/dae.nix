@@ -37,7 +37,8 @@ let
 
     group {
       proxy {
-        filter: subtag(proxy) && !name(regex: '(?i).*🇷🇺.*')
+        filter: !name(regex: '.*\\xd0\\xa0\\xd0\\xbe\\xd1\\x81\\xd1\\x81\\xd0\\xb8\\xd1\\x8f.*')
+        filter: !name(regex: '.*🇷🇺.*')
         policy: min_moving_avg
       }
 
