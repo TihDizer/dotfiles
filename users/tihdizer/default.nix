@@ -32,6 +32,7 @@
         dev
         firefox
         chrome
+        bottom
         yazi
         mpv
         obsidian
