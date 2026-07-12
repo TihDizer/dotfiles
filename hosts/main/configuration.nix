@@ -10,8 +10,6 @@
       system-default
 
       shell
-      appimage
-      winapps
       sops
 
       docker
