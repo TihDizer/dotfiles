@@ -10,12 +10,5 @@
         telegram-desktop # Telegram desktop client
         antigravity-cli # AI code assistant
       ];
-
-      programs.btop = {
-        enable = true;
-        package = pkgs.btop.override {
-          rocmSupport = true;
-        };
-      };
     };
 }
