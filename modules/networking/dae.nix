@@ -82,12 +82,12 @@ let
       domain(geosite:discord) -> proxy
       domain(annas-archive.li, b4mcx2ml.net, britishcouncil.org, chatgpt.com, dashboard.kick.com, dub.co, givefreely.com, google.zoom.us, kick.com, linkedin.com, partners.dub.co, perplexity.ai, throne.me, trustedhousesitters.com, whatismyipaddress.com, zoom.us, app.zoom.us) -> proxy
       domain(suffix: amazonaws.com, suffix: b-cdn.net, suffix: throne.me) -> proxy
-      domain(suffix: t.me, suffix: telegram.org, suffix: telegram.dog, geosite:telegram) -> proxy
+      domain(suffix: t.me, suffix: telegram.org, suffix: telegram.dog, geosite: telegram) -> proxy
       domain(suffix: speedtest.net) -> proxy
       domain(suffix: 1flex.org, suffix: primevideo.com, suffix: roku.com, suffix: justwatch.com, suffix: ororo.tv, suffix: amazon.com) -> proxy
       domain(suffix: kinozal.tv) -> proxy
       domain(suffix: tor4me.info, suffix: tor2me.info, torrent4me.com, retracker.local) -> proxy
-      domain(suffix: jetbrain.com) -> proxy
+      domain(suffix: jetbrain.com, suffix: openai.com, chatgpt.com, geosite: openai) -> proxy
 
       pname(Telegram) -> proxy
       pname(.Telegram-wrapped) -> proxy
