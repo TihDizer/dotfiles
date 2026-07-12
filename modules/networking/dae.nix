@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 let
   daeConfigTemplate = subscriptionUrl: ''
     global {
@@ -7,11 +7,11 @@ let
       log_level: info
       wan_interface: auto
       auto_config_kernel_parameter: true
-      dial_mode: domain
+      dial_mode: ip
       tls_implementation: tls
       tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1'
-      udp_check_dns: 'dns.google:53,8.8.8.8'
-      check_interval: 5m
+      udp_check_dns: '8.8.8.8:53'
+      check_interval: 30s
       check_tolerance: 50ms
       disable_waiting_network: true
     }
@@ -32,24 +32,35 @@ let
           qname(suffix: ru, suffix: su, suffix: xn--p1ai) -> landns
           fallback: googledns
         }
+        response {
+          fallback: accept
+        }
       }
     }
 
     group {
       proxy {
-        filter: !name(regex: '.*\\xd0\\xa0\\xd0\\xbe\\xd1\\x81\\xd1\\x81\\xd0\\xb8\\xd1\\x8f.*')
+        filter: !name(regex: '.*Россия.*')
         filter: !name(regex: '.*🇷🇺.*')
         policy: min_moving_avg
       }
 
       germany {
-        filter: name(regex: '.*\\xd0\\x93\\xd0\\xb5\\xd1\\x80\\xd0\\xbc\\xd0\\xb0\\xd0\\xbd\\xd0\\xb8\\xd1\\x8f.*')
+        filter: name(regex: '.*Германия.*')
         filter: name(regex: '.*🇩🇪.*')
         policy: min_moving_avg
       }
 
       youtube {
         filter: name(regex: '(?i).*reality.*')
+        filter: !name(regex: '.*Россия.*')
+        filter: !name(regex: '.*🇷🇺.*')
+        policy: min_moving_avg
+      }
+
+      kazakhstan {
+        filter: name(regex: '.*Казахстан.*')
+        filter: name(regex: '.*🇰🇿.*')
         policy: min_moving_avg
       }
     }
@@ -71,11 +82,11 @@ let
       domain(geosite:discord) -> proxy
       domain(annas-archive.li, b4mcx2ml.net, britishcouncil.org, chatgpt.com, dashboard.kick.com, dub.co, givefreely.com, google.zoom.us, kick.com, linkedin.com, partners.dub.co, perplexity.ai, throne.me, trustedhousesitters.com, whatismyipaddress.com, zoom.us, app.zoom.us) -> proxy
       domain(suffix: amazonaws.com, suffix: b-cdn.net, suffix: throne.me) -> proxy
-      domain(suffix: t.me, suffix: telegram.org, suffix: telegram.dog) -> proxy
+      domain(suffix: t.me, suffix: telegram.org, suffix: telegram.dog, geosite:telegram) -> proxy
       domain(suffix: speedtest.net) -> proxy
       domain(suffix: 1flex.org, suffix: primevideo.com, suffix: roku.com, suffix: justwatch.com, suffix: ororo.tv, suffix: amazon.com) -> proxy
       domain(suffix: kinozal.tv) -> proxy
-      domain(suffix: tor4me.info, suffix: tor2me.info, suffix: torrent4me.com, suffix: retracker.local) -> proxy
+      domain(suffix: tor4me.info, suffix: tor2me.info, torrent4me.com, retracker.local) -> proxy
       domain(suffix: jetbrain.com) -> proxy
 
       pname(Telegram) -> proxy
@@ -88,6 +99,9 @@ let
       domain(geosite:google) -> germany
       pname(agy) -> germany
 
+      #kazakhstan
+      domain(suffix: bybit.com, suffix: bybit.gl, suffix: bybit.biz, suffix: bybitglobal.com) -> kazakhstan
+
       #direct
       pname(.transmission-q) -> direct
       domain(suffix: local, keyword: torrent) -> direct
@@ -98,44 +112,40 @@ let
   '';
 in
 {
+  flake-file.inputs = {
+    daeuniverse = {
+      url = "github:daeuniverse/flake.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
   flake.modules.nixos.dae =
-    { config, pkgs, ... }:
     {
+      config,
+      pkgs,
+      ...
+    }:
+    {
+      imports = [
+        inputs.daeuniverse.nixosModules.dae
+      ];
+
       services.dae = {
         enable = true;
-        configFile = "/run/dae/config.dae";
+        configFile = config.sops.templates."dae-config.dae".path;
+        package = inputs.daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.dae;
       };
 
       sops.secrets.subscription = { };
 
+      sops.templates."dae-config.dae" = {
+        content = daeConfigTemplate "${config.sops.placeholder.subscription}";
+        mode = "0600";
+        owner = "root";
+      };
+
       systemd.services.dae = {
-        restartTriggers = [ config.sops.secrets.subscription.path ];
-
-        serviceConfig = {
-          LoadCredential = [ "" ];
-
-          RuntimeDirectory = "dae";
-          RuntimeDirectoryMode = "0700";
-          ReadWritePaths = [ "/run/dae" ];
-
-          ExecStartPre = [
-            ""
-            (pkgs.writeShellScript "prepare-dae-config" ''
-              SUB_URL=$(cat ${config.sops.secrets.subscription.path})
-
-              cat <<EOF > /run/dae/config.dae
-              ${daeConfigTemplate "$SUB_URL"}
-              EOF
-
-              chmod 600 /run/dae/config.dae
-            '')
-          ];
-
-          ExecStart = [
-            ""
-            "${pkgs.dae}/bin/dae run -c /run/dae/config.dae"
-          ];
-        };
+        restartTriggers = [ config.sops.templates."dae-config.dae".path ];
       };
     };
 }
