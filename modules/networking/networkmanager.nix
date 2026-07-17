@@ -8,7 +8,7 @@
         dns = "default";
       };
 
-      networking.enableIPv6 = false;
+      networking.enableIPv6 = true;
 
       networking.nameservers = [
         "77.88.8.8"

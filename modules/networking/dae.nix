@@ -23,12 +23,11 @@ let
     dns {
       ipversion_prefer: 4
       upstream {
-        googledns: 'tcp+udp://dns.google:53'
+        googledns: 'tcp+udp://8.8.8.8:53'
         landns: 'tcp+udp://77.88.8.8:53'
       }
       routing {
         request {
-          qtype(aaaa) -> reject
           qname(suffix: ru, suffix: su, suffix: xn--p1ai) -> landns
           fallback: googledns
         }
@@ -71,7 +70,7 @@ let
       dip(224.0.0.0/3, 'ff00::/8') -> direct
       dip(geoip:private) -> direct
 
-      l4proto(udp) && dport(443) -> block
+      # l4proto(udp) && dport(443) -> block
 
       dip(77.88.8.8) -> direct
       dip(geoip:ru) -> direct
@@ -87,7 +86,8 @@ let
       domain(suffix: 1flex.org, suffix: primevideo.com, suffix: roku.com, suffix: justwatch.com, suffix: ororo.tv, suffix: amazon.com) -> proxy
       domain(suffix: kinozal.tv) -> proxy
       domain(suffix: tor4me.info, suffix: tor2me.info, torrent4me.com, retracker.local) -> proxy
-      domain(suffix: jetbrain.com, suffix: openai.com, chatgpt.com, geosite: openai) -> proxy
+      domain(suffix: jetbrains.com, suffix: openai.com, chatgpt.com, geosite: openai) -> proxy
+      domain(suffix: github.com) -> proxy
 
       pname(Telegram) -> proxy
       pname(.Telegram-wrapped) -> proxy
@@ -96,6 +96,7 @@ let
       domain(suffix: googlevideo.com, suffix: youtube.com, suffix: ytimg.com, suffix: youtu.be, geosite:youtube) -> youtube
 
       #germany
+      domain(gemini.google.com, accounts.google.com, googleapis.com, gstatic.com, googleusercontent.com) -> germany
       domain(geosite:google) -> germany
       pname(agy) -> germany
 
