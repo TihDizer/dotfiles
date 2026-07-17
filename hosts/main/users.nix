@@ -8,6 +8,7 @@
         shell = pkgs.fish;
         description = "TihDizer";
         extraGroups = [
+          # TODO: move in modules
           "wheel"
           "libvirtd"
           "kvm"
