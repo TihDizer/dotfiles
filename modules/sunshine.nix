@@ -7,6 +7,13 @@
         moonlight-qt # Client
       ];
 
+      systemd.user.services.sunshine = {
+        serviceConfig = {
+          TimeoutStopSec = "5s";
+          ExecStartPre = "-${pkgs.procps}/bin/pkill -u %u -x sunshine";
+        };
+      };
+
       services.sunshine = {
         enable = true;
         openFirewall = true;
