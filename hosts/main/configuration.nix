@@ -2,34 +2,37 @@
 {
   flake.modules.nixos.main = {
     imports = with inputs.self.modules.nixos; [
+      #= Host
       host-main-hardware
       host-main-system
       host-main-locales
       host-main-users
-
       system-default
+      home-manager
 
+      #= Shell
       shell
       sops
-
-      docker
-
-      programs-desktop-niri
-      sunshine
-
-      steam
-      # prism-launcher
-
-      throne
-      firewall
-      networkmanager
-      dae
-
-      qemu
       nvf
 
-      home-manager
+      #= Networking
+      networkmanager
+      firewall
+      dae
+      throne
+
+      #= Virtualization
+      qemu
+      # docker
+
+      #= TODO: Desktop
+      programs-desktop-niri
       niri-scratchpad
+      sunshine
+
+      #= Gaming
+      steam
+      # prism-launcher
     ];
 
     networking.hostName = "main";
