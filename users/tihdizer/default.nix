@@ -40,6 +40,7 @@
         nixcord
         shell
         television
+        omniroute
       ])
       ++ [
         inputs.niri.homeModules.niri
