@@ -23,6 +23,7 @@
 
       #= Virtualization
       qemu
+      podman
       # docker
 
       #= TODO: Desktop
