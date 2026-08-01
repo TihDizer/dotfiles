@@ -367,6 +367,22 @@
         "type": "github"
       }
     },
+    "jcode-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1785553643,
+        "narHash": "sha256-j2361MMF7aSCKR1Bz54Z/E2tCIOokHwCa/pGHL20yxs=",
+        "owner": "1jehuang",
+        "repo": "jcode",
+        "rev": "0ffe9f484008c3ae9e18b5b0c59b0167316d9c74",
+        "type": "github"
+      },
+      "original": {
+        "owner": "1jehuang",
+        "repo": "jcode",
+        "type": "github"
+      }
+    },
     "mnw": {
       "locked": {
         "lastModified": 1780772958,
@@ -663,6 +679,7 @@
         "flake-file": "flake-file",
         "flake-parts": "flake-parts_2",
         "home-manager": "home-manager",
+        "jcode-src": "jcode-src",
         "niri": "niri",
         "niri-scratchpad": "niri-scratchpad",
         "nixcord": "nixcord",

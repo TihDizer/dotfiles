@@ -41,6 +41,7 @@
         shell
         television
         omniroute
+        jcode
       ])
       ++ [
         inputs.niri.homeModules.niri
