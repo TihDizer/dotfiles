@@ -48,6 +48,7 @@
 
     home.username = "tihdizer";
     home.homeDirectory = "/home/tihdizer";
+    home.pointerCursor.enable = true;
     home.stateVersion = "26.05";
   };
 }
