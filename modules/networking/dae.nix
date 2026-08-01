@@ -6,6 +6,7 @@ let
       tproxy_port_protect: true
       log_level: info
       wan_interface: auto
+      lan_interface: auto
       auto_config_kernel_parameter: true
       dial_mode: ip
       tls_implementation: tls
@@ -70,7 +71,7 @@ let
       dip(224.0.0.0/3, 'ff00::/8') -> direct
       dip(geoip:private) -> direct
 
-      # l4proto(udp) && dport(443) -> block
+      l4proto(udp) && dport(443) -> block
 
       dip(77.88.8.8) -> direct
       dip(geoip:ru) -> direct
@@ -87,17 +88,19 @@ let
       domain(suffix: kinozal.tv, suffix: kinozal.me ) -> proxy
       domain(suffix: tor4me.info, suffix: tor2me.info, torrent4me.com, retracker.local) -> proxy
       domain(suffix: jetbrains.com, suffix: openai.com, chatgpt.com, geosite: openai) -> proxy
-      domain(suffix: github.com) -> proxy
 
       pname(Telegram) -> proxy
       pname(.Telegram-wrapped) -> proxy
 
       #youtube
-      domain(suffix: googlevideo.com, suffix: youtube.com, suffix: ytimg.com, suffix: youtu.be, geosite:youtube) -> youtube
+      domain(suffix: googlevideo.com, suffix: youtube.com, suffix: ytimg.com, suffix: youtu.be, suffix: ggpht.com, suffix: youtube-nocookie.com, geosite:youtube) -> youtube
 
       #germany
       domain(gemini.google.com, accounts.google.com, googleapis.com, gstatic.com, googleusercontent.com) -> germany
       domain(geosite:google) -> germany
+      domain(suffix: ipinfo.io) -> germany
+      domain(suffix: github.com, suffix: githubusercontent.com, suffix: githubcopilot.com) -> germany
+      domain(suffix: tokenrouter.com) -> germany
       pname(agy) -> germany
 
       #kazakhstan
@@ -146,7 +149,10 @@ in
       };
 
       systemd.services.dae = {
-        restartTriggers = [ config.sops.templates."dae-config.dae".path ];
+        restartTriggers = [
+          config.sops.templates."dae-config.dae".path
+          (builtins.hashString "sha256" (daeConfigTemplate ""))
+        ];
       };
     };
 }
