@@ -8,13 +8,17 @@ let
       wan_interface: auto
       lan_interface: auto
       auto_config_kernel_parameter: true
-      dial_mode: ip
-      tls_implementation: tls
-      tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1'
+      dial_mode: domain
+      tls_implementation: utls
+      utls_imitate: chrome_auto
+      tcp_check_url: 'http://cp.cloudflare.com'
+      tcp_check_http_method: HEAD
       udp_check_dns: '8.8.8.8:53'
       check_interval: 30s
       check_tolerance: 50ms
       disable_waiting_network: true
+      bandwidth_max_tx: '500 mbps'
+      bandwidth_max_rx: '500 mbps'
     }
 
     subscription {
@@ -29,6 +33,7 @@ let
       }
       routing {
         request {
+          qtype(https) -> reject
           qname(suffix: ru, suffix: su, suffix: xn--p1ai) -> landns
           fallback: googledns
         }
@@ -52,7 +57,6 @@ let
       }
 
       youtube {
-        filter: name(regex: '(?i).*reality.*')
         filter: !name(regex: '.*Россия.*')
         filter: !name(regex: '.*🇷🇺.*')
         policy: min_moving_avg
@@ -71,7 +75,8 @@ let
       dip(224.0.0.0/3, 'ff00::/8') -> direct
       dip(geoip:private) -> direct
 
-      l4proto(udp) && dport(443) -> block
+      ipversion(6) -> block
+      # l4proto(udp) && dport(443) -> block
 
       dip(77.88.8.8) -> direct
       dip(geoip:ru) -> direct
@@ -80,6 +85,7 @@ let
 
       #proxy
       domain(geosite:discord) -> proxy
+      domain(suffix: oxfordlearnersdictionaries.com, suffix: oxforddictionaries.com, suffix: oup.com) -> proxy
       domain(suffix: annas-archive.li, suffix: b4mcx2ml.net, suffix: britishcouncil.org, suffix: chatgpt.com, suffix: dashboard.kick.com, suffix: dub.co, suffix: givefreely.com, suffix: google.zoom.us, suffix: kick.com, suffix: linkedin.com, suffix: partners.dub.co, suffix: perplexity.ai, suffix: throne.me, suffix: trustedhousesitters.com, suffix: whatismyipaddress.com, suffix: zoom.us, suffix: app.zoom.us) -> proxy
       domain(suffix: amazonaws.com, suffix: b-cdn.net, suffix: throne.me) -> proxy
       domain(suffix: t.me, suffix: telegram.org, suffix: telegram.dog, geosite: telegram) -> proxy
@@ -87,7 +93,7 @@ let
       domain(suffix: 1flex.org, suffix: primevideo.com, suffix: roku.com, suffix: justwatch.com, suffix: ororo.tv, suffix: amazon.com) -> proxy
       domain(suffix: kinozal.tv, suffix: kinozal.me ) -> proxy
       domain(suffix: tor4me.info, suffix: tor2me.info, torrent4me.com, retracker.local) -> proxy
-      domain(suffix: jetbrains.com, suffix: openai.com, chatgpt.com, geosite: openai) -> proxy
+      domain(suffix: jetbrains.com, suffix: openai.com, chatgpt.com, geosite: openai, suffix: coderfile.io) -> proxy
 
       pname(Telegram) -> proxy
       pname(.Telegram-wrapped) -> proxy
@@ -149,7 +155,7 @@ in
       };
 
       systemd.services.dae = {
-        restartTriggers = [
+        reloadTriggers = [
           config.sops.templates."dae-config.dae".path
           (builtins.hashString "sha256" (daeConfigTemplate ""))
         ];
