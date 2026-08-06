@@ -5,8 +5,6 @@ let
     grep = "rg";
     df = "duf";
     du = "dust";
-    ping = "gping";
-    curl = "http";
 
     ls = "eza --icons --group-directories-first";
     ll = "eza -lbGh --icons --git --group-directories-first";
