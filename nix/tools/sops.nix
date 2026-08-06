@@ -23,13 +23,13 @@
     };
 
   flake.modules.homeManager.sops =
-    { ... }:
+    { pkgs, ... }:
     {
       imports = [ inputs.sops-nix.homeManagerModules.sops ];
 
-      sops = {
-        defaultSopsFile = ../../secrets/secrets.yaml;
-        age.keyFile = "/var/lib/sops-nix/key.txt";
-      };
+      home.packages = with pkgs; [
+        sops
+        age
+      ];
     };
 }
