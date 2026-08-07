@@ -54,7 +54,7 @@ let
       }
 
       youtube {
-        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️).*') && !name(keyword: 'россия', '🇷🇺')
+        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия).*') && !name(keyword: 'россия', '🇷🇺')
         policy: min_moving_avg
       }
 
@@ -78,6 +78,7 @@ let
       domain(nixos.org, nix.dev, search.nixos.org) -> direct
 
       #youtube
+      domain(geosite:youtube) -> youtube
       domain(suffix: googlevideo.com, suffix: youtube.com, suffix: ytimg.com, suffix: youtu.be, geosite:youtube) -> youtube
 
       #germany
