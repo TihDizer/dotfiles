@@ -8,17 +8,15 @@ let
       wan_interface: auto
       lan_interface: auto
       auto_config_kernel_parameter: true
-      dial_mode: domain
+      dial_mode: ip
       tls_implementation: utls
       utls_imitate: chrome_auto
-      tcp_check_url: 'http://cp.cloudflare.com'
+      tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1'
       tcp_check_http_method: HEAD
       udp_check_dns: '8.8.8.8:53'
       check_interval: 30s
       check_tolerance: 50ms
       disable_waiting_network: true
-      bandwidth_max_tx: '500 mbps'
-      bandwidth_max_rx: '500 mbps'
     }
 
     subscription {
@@ -34,6 +32,7 @@ let
       routing {
         request {
           qtype(https) -> reject
+          qtype(aaaa) -> reject
           qname(suffix: ru, suffix: su, suffix: xn--p1ai) -> landns
           fallback: googledns
         }
@@ -45,26 +44,24 @@ let
 
     group {
       proxy {
-        filter: !name(regex: '.*Россия.*')
-        filter: !name(regex: '.*🇷🇺.*')
+        filter: !name(regex: '(?i).*(support|info|chat|канал|россия|🇷🇺|hysteria|grpc|⛔️).*')
         policy: min_moving_avg
       }
 
       germany {
-        filter: name(regex: '.*Германия.*')
-        filter: name(regex: '.*🇩🇪.*')
+        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️).*')
+        filter: name(regex: '.*(Германия|🇩🇪).*')
         policy: min_moving_avg
       }
 
       youtube {
-        filter: !name(regex: '.*Россия.*')
-        filter: !name(regex: '.*🇷🇺.*')
+        filter: !name(regex: '(?i).*(support|info|chat|канал|россия|🇷🇺|hysteria|grpc|⛔️).*')
         policy: min_moving_avg
       }
 
       kazakhstan {
-        filter: name(regex: '.*Казахстан.*')
-        filter: name(regex: '.*🇰🇿.*')
+        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️).*')
+        filter: name(regex: '.*(Казахстан|🇰🇿).*')
         policy: min_moving_avg
       }
     }
@@ -76,7 +73,6 @@ let
       dip(geoip:private) -> direct
 
       ipversion(6) -> block
-      # l4proto(udp) && dport(443) -> block
 
       dip(77.88.8.8) -> direct
       dip(geoip:ru) -> direct
@@ -85,28 +81,25 @@ let
 
       #proxy
       domain(geosite:discord) -> proxy
-      domain(suffix: oxfordlearnersdictionaries.com, suffix: oxforddictionaries.com, suffix: oup.com) -> proxy
-      domain(suffix: annas-archive.li, suffix: b4mcx2ml.net, suffix: britishcouncil.org, suffix: chatgpt.com, suffix: dashboard.kick.com, suffix: dub.co, suffix: givefreely.com, suffix: google.zoom.us, suffix: kick.com, suffix: linkedin.com, suffix: partners.dub.co, suffix: perplexity.ai, suffix: throne.me, suffix: trustedhousesitters.com, suffix: whatismyipaddress.com, suffix: zoom.us, suffix: app.zoom.us) -> proxy
+      domain(annas-archive.li, b4mcx2ml.net, britishcouncil.org, chatgpt.com, dashboard.kick.com, dub.co, givefreely.com, google.zoom.us, kick.com, linkedin.com, partners.dub.co, perplexity.ai, throne.me, trustedhousesitters.com, whatismyipaddress.com, zoom.us, app.zoom.us) -> proxy
       domain(suffix: amazonaws.com, suffix: b-cdn.net, suffix: throne.me) -> proxy
       domain(suffix: t.me, suffix: telegram.org, suffix: telegram.dog, geosite: telegram) -> proxy
       domain(suffix: speedtest.net) -> proxy
       domain(suffix: 1flex.org, suffix: primevideo.com, suffix: roku.com, suffix: justwatch.com, suffix: ororo.tv, suffix: amazon.com) -> proxy
-      domain(suffix: kinozal.tv, suffix: kinozal.me ) -> proxy
+      domain(suffix: kinozal.tv) -> proxy
       domain(suffix: tor4me.info, suffix: tor2me.info, torrent4me.com, retracker.local) -> proxy
-      domain(suffix: jetbrains.com, suffix: openai.com, chatgpt.com, geosite: openai, suffix: coderfile.io) -> proxy
+      domain(suffix: jetbrains.com, suffix: openai.com, chatgpt.com, geosite: openai) -> proxy
+      domain(suffix: github.com) -> proxy
 
       pname(Telegram) -> proxy
       pname(.Telegram-wrapped) -> proxy
 
       #youtube
-      domain(suffix: googlevideo.com, suffix: youtube.com, suffix: ytimg.com, suffix: youtu.be, suffix: ggpht.com, suffix: youtube-nocookie.com, geosite:youtube) -> youtube
+      domain(suffix: googlevideo.com, suffix: youtube.com, suffix: ytimg.com, suffix: youtu.be, geosite:youtube) -> youtube
 
       #germany
       domain(gemini.google.com, accounts.google.com, googleapis.com, gstatic.com, googleusercontent.com) -> germany
       domain(geosite:google) -> germany
-      domain(suffix: ipinfo.io) -> germany
-      domain(suffix: github.com, suffix: githubusercontent.com, suffix: githubcopilot.com) -> germany
-      domain(suffix: tokenrouter.com) -> germany
       pname(agy) -> germany
 
       #kazakhstan
@@ -155,7 +148,7 @@ in
       };
 
       systemd.services.dae = {
-        reloadTriggers = [
+        restartTriggers = [
           config.sops.templates."dae-config.dae".path
           (builtins.hashString "sha256" (daeConfigTemplate ""))
         ];
