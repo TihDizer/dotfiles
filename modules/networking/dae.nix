@@ -13,8 +13,8 @@ let
       utls_imitate: chrome_auto
       tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1'
       tcp_check_http_method: HEAD
-      udp_check_dns: '8.8.8.8:53'
-      check_interval: 30s
+      # udp_check_dns: '8.8.8.8:53'
+      check_interval: 60s
       check_tolerance: 50ms
       disable_waiting_network: true
     }
