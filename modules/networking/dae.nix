@@ -8,7 +8,7 @@ let
       wan_interface: auto
       lan_interface: auto
       auto_config_kernel_parameter: true
-      dial_mode: ip
+      dial_mode: domain
       tls_implementation: utls
       utls_imitate: chrome_auto
       tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1'
@@ -44,7 +44,7 @@ let
 
     group {
       proxy {
-        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️).*') && !name(keyword: 'россия', '🇷🇺')
+        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия).*')
         policy: min_moving_avg
       }
 
@@ -69,13 +69,23 @@ let
       pname(NetworkManager) -> direct
       dip(224.0.0.0/3, 'ff00::/8') -> direct
       dip(geoip:private) -> direct
-
+      l4proto(udp) && dport(443) -> block
       ipversion(6) -> block
 
       dip(77.88.8.8) -> direct
       dip(geoip:ru) -> direct
       domain(suffix: ru, suffix: su, suffix: xn--p1ai) -> direct
       domain(nixos.org, nix.dev, search.nixos.org) -> direct
+
+      #youtube
+      domain(suffix: googlevideo.com, suffix: youtube.com, suffix: ytimg.com, suffix: youtu.be, geosite:youtube) -> youtube
+
+      #germany
+      domain(gemini.google.com, accounts.google.com, googleapis.com, gstatic.com, googleusercontent.com) -> germany
+      pname(agy) -> germany
+
+      #kazakhstan
+      domain(suffix: bybit.com, suffix: bybit.gl, suffix: bybit.biz, suffix: bybitglobal.com) -> kazakhstan
 
       #proxy
       domain(geosite:discord) -> proxy
@@ -91,17 +101,6 @@ let
 
       pname(Telegram) -> proxy
       pname(.Telegram-wrapped) -> proxy
-
-      #youtube
-      domain(suffix: googlevideo.com, suffix: youtube.com, suffix: ytimg.com, suffix: youtu.be, geosite:youtube) -> youtube
-
-      #germany
-      domain(gemini.google.com, accounts.google.com, googleapis.com, gstatic.com, googleusercontent.com) -> germany
-      domain(geosite:google) -> germany
-      pname(agy) -> germany
-
-      #kazakhstan
-      domain(suffix: bybit.com, suffix: bybit.gl, suffix: bybit.biz, suffix: bybitglobal.com) -> kazakhstan
 
       #direct
       pname(.transmission-q) -> direct
