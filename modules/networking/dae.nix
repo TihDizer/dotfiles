@@ -44,24 +44,22 @@ let
 
     group {
       proxy {
-        filter: !name(regex: '(?i).*(support|info|chat|канал|россия|🇷🇺|hysteria|grpc|⛔️).*')
+        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️).*') && !name(keyword: 'россия', '🇷🇺')
         policy: min_moving_avg
       }
 
       germany {
-        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️).*')
-        filter: name(regex: '.*(Германия|🇩🇪).*')
+        filter: name(regex: '.*(Германия|🇩🇪).*') && !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️).*')
         policy: min_moving_avg
       }
 
       youtube {
-        filter: !name(regex: '(?i).*(support|info|chat|канал|россия|🇷🇺|hysteria|grpc|⛔️).*')
+        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️).*') && !name(keyword: 'россия', '🇷🇺')
         policy: min_moving_avg
       }
 
       kazakhstan {
-        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️).*')
-        filter: name(regex: '.*(Казахстан|🇰🇿).*')
+        filter: name(regex: '.*(Казахстан|🇰🇿).*') && !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️).*')
         policy: min_moving_avg
       }
     }
