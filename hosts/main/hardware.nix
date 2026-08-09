@@ -17,13 +17,7 @@
       ];
 
       boot.initrd.kernelModules = [ ];
-      # AMD Ryzen + Radeon GPU
-      boot.kernelModules = [
-        "kvm-amd" # AMD Virtualization (KVM)
-        "amdgpu" # Radeon RX GPU driver
-        "k10temp" # Ryzen CPU sensors
-        "nvme" # NVMe SSD
-      ];
+      boot.kernelModules = [ "nvme" ];
       boot.supportedFilesystems = [ "btrfs" ];
       boot.extraModulePackages = [ ];
 
@@ -81,6 +75,5 @@
       # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-      hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     };
 }

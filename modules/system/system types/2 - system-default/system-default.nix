@@ -17,7 +17,7 @@
         system-bluetooth
         system-bootloader
         system-packages
-        system-amd
+        amd
         system-usb
         system-stylix
         system-peripherals
