@@ -78,8 +78,8 @@ let
       domain(nixos.org, nix.dev, search.nixos.org) -> direct
 
       #youtube
-      domain(geosite:youtube) -> youtube
-      domain(suffix: googlevideo.com, suffix: youtube.com, suffix: ytimg.com, suffix: youtu.be, geosite:youtube) -> youtube
+      domain(geosite:youtube) -> germany
+      domain(suffix: googlevideo.com, suffix: youtube.com, suffix: ytimg.com, suffix: youtu.be, geosite:youtube) -> germany
 
       #germany
       domain(gemini.google.com, accounts.google.com, googleapis.com, gstatic.com, googleusercontent.com) -> germany
@@ -95,8 +95,8 @@ let
       domain(suffix: t.me, suffix: telegram.org, suffix: telegram.dog, geosite: telegram) -> proxy
       domain(suffix: speedtest.net) -> proxy
       domain(suffix: 1flex.org, suffix: primevideo.com, suffix: roku.com, suffix: justwatch.com, suffix: ororo.tv, suffix: amazon.com) -> proxy
-      domain(suffix: kinozal.tv) -> proxy
-      domain(suffix: tor4me.info, suffix: tor2me.info, torrent4me.com, retracker.local) -> proxy
+      domain(suffix: kinozal.tv, kinozal.me, suffix: thepiratebay.org, suffix: rutor.org) -> proxy
+      domain(suffix: tor4me.info, suffix: tor2me.info, torrent4me.com, retracker.local, suffix: opentrackr.org, open.stealth.si, suffix: torrent.eu.org, tracker.bittor.pw, public.popcorn-tracker.org, tracker.dler.org, glotorrents.pw, tracker.coppersurfer.tk, torrent.gresille.org, p4p.arenabg.com, tracker.internetwarriors.net, exodus.desync.com, suffix: openbittorrent.com, suffix: leechers-paradise.org, suffix: cyberia.is) -> proxy
       domain(suffix: jetbrains.com, suffix: openai.com, chatgpt.com, geosite: openai) -> proxy
       domain(suffix: github.com) -> proxy
 
