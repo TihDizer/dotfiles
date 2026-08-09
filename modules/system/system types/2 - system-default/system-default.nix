@@ -14,7 +14,7 @@
 
       imports = with inputs.self.modules.nixos; [
         system-audio
-        system-bluetooth
+        bluetooth
         system-bootloader
         system-packages
         amd
