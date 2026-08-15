@@ -17,6 +17,8 @@
         "amdgpu.force_performance_level=high"
 
         "pcie_aspm=off"
+        "amdgpu.gpu_recovery=1"
+        "amdgpu.lockup_timeout=10000"
       ];
 
       environment.systemPackages = with pkgs; [
