@@ -82,6 +82,7 @@ let
       domain(suffix: googlevideo.com, suffix: youtube.com, suffix: ytimg.com, suffix: youtu.be, geosite:youtube) -> germany
 
       #germany
+      domain(geosite:google) -> germany
       domain(gemini.google.com, accounts.google.com, googleapis.com, gstatic.com, googleusercontent.com) -> germany
       pname(agy) -> germany
 
