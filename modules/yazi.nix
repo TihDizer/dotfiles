@@ -81,7 +81,7 @@
       home.packages = with pkgs; [
         trash-cli # Trash manager
         ouch # Painless compression and decompression in the terminal
-        jellyfin-ffmpeg
+        ffmpeg # Multimedia framework
         poppler # PDF rendering library
         fd # Fast find alternative
         file # File type detector
