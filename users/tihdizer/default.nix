@@ -42,6 +42,7 @@
         television
         omniroute
         jcode
+        nirimap
       ])
       ++ [
         inputs.niri.homeModules.niri

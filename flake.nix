@@ -49,6 +49,10 @@
       url = "github:argosnothing/niri-scratchpad";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nirimap = {
+      url = "github:alexandergknoll/nirimap/develop";
+      flake = false;
+    };
     nixcord = {
       url = "github:FlameFlag/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";

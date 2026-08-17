@@ -478,6 +478,23 @@
         "type": "github"
       }
     },
+    "nirimap": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1785943286,
+        "narHash": "sha256-U1F0IM4LmKBfMYx+qajyUgrN399xnvfa3y4Qdfet2SU=",
+        "owner": "alexandergknoll",
+        "repo": "nirimap",
+        "rev": "5c04ebdd22cf48ea6d4df53679b905b405eb0d4c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alexandergknoll",
+        "ref": "develop",
+        "repo": "nirimap",
+        "type": "github"
+      }
+    },
     "nix-filter": {
       "locked": {
         "lastModified": 1757882181,
@@ -682,6 +699,7 @@
         "jcode-src": "jcode-src",
         "niri": "niri",
         "niri-scratchpad": "niri-scratchpad",
+        "nirimap": "nirimap",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_2",
         "nvf": "nvf",
