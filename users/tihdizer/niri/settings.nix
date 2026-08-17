@@ -20,14 +20,14 @@
           border = {
             enable = true;
             width = 2;
-            # active.color = scheme.base0D;
-            # inactive.color = scheme.base03;
-            # urgent.color = scheme.base08;
+            active.color = scheme.base0D;
+            inactive.color = scheme.base03;
+            urgent.color = scheme.base08;
           };
 
           center-focused-column = "never";
 
-          # background-color = scheme.base01;
+          background-color = scheme.base01;
 
           preset-window-heights = [
             { proportion = 1. / 3.; }
