@@ -9,6 +9,7 @@
         codex # AI code assistant
         telegram-desktop # Telegram desktop client
         antigravity-cli # AI code assistant
+        gtypist # Touch typing tutor
       ];
     };
 }
