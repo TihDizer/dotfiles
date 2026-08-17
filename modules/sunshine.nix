@@ -22,20 +22,16 @@
 
         settings = {
           capture = "kms";
-          output_name = 0;
           adapter_name = "/dev/dri/card1";
+
+          https_port = 47990;
+          http_port = 47989;
         };
 
         applications = {
           apps = [
             {
-              name = "Primary Monitor";
-            }
-            {
-              name = "Secondary Monitor";
-            }
-            {
-              name = "TV";
+              name = "Desktop";
             }
           ];
         };
