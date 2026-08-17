@@ -13,6 +13,7 @@ let
 
   defaultColors = {
     base00 = "1e1e2e"; # background
+    base01 = "1e1e2e"; # background alternative
     base02 = "45475a"; # window_color
     base03 = "6c7086"; # border_color
     base05 = "cdd6f4"; # text color
@@ -92,18 +93,17 @@ in
   flake.modules.nixos.nirimap =
     { config, pkgs, ... }:
     {
-      config = {
-        environment.systemPackages = [ (build pkgs) ];
-        environment.etc."xdg/nirimap/config.toml".text = makeConfig config;
-      };
+      environment.systemPackages = [ (build pkgs) ];
+      environment.etc."xdg/nirimap/config.toml".text = makeConfig config;
     };
 
   flake.modules.homeManager.nirimap =
     { config, pkgs, ... }:
     {
-      config = {
-        home.packages = [ (build pkgs) ];
-        xdg.configFile."nirimap/config.toml".text = makeConfig config;
-      };
+      home.packages = [ (build pkgs) ];
+      xdg.configFile."nirimap/config.toml".text = makeConfig config;
+      programs.niri.settings.spawn-at-startup = [
+        { sh = "nirimap"; }
+      ];
     };
 }
