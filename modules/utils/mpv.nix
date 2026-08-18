@@ -55,8 +55,8 @@
           gpu-api = "vulkan";
           hwdec = "auto-safe";
 
-          alang = "en,eng,ru,rus";
-          slang = "pgs,en-pgs,sdh,en-sdh,eng-sdh,en,eng,en-forced,eng-forced,forced,ru,rus";
+          alang = "en,eng,en-uk,en-us,ru,rus";
+          slang = "pgs,en-pgs,sdh,en-sdh,eng-sdh,en,eng,en-uk,en-us,en-forced,eng-forced,forced,ru,rus";
 
           sub-auto = "fuzzy";
           audio-file-auto = "fuzzy";
