@@ -9,6 +9,17 @@
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
         gamescopeSession.enable = true;
+
+        extraCompatPackages = with pkgs; [
+          proton-ge-bin
+        ];
+
+        extraPackages = with pkgs; [
+          libkrb5
+          keyutils
+          openssl
+          libgdiplus
+        ];
       };
 
       hardware.steam-hardware.enable = true;
@@ -25,6 +36,6 @@
       ];
 
       services.speechd.enable = false;
-
+      programs.nix-ld.enable = true;
     };
 }
