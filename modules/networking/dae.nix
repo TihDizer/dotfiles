@@ -55,9 +55,10 @@ let
         policy: min_moving_avg
       }
 
-      germany {
-        filter: name(regex: '.*(Германия).*')
-          && !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️).*')
+      google {
+        filter: name(regex: '.*(Нидерланды).*')
+        filter: name(regex: '.*(Германия).*') [add_latency: 500ms]
+        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия).*') [add_latency: 1000ms]
         policy: min_moving_avg
       }
     }
@@ -88,15 +89,15 @@ let
         suffix: xn--p1ai
       ) -> direct
 
-      #germany
+      #google
       domain(
         geosite:google,
         geosite:youtube
-      ) -> germany
+      ) -> google
 
       pname(
         agy
-      ) -> germany
+      ) -> google
 
       #proxy
       domain(
@@ -132,6 +133,7 @@ let
         suffix: p4p.arenabg.com,
         suffix: perplexity.ai,
         suffix: primevideo.com,
+        suffix: protondb.com,
         suffix: public.popcorn-tracker.org,
         suffix: retracker.local,
         suffix: roku.com,
