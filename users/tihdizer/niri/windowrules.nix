@@ -65,6 +65,7 @@
               { app-id = "org.pulseaudio.pavucontrol"; }
               { app-id = "com.saivert.pwvucontrol"; }
               { app-id = "yazi-floating"; }
+              { app-id = "volume"; }
             ];
             open-floating = true;
             default-floating-position = {

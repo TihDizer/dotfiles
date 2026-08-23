@@ -14,7 +14,7 @@
       launcher = "${pkgs.walker}/bin/walker";
       browser = getExe pkgs.google-chrome;
       term = getExe pkgs.kitty;
-      volume = getExe pkgs.pwvucontrol;
+      volume = getExe pkgs.wiremix;
       # lock = getExe pkgs.hyprlock;
       # logout = getExe pkgs.wlogout;
     in
@@ -77,7 +77,14 @@
             ];
             "Mod+B".action.spawn = [ browser ];
             "Mod+D".action.spawn = [ launcher ];
-            "Mod+P".action.spawn = [ volume ];
+            # "Mod+P".action.spawn = [ volume ];
+            "Mod+P".action.spawn = [
+              term
+              "--class"
+              "volume"
+              "-e"
+              volume
+            ];
             # "Mod+Shift+Q".action.spawn = [ lock ];
             # "Mod+Shift+M".action.spawn = [ logout ];
 
