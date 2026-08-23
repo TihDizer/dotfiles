@@ -8,12 +8,12 @@ let
       wan_interface: auto
       lan_interface: auto
       auto_config_kernel_parameter: true
-      dial_mode: domain
+      dial_mode: domain++
       tls_implementation: utls
       utls_imitate: chrome_auto
       tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1'
-      tcp_check_http_method: HEAD
-      udp_check_dns: '8.8.8.8:53'
+      tcp_check_http_method: GET
+      # udp_check_dns: '8.8.8.8:53'
       check_interval: 30s
       check_tolerance: 50ms
     }
@@ -23,9 +23,11 @@ let
     }
 
     dns {
+      ipversion_prefer: 4
+
       upstream {
-        googledns: 'tcp+udp://8.8.8.8:53'
-        landns: 'tcp+udp://77.88.8.8:53'
+        googledns: 'tcp://8.8.8.8:53'
+        landns: 'tcp://77.88.8.8:53'
       }
       routing {
         request {
@@ -34,11 +36,6 @@ let
             suffix: su,
             suffix: xn--p1ai
           ) -> landns
-
-          qtype(
-            aaaa,
-            https
-          ) -> reject
 
           fallback: googledns
         }
@@ -51,15 +48,15 @@ let
 
     group {
       proxy {
-        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия).*')
-        policy: min_moving_avg
+        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия|швеция).*')
+        policy: min_avg10
       }
 
       google {
         filter: name(regex: '.*(Нидерланды).*')
-        filter: name(regex: '.*(Германия).*') [add_latency: 500ms]
-        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия).*') [add_latency: 1000ms]
-        policy: min_moving_avg
+        filter: name(regex: '.*(Германия).*') [add_latency: 100ms]
+        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия|швеция).*') [add_latency: 200ms]
+        policy: min_avg10
       }
     }
 
@@ -76,7 +73,6 @@ let
       ) -> direct
 
       l4proto(udp) && dport(443) -> block
-      ipversion(6) -> block
 
       dip(
         77.88.8.8,
@@ -88,16 +84,6 @@ let
         suffix: su,
         suffix: xn--p1ai
       ) -> direct
-
-      #google
-      domain(
-        geosite:google,
-        geosite:youtube
-      ) -> google
-
-      pname(
-        agy
-      ) -> google
 
       #proxy
       domain(
@@ -158,6 +144,26 @@ let
       pname(
         .Telegram-wrapped,
         Telegram
+      ) -> proxy
+
+      #google
+      domain(
+        geosite:google,
+        geosite:youtube,
+
+        suffix: youtube.com,
+        suffix: youtube-nocookie.com,
+        suffix: youtu.be,
+        suffix: googlevideo.com,
+        suffix: ytimg.com,
+        suffix: youtubei.googleapis.com,
+        suffix: youtube.googleapis.com,
+        suffix: ggpht.com,
+        suffix: googleusercontent.com
+      ) -> proxy
+
+      pname(
+        agy
       ) -> proxy
 
       #fallback
