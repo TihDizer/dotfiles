@@ -1,15 +1,9 @@
 { ... }:
 let
   sharedAliases = {
-    find = "fd";
-    grep = "rg";
-    df = "duf";
-    du = "dust";
-
     ls = "eza --icons --group-directories-first";
     ll = "eza -lbGh --icons --git --group-directories-first";
     la = "eza -lbghia --icons --git --group-directories-first";
-    cat = "bat --style=plain";
   };
 
   sharedPackages =
