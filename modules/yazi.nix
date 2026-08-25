@@ -25,14 +25,24 @@
         out="$5"
 
         if [ "$save" = "1" ]; then
-            set -- --chooser-file="$out" "$path"
+          set -- --chooser-file="$out" "$path"
         elif [ "$directory" = "1" ]; then
-            set -- --chooser-file="$out" --cwd-file="$out" "$path"
+          set -- --chooser-file="$out" --cwd-file="$out" "$path"
         else
-            set -- --chooser-file="$out" "$path"
+          set -- --chooser-file="$out" "$path"
         fi
 
-        exec ${lib.getExe pkgs.kitty} --class=file_chooser -e ${lib.getExe config.programs.yazi.package} "$@"
+        exec ${lib.getExe pkgs.kitty} \
+          --class=file_chooser \
+          -e ${lib.getExe config.programs.yazi.package} \
+          "$@"
+      '';
+
+      yazi-floating = pkgs.writeShellScriptBin "yazi-floating" ''
+        exec ${lib.getExe pkgs.kitty} \
+          --class=yazi-floating \
+          -e ${lib.getExe config.programs.yazi.package} \
+          "$@"
       '';
     in
     {
@@ -48,6 +58,31 @@
         GTK_USE_PORTAL = "1";
         QT_QPA_PLATFORMTHEME = lib.mkForce "xdgdesktopportal";
         TDESKTOP_USE_GTK_FILE_DIALOG = "1";
+      };
+
+      xdg.desktopEntries.yazi = {
+        name = "Yazi";
+        genericName = "File Manager";
+        comment = "Terminal file manager";
+
+        exec =
+          "${yazi-floating}/bin/yazi-floating %U";
+
+        icon = "yazi";
+
+        terminal = false;
+        type = "Application";
+
+        categories = [
+          "System"
+          "FileManager"
+          "FileTools"
+        ];
+
+        mimeType = [
+          "inode/directory"
+          "application/x-directory"
+        ];
       };
 
       xdg.mimeApps = {

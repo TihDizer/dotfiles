@@ -72,7 +72,6 @@
         xkbcomp
         # Wayland desktop (niri)
         swaylock-effects # Screen locker с эффектами
-        nautilus # File manager (GNOME)
       ];
     };
 }
