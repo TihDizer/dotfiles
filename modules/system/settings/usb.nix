@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.system-usb =
+  flake.modules.nixos.usb =
     { pkgs, ... }:
     {
       # USB automount
