@@ -18,7 +18,7 @@
         system-bootloader
         system-packages
         amd
-        system-usb
+        usb
         system-stylix
         system-peripherals
       ];

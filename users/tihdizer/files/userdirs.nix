@@ -15,6 +15,8 @@
         publicShare = "$HOME/shared";
       };
 
+      home.file."mnt/usbs".source = config.lib.file.mkOutOfStoreSymlink "/run/media/tihdizer";
+
       home.file."mnt/storage".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd1/tihdizer";
       home.file."downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd1/tihdizer/downloads";
       home.file."notes".source = config.lib.file.mkOutOfStoreSymlink "/mnt/hdd1/tihdizer/notes";

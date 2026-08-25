@@ -43,6 +43,7 @@
         omniroute
         jcode
         nirimap
+        usb
       ])
       ++ [
         inputs.niri.homeModules.niri

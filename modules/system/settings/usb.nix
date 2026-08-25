@@ -1,10 +1,23 @@
 { ... }:
 {
   flake.modules.nixos.system-usb =
-    { ... }:
+    { pkgs, ... }:
     {
       # USB automount
       services.udisks2.enable = true;
-      services.gvfs.enable = true;
+      environment.systemPackages = with pkgs; [
+        exfatprogs # exFAT
+        ntfs3g     # NTFS
+      ];
     };
+
+  flake.modules.homeManager.usb =
+      { ... }:
+      {
+        services.udiskie = {
+          enable = true;
+          automount = true;
+          notify = true;
+        };
+      };
 }
