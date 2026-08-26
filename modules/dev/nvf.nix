@@ -1,36 +1,17 @@
 { inputs, ... }:
-{
-  flake-file.inputs = {
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
+let
+  sharedPackages = pkgs: with pkgs; [
+    yazi
+    television
+    ripgrep
+    fd
+    lazygit
+  ];
 
-  flake.modules.nixos.nvf =
-    { pkgs, ... }:
-    {
-      imports = [
-        inputs.nvf.nixosModules.default
-      ];
+  sharedNvf = pkgs: {
+    enable = true;
 
-      environment.systemPackages = with pkgs; [
-        yazi
-        television
-        ripgrep
-        fd
-        lazygit
-      ];
-
-      environment.sessionVariables = {
-        EDITOR = "vim";
-        VISUAL = "vim";
-      };
-
-      programs.nvf = {
-        enable = true;
-
-        settings.vim = {
+    settings.vim = {
           viAlias = true;
           vimAlias = true;
           preventJunkFiles = true;
@@ -238,10 +219,46 @@
           ];
         };
       };
+in
+{
+  flake-file.inputs = {
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  flake.modules.nixos.nvf =
+    { pkgs, ... }:
+    {
+      imports = [
+        inputs.nvf.nixosModules.default
+      ];
+
+      environment.systemPackages = sharedPackages pkgs;
+
+      environment.sessionVariables = {
+        EDITOR = "vim";
+        VISUAL = "vim";
+      };
+
+      programs.nvf = sharedNvf pkgs;
     };
 
-  flake.modules.homeManager.example =
-    { ... }:
+  flake.modules.homeManager.nvf =
+    { pkgs, ... }:
     {
+      imports = [
+        inputs.nvf.homeManagerModules.default
+      ];
+
+      home.packages = sharedPackages pkgs;
+
+      home.sessionVariables = {
+        EDITOR = "vim";
+        VISUAL = "vim";
+      };
+
+      programs.nvf = sharedNvf pkgs;
     };
 }

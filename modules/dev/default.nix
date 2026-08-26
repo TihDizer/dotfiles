@@ -5,6 +5,7 @@
       zed-editor
       nix
       rust
+      nvf
     ];
   };
 }
