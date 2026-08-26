@@ -18,7 +18,6 @@
           "audio"
           "video"
           "input"
-          "plugdev"
         ];
       };
     };
