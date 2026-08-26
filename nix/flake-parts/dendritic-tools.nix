@@ -35,7 +35,7 @@
         file.hasExt "nix"
         && file.name != "flake.nix"
         && !lib.hasPrefix "_" file.name
-        && !lib.hasSuffix "template" file.name;
+        && !lib.hasInfix "template" file.name;
 
       importTree = path:
         toList (fileFilter isNixModule path);
