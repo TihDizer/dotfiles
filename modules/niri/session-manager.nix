@@ -7,6 +7,9 @@
       niri-session = "${pkgs.niri}/bin/niri-session";
     in
     {
+      #|==< GNOME Keyring System Daemon >==|#
+      services.gnome.gnome-keyring.enable = true;
+
       #|==< UWSM >==|#
       programs.uwsm = {
         enable = true;
