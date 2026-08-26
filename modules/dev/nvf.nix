@@ -1,7 +1,6 @@
 { inputs, ... }:
 let
   sharedPackages = pkgs: with pkgs; [
-    yazi
     television
     ripgrep
     fd
