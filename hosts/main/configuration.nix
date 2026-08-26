@@ -20,6 +20,7 @@
       firewall
       dae
       throne
+      ssh
 
       #= Virtualization
       qemu

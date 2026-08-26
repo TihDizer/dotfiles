@@ -34,7 +34,7 @@
 
         dataDir = lib.mkOption {
           type = lib.types.str;
-          default = "%h/.local/share/omniroute";
+          default = "${config.home.homeDirectory}/.local/share/omniroute";
           description = "Host path for persistent app data.";
         };
 
@@ -52,7 +52,26 @@
       };
 
       config = lib.mkMerge [
-        { services.omniroute.enable = lib.mkDefault true; }
+        {
+          services.omniroute.enable = lib.mkDefault true;
+
+          programs.ssh = {
+            enable = true;
+
+            matchBlocks = {
+              omniroute = {
+                hostname = "localhost";
+                user = config.home.username;
+
+                extraOptions = {
+                  RequestTTY = "force";
+                  RemoteCommand =
+                    "${pkgs.podman}/bin/podman exec -it omniroute sh";
+                };
+              };
+            };
+          };
+        }
 
         (lib.mkIf cfg.enable {
           home.packages = [ pkgs.podman ];
@@ -72,12 +91,22 @@
               ExecStart =
                 let
                   envFlags = lib.concatStringsSep " " (
-                    lib.mapAttrsToList (k: v: "-e ${k}=${v}") (cfg.extraEnv // { PORT = toString cfg.containerPort; })
+                    lib.mapAttrsToList
+                      (k: v: "-e ${k}=${lib.escapeShellArg v}")
+                      (cfg.extraEnv // {
+                        PORT = toString cfg.containerPort;
+                      })
                   );
-                  envFileFlag = lib.optionalString (cfg.environmentFile != null) "--env-file=${cfg.environmentFile}";
+
+                  envFileFlag = lib.optionalString
+                    (cfg.environmentFile != null)
+                    "--env-file=${cfg.environmentFile}";
                 in
                 "${pkgs.podman}/bin/podman run --rm --name omniroute -p ${toString cfg.hostPort}:${toString cfg.containerPort} -v ${cfg.dataDir}:/app/data:U ${envFlags} ${envFileFlag} --stop-timeout=40 ${cfg.image}";
-              ExecStop = "${pkgs.podman}/bin/podman stop --timeout 40 omniroute";
+
+              ExecStop =
+                "${pkgs.podman}/bin/podman stop --timeout 40 omniroute";
+
               Restart = "always";
               RestartSec = "5s";
             };
