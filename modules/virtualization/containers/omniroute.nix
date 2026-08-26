@@ -58,16 +58,13 @@
           programs.ssh = {
             enable = true;
 
-            matchBlocks = {
+            settings = {
               omniroute = {
                 hostname = "localhost";
                 user = config.home.username;
-
-                extraOptions = {
-                  RequestTTY = "force";
-                  RemoteCommand =
-                    "${pkgs.podman}/bin/podman exec -it omniroute bash";
-                };
+                requestTTY = "force";
+                remoteCommand =
+                  "${pkgs.podman}/bin/podman exec -it omniroute bash";
               };
             };
           };
