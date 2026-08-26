@@ -66,7 +66,7 @@
                 extraOptions = {
                   RequestTTY = "force";
                   RemoteCommand =
-                    "${pkgs.podman}/bin/podman exec -it omniroute sh";
+                    "${pkgs.podman}/bin/podman exec -it omniroute bash";
                 };
               };
             };
