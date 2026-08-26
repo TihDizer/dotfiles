@@ -18,6 +18,9 @@
       time.timeZone = "Europe/Moscow";
 
       console.useXkbConfig = true;
-      services.xserver.xkb.variant = "ru";
+      services.xserver.xkb = {
+        layout = "us,ru";
+        options = "grp:win_space_toggle";
+      };
     };
 }
