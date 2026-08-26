@@ -54,6 +54,7 @@ let
 
       google {
         filter: name(regex: '.*(AI).*')
+        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия|швеция|гейминг|франция).*') [add_latency: 1000ms]
         policy: min_avg10
       }
     }
@@ -149,16 +150,6 @@ let
       #google
       domain(
         geosite:youtube,
-
-        suffix: youtube.com,
-        suffix: youtube-nocookie.com,
-        suffix: youtu.be,
-        suffix: googlevideo.com,
-        suffix: ytimg.com,
-        suffix: youtubei.googleapis.com,
-        suffix: youtube.googleapis.com,
-        suffix: ggpht.com,
-        suffix: googleusercontent.com
       ) -> proxy
 
       domain(
