@@ -149,7 +149,7 @@ let
 
       #google
       domain(
-        geosite:youtube,
+        geosite:youtube
       ) -> proxy
 
       domain(
