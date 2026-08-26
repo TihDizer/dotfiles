@@ -34,16 +34,24 @@
       config = {
         home.packages = [ config.programs.jcode.package ];
 
-        home.file.".config/jcode/config.toml".text = ''
-          default_provider = "openai"
+        home.file.".jcode/config.toml".text = ''
+          [provider]
+          default_provider = "omniroute"
 
-          [providers.openai]
-          type = "openai"
-          base_url = "http://localhost:8000/v1"
+          [providers.omniroute]
+          type = "openai-compatible"
+          base_url = "http://localhost:${toString (config.services.omniroute.hostPort or 8000)}/v1"
           api_key = "sk-omniroute"
+        '';
 
-          [auth]
-          auto_login = false
+        home.file.".config/jcode/config.toml".text = ''
+          [provider]
+          default_provider = "omniroute"
+
+          [providers.omniroute]
+          type = "openai-compatible"
+          base_url = "http://localhost:${toString (config.services.omniroute.hostPort or 8000)}/v1"
+          api_key = "sk-omniroute"
         '';
       };
     };
