@@ -143,7 +143,8 @@ let
 
       pname(
         .Telegram-wrapped,
-        Telegram
+        Telegram,
+        .Discord-wrapped,
         discord
       ) -> proxy
 
