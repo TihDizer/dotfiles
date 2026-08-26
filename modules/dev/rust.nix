@@ -27,13 +27,16 @@
 
       home.activation.rustRoverSetup = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         mkdir -p ~/.rust-rover/toolchain
-        ln -sfn ${rustToolchain}/lib/rustlib/amd64-unknown-linux-gnu/lib ~/.rust-rover/toolchain/lib
+        ln -sfn ${rustToolchain}/lib/rustlib/x86_64-unknown-linux-gnu/lib ~/.rust-rover/toolchain/lib
         ln -sfn ${rustToolchain}/bin ~/.rust-rover/toolchain/bin
       '';
 
       home.sessionVariables = {
-        RUST_SRC_PATH = "~/.rust-rover/toolchain/lib/rustlib/src/rust/library";
-        PATH = "$HOME/.cargo/bin:$PATH";
+        RUST_SRC_PATH = "${rustToolchain}/lib/rustlib/src/rust/library";
       };
+
+      home.sessionPath = [
+        "$HOME/.cargo/bin"
+      ];
     };
 }
