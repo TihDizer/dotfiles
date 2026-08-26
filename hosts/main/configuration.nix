@@ -13,7 +13,6 @@
       #= Shell
       shell
       sops
-      nvf
 
       #= Networking
       networkmanager
