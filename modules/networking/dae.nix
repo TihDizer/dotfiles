@@ -144,6 +144,7 @@ let
       pname(
         .Telegram-wrapped,
         Telegram
+        discord
       ) -> proxy
 
       #google
