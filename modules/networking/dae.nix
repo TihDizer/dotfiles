@@ -53,9 +53,7 @@ let
       }
 
       google {
-        filter: name(regex: '.*(Нидерланды).*')
-        filter: name(regex: '.*(Германия).*') [add_latency: 100ms]
-        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия|швеция).*') [add_latency: 200ms]
+        filter: name(regex: '.*(AI).*')
         policy: min_avg10
       }
     }
@@ -150,7 +148,6 @@ let
 
       #google
       domain(
-        geosite:google,
         geosite:youtube,
 
         suffix: youtube.com,
@@ -164,9 +161,13 @@ let
         suffix: googleusercontent.com
       ) -> proxy
 
+      domain(
+        geosite:google
+      ) -> google
+
       pname(
         agy
-      ) -> proxy
+      ) -> google
 
       #fallback
       fallback: direct
