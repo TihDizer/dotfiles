@@ -1,6 +1,5 @@
 { ... }:
 {
-  # TODO: mb generic
   flake.modules.nixos.steam =
     { pkgs, ... }:
     {
