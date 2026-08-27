@@ -90,6 +90,11 @@
             "Mod+Shift+S".action.screenshot.show-pointer = true;
             "Mod+Ctrl+S".action.screenshot-window.write-to-disk = true;
 
+            #= Dynamic Cast Target (Screencast)
+            "Mod+Shift+M".action = set-dynamic-cast-window;
+            "Mod+Ctrl+M".action = set-dynamic-cast-monitor;
+            "Mod+Ctrl+Shift+M".action = clear-dynamic-cast-target;
+
             #= Actions
             "Mod+W".action = toggle-column-tabbed-display;
             "Mod+O".action = toggle-overview;

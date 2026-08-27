@@ -5,6 +5,7 @@
       programs-desktop-niri-dbus
       programs-desktop-niri-session-manager
       programs-desktop-niri-env
+      niri-autoselect-portal
     ];
 
     security.pam.services.swaylock = { };

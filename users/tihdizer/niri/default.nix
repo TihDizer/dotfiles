@@ -83,6 +83,7 @@
       xdg.portal = {
         enable = true;
         extraPortals = with pkgs; [
+          inputs.niri-autoselect-portal.packages.${pkgs.stdenv.hostPlatform.system}.default
           xdg-desktop-portal-gnome
           xdg-desktop-portal-gtk
         ];
@@ -98,7 +99,14 @@
               "gnome"
               "gtk"
             ];
-            "org.freedesktop.impl.portal.Screencast" = [ "gnome" ];
+            "org.freedesktop.impl.portal.ScreenCast" = [
+              "niri-autoselect"
+              "gnome"
+            ];
+            "org.freedesktop.impl.portal.Screencast" = [
+              "niri-autoselect"
+              "gnome"
+            ];
             "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
           };
         };
