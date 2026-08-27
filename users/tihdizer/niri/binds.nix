@@ -15,7 +15,7 @@
       browser = getExe pkgs.google-chrome;
       term = getExe pkgs.kitty;
       volume = getExe pkgs.wiremix;
-      lock = getExe pkgs.swaylock-effects;
+      logout = getExe pkgs.wlogout;
     in
     {
       programs.niri.settings.binds =
@@ -84,7 +84,7 @@
               "-e"
               volume
             ];
-            "Mod+Escape".action.spawn = [ lock ];
+            "Mod+Escape".action.spawn = [ logout ];
 
             #= Screenshots
             "Mod+Shift+S".action.screenshot.show-pointer = true;
