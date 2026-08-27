@@ -127,7 +127,9 @@
 
           #= Secondary Monitor (DP-5)
           {
-            matches = [ { app-id = "^discord(_canary)?$"; } ];
+            matches = [
+              { app-id = "^(discord|vesktop|Vesktop)(_canary)?$"; }
+            ];
             open-on-output = "DP-5";
             default-column-width = {
               proportion = 2. / 3.;

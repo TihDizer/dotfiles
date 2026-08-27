@@ -15,8 +15,8 @@
       imports = [ inputs.nixcord.homeModules.nixcord ];
       programs.nixcord = {
         enable = true;
-        discord.equicord.enable = true;
-        discord.vencord.enable = false;
+        vesktop.enable = true;
+        discord.enable = false;
       };
     };
 }

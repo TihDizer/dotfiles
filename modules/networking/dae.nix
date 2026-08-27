@@ -144,7 +144,9 @@ let
         .Telegram-wrapped,
         Telegram,
         .Discord-wrapped,
-        discord
+        discord,
+        .Vesktop-wrapped,
+        vesktop
       ) -> proxy
 
       #google
