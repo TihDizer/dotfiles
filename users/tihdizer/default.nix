@@ -44,6 +44,7 @@
         jcode
         nirimap
         usb
+        bluetooth
       ])
       ++ [
         inputs.niri.homeModules.niri

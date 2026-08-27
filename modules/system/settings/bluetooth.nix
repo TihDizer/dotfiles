@@ -26,4 +26,22 @@
         usbutils
       ];
     };
+
+  flake.modules.homeManager.bluetooth =
+    { ... }:
+    {
+      xdg.configFile."bluetuith/bluetuith.conf".text = ''
+        {
+          keybindings: {
+            NavigateLeft: h
+            NavigateDown: j
+            NavigateUp: k
+            NavigateRight: l
+            FilebrowserDirBack: h
+            FilebrowserDirForward: l
+          }
+        }
+      '';
+    };
 }
+
