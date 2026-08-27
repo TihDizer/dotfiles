@@ -15,8 +15,8 @@
       browser = getExe pkgs.google-chrome;
       term = getExe pkgs.kitty;
       volume = getExe pkgs.wiremix;
-      # lock = getExe pkgs.hyprlock;
-      # logout = getExe pkgs.wlogout;
+      lock = getExe pkgs.hyprlock;
+      logout = getExe pkgs.wlogout;
     in
     {
       programs.niri.settings.binds =
@@ -85,8 +85,8 @@
               "-e"
               volume
             ];
-            # "Mod+Shift+Q".action.spawn = [ lock ];
-            # "Mod+Shift+M".action.spawn = [ logout ];
+            "Mod+Shift+Q".action.spawn = [ lock ];
+            "Mod+Shift+M".action.spawn = [ logout ];
 
             #= Screenshots
             "Mod+Shift+S".action.screenshot.show-pointer = true;
