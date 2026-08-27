@@ -25,6 +25,10 @@
         setuid = true;
       };
 
+      environment.sessionVariables = {
+        LIBVIRT_DEFAULT_URI = "qemu:///system";
+      };
+
       environment.systemPackages = with pkgs; [
         spice-gtk # Spice VM client
       ];
