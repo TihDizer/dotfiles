@@ -65,7 +65,14 @@
         ];
       };
 
+      systemd.tmpfiles.rules = [
+        "d /mnt/nvme/.Trash 1777 root root -"
+        "d /mnt/hdd1/.Trash 1777 root root -"
+        "d /mnt/hdd2/.Trash 1777 root root -"
+      ];
+
       boot.resumeDevice = "/dev/disk/by-uuid/c7ddec8b-9743-419d-94da-fa95dddf6d80";
+      boot.kernelParams = [ "resume_offset=11253760" ];
 
       swapDevices = [
         {
