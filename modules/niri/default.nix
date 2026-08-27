@@ -6,5 +6,7 @@
       programs-desktop-niri-session-manager
       programs-desktop-niri-env
     ];
+
+    programs.hyprlock.enable = true;
   };
 }
