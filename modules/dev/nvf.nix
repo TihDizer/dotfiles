@@ -149,7 +149,16 @@ let
 
           extraPlugins.tv-nvim = {
             package = pkgs.vimPlugins.tv-nvim;
-            setup = "require('tv').setup({})";
+            setup = ''
+              require('tv').setup({})
+
+              vim.api.nvim_create_autocmd("BufEnter", {
+                callback = function()
+                  local root = vim.fs.root(0, { ".git", "flake.nix", "Cargo.toml", "package.json", "go.mod", "pyproject.toml" })
+                  if root then vim.uv.chdir(root) end
+                end,
+              })
+            '';
           };
 
           keymaps = [
