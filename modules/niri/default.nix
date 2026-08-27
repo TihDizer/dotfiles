@@ -7,6 +7,6 @@
       programs-desktop-niri-env
     ];
 
-    programs.hyprlock.enable = true;
+    security.pam.services.swaylock = { };
   };
 }
