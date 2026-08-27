@@ -37,7 +37,6 @@
             matches = [
               {
                 app-id = "org.telegram.desktop";
-                title = "Telegram";
               }
             ];
             default-column-width = {
