@@ -15,7 +15,7 @@
       browser = getExe pkgs.google-chrome;
       term = getExe pkgs.kitty;
       volume = getExe pkgs.wiremix;
-      lock = getExe pkgs.hyprlock;
+      lock = getExe pkgs.swaylock-effects;
       logout = getExe pkgs.wlogout;
     in
     {
