@@ -7,6 +7,7 @@
       bash
       cli
       kitty
+      fastfetch
     ];
   };
 
@@ -17,6 +18,7 @@
       bash
       cli
       kitty
+      fastfetch
     ];
   };
 }
