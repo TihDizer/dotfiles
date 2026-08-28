@@ -39,8 +39,17 @@
                 app-id = "org.telegram.desktop";
               }
             ];
+            open-floating = true;
+            default-floating-position = {
+              x = 0;
+              y = 180;
+              relative-to = "top";
+            };
             default-column-width = {
-              proportion = 1. / 3.;
+              proportion = 2. / 3.;
+            };
+            default-window-height = {
+              proportion = 2. / 3.;
             };
             block-out-from = "screencast";
           }
