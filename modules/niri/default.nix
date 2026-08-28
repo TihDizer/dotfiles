@@ -8,6 +8,6 @@
       niri-autoselect-portal
     ];
 
-    security.pam.services.swaylock = { };
+    security.pam.services.swaylock.enableGnomeKeyring = true;
   };
 }
