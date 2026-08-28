@@ -47,6 +47,7 @@
         usb
         bluetooth
         ssh
+        wallpaper
       ])
       ++ [
         inputs.niri.homeModules.niri
