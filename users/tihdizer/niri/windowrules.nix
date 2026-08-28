@@ -247,6 +247,9 @@
             default-column-width = {
               proportion = 1. / 3.;
             };
+            default-window-height = {
+              proportion = 1.;
+            };
             open-floating = false;
             open-focused = false;
             block-out-from = "screencast";
