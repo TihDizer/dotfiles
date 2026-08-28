@@ -46,6 +46,7 @@
         nirimap
         usb
         bluetooth
+        ssh
       ])
       ++ [
         inputs.niri.homeModules.niri
