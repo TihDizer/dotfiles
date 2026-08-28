@@ -24,6 +24,7 @@
         nmap # Port scanner
         bind # DNS tools
         pciutils # Hardware info
+        ethtool # Ethernet device control (WoL, etc.)
         networkmanagerapplet # NM tray
       ];
     };
