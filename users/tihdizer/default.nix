@@ -40,6 +40,7 @@
         nixcord
         shell
         television
+        telegram
         omniroute
         jcode
         nirimap
