@@ -26,7 +26,7 @@
         settings = {
           terminal.vt = lib.mkForce 7;
           default_session = {
-            command = "${tuigreet} --time --remember --asterisks --container-padding 2 --no-xsession-wrapper";
+            command = "${tuigreet} --time --remember --asterisks --container-padding 2 --no-xsession-wrapper --cmd '${pkgs.uwsm}/bin/uwsm start niri-session'";
             user = "greeter";
           };
         };
