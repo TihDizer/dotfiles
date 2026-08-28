@@ -14,8 +14,25 @@
       launcher = "${pkgs.walker}/bin/walker";
       browser = getExe pkgs.google-chrome;
       term = getExe pkgs.kitty;
-      volume = getExe pkgs.wiremix;
       logout = getExe pkgs.wlogout;
+      niri = getExe config.programs.niri.package;
+      jq = getExe pkgs.jq;
+      volume = getExe (pkgs.writeShellScriptBin "volume" ''
+        WINDOW_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "volume") | .id' | head -n 1)"
+        if [ -n "$WINDOW_ID" ]; then
+          ${niri} msg action focus-window --id "$WINDOW_ID"
+        else
+          exec ${term} --class volume -e ${getExe pkgs.wiremix}
+        fi
+      '');
+      telegram = getExe (pkgs.writeShellScriptBin "telegram" ''
+        WINDOW_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "org.telegram.desktop") | .id' | head -n 1)"
+        if [ -n "$WINDOW_ID" ]; then
+          ${niri} msg action focus-window --id "$WINDOW_ID"
+        else
+          exec ${getExe pkgs.telegram-desktop}
+        fi
+      '');
     in
     {
       programs.niri.settings.binds =
@@ -75,15 +92,9 @@
               "yazi"
             ];
             "Mod+B".action.spawn = [ browser ];
+            "Mod+A".action.spawn = [ telegram ];
             "Mod+D".action.spawn = [ launcher ];
-            # "Mod+P".action.spawn = [ volume ];
-            "Mod+P".action.spawn = [
-              term
-              "--class"
-              "volume"
-              "-e"
-              volume
-            ];
+            "Mod+P".action.spawn = [ volume ];
             "Mod+Escape".action.spawn = [ logout ];
 
             #= Screenshots
