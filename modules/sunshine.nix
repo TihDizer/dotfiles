@@ -31,7 +31,16 @@
         applications = {
           apps = [
             {
-              name = "Desktop";
+              name = "Main Monitor (DP-3)";
+              output_name = 0;
+            }
+            {
+              name = "Secondary Monitor (DP-5)";
+              output_name = 1;
+            }
+            {
+              name = "TV (HDMI-A-1)";
+              output_name = 2;
             }
           ];
         };
