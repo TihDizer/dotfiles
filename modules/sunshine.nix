@@ -15,7 +15,8 @@
 
         settings = {
           capture = "kms";
-          adapter_name = "/dev/dri/card1";
+          adapter_name = "/dev/dri/card2";
+          system_tray = "disabled";
 
           https_port = 47990;
           http_port = 47989;
