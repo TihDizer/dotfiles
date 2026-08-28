@@ -120,6 +120,7 @@ let
         suffix: primevideo.com,
         suffix: protondb.com,
         suffix: public.popcorn-tracker.org,
+        suffix: rapoo.com,
         suffix: retracker.local,
         suffix: roku.com,
         suffix: rutor.org,
