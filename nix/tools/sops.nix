@@ -18,15 +18,16 @@
 
         age.keyFile = "/var/lib/sops-nix/key.txt";
 
-        secrets.subscription = { };
+        secrets = {
+          subscription = { };
+          omniroute = { };
+        };
       };
     };
 
   flake.modules.homeManager.sops =
     { pkgs, ... }:
     {
-      imports = [ inputs.sops-nix.homeManagerModules.sops ];
-
       home.packages = with pkgs; [
         sops
         age
