@@ -14,6 +14,9 @@
       shell
       sops
 
+      #= Dev
+      jcode
+
       #= Networking
       networkmanager
       firewall
