@@ -1,6 +1,3 @@
-# ==============================================================================
-# AI Generated - Daily Art Wallpaper module (awww + Met Museum Collection API)
-# ==============================================================================
 { ... }:
 {
   flake.modules.homeManager.wallpaper =
@@ -17,6 +14,7 @@
             pkgs.awww
             pkgs.curl
             pkgs.jq
+            pkgs.gawk
             pkgs.imagemagick
             pkgs.coreutils
             pkgs.findutils
@@ -46,28 +44,29 @@
             sleep 1
         fi
 
-        # Discover active outputs from awww query
-        OUTPUTS_INFO=$(awww query 2>/dev/null || true)
-        if [ -z "$OUTPUTS_INFO" ]; then
-            sleep 0.8
-            OUTPUTS_INFO=$(awww query 2>/dev/null || true)
-        fi
+        # Pre-configured outputs (ensures offline displays like TV are always pre-rendered)
+        declare -A OUTPUTS_MAP=(
+            ["DP-3"]="1920x1080"
+            ["DP-5"]="1920x1080"
+            ["HDMI-A-1"]="3840x2160"
+        )
 
+        # Merge with currently active outputs from awww query
+        OUTPUTS_INFO=$(awww query 2>/dev/null || true)
         if [ -n "$OUTPUTS_INFO" ]; then
-            mapfile -t OUTPUT_NAMES < <(echo "$OUTPUTS_INFO" | grep -oP '(?<=: )[^:]+(?=: \d+x\d+)')
-            mapfile -t OUTPUT_RES < <(echo "$OUTPUTS_INFO" | grep -oP '\d+x\d+(?=,)')
-        else
-            OUTPUT_NAMES=("HDMI-A-1" "DP-3" "DP-5")
-            OUTPUT_RES=("3840x2160" "1920x1080" "1920x1080")
+            while read -r name res; do
+                if [ -n "$name" ] && [ -n "$res" ]; then
+                    OUTPUTS_MAP["$name"]="$res"
+                fi
+            done < <(echo "$OUTPUTS_INFO" | awk -F': ' '/: .*: [0-9]+x[0-9]+/ { split($3, a, ","); print $2, a[1] }')
         fi
 
         # Fetch highlight paintings collection
         SEARCH_RESP=$(curl -s --max-time 15 "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isHighlight=true&q=painting" || true)
         TOTAL_COUNT=$(echo "$SEARCH_RESP" | jq -r '.total // 0')
 
-        for i in "''${!OUTPUT_NAMES[@]}"; do
-            OUT_NAME="''${OUTPUT_NAMES[$i]}"
-            RES="''${OUTPUT_RES[$i]:-1920x1080}"
+        for OUT_NAME in "''${!OUTPUTS_MAP[@]}"; do
+            RES="''${OUTPUTS_MAP[$OUT_NAME]:-1920x1080}"
             WIDTH=$(echo "$RES" | cut -d'x' -f1)
             HEIGHT=$(echo "$RES" | cut -d'x' -f2)
 
@@ -111,7 +110,7 @@
 
                         INDEX=$(( (INDEX + 1) % TOTAL_COUNT ))
                         ATTEMPTS=$(( ATTEMPTS + 1 ))
-                        if [ "$ATTEMPTS" -ge 15 ]; then
+                        if [ "$ATTEMPTS" -ge 20 ]; then
                             break
                         fi
                     done
@@ -122,7 +121,7 @@
                         DATE=$(echo "$OBJ_DATA" | jq -r '.objectDate // ""')
                         MUSEUM=$(echo "$OBJ_DATA" | jq -r '.department // "The Metropolitan Museum of Art"')
 
-                        echo "Monitor $OUT_NAME: Downloading '$TITLE' by $ARTIST..."
+                        echo "Target $OUT_NAME: Downloading '$TITLE' by $ARTIST..."
                         if curl -s -L --max-time 60 "$IMG_URL" -o "$TARGET_RAW"; then
                             echo "$OBJ_DATA" > "$TARGET_INFO"
 
@@ -136,7 +135,7 @@
                             TITLE_ESC=$(echo "$TITLE" | sed 's/"/\\"/g')
                             META_ESC=$(echo "$META_LINE" | sed 's/"/\\"/g')
 
-                            echo "Monitor $OUT_NAME: Rendering uncropped image at ''${WIDTH}x''${HEIGHT}..."
+                            echo "Target $OUT_NAME: Rendering uncropped image at ''${WIDTH}x''${HEIGHT}..."
                             magick "$TARGET_RAW" \
                                 -resize "''${WIDTH}x''${HEIGHT}" \
                                 -background "#141617" \
@@ -161,13 +160,34 @@
                 ln -sf "$TARGET_COMPOSED" "$CURRENT_COMPOSED"
                 [ -f "$TARGET_INFO" ] && cp "$TARGET_INFO" "$CURRENT_INFO"
 
-                echo "Monitor $OUT_NAME: Setting wallpaper via awww..."
-                awww img -o "$OUT_NAME" "$CURRENT_COMPOSED" --transition-type fade --transition-duration 2 || true
+                # If this output is currently active in awww, apply wallpaper immediately
+                if echo "$OUTPUTS_INFO" | grep -q ": $OUT_NAME:"; then
+                    echo "Output $OUT_NAME: Setting wallpaper via awww..."
+                    awww img -o "$OUT_NAME" "$CURRENT_COMPOSED" --transition-type fade --transition-duration 2 || true
+                fi
             fi
         done
 
         # Cleanup old cache files
         find "$CACHE_DIR" -type f \( -name "*.jpg" -o -name "*.json" \) ! -name "current-*" -mtime +7 -delete 2>/dev/null || true
+      '';
+
+      niriWatcherScript = pkgs.writeShellScriptBin "daily-art-wallpaper-watcher" ''
+        set -euo pipefail
+        export PATH="${
+          lib.makeBinPath [
+            pkgs.niri
+            pkgs.gnugrep
+            pkgs.coreutils
+          ]
+        }:$PATH"
+
+        niri msg -j event-stream 2>/dev/null | while read -r line; do
+            if echo "$line" | grep -q '"OutputsChanged"'; then
+                sleep 1
+                ${dailyArtScript}/bin/daily-art-wallpaper || true
+            fi
+        done
       '';
     in
     {
@@ -204,6 +224,25 @@
         Service = {
           Type = "oneshot";
           ExecStart = "${dailyArtScript}/bin/daily-art-wallpaper";
+        };
+      };
+
+      systemd.user.services.daily-art-wallpaper-watcher = {
+        Unit = {
+          Description = "Watch for Display Hotplug and Apply Art Wallpapers";
+          PartOf = [ "graphical-session.target" ];
+          After = [
+            "graphical-session.target"
+            "awww-daemon.service"
+          ];
+        };
+        Service = {
+          ExecStart = "${niriWatcherScript}/bin/daily-art-wallpaper-watcher";
+          Restart = "on-failure";
+          RestartSec = 2;
+        };
+        Install = {
+          WantedBy = [ "graphical-session.target" ];
         };
       };
 
