@@ -35,9 +35,7 @@
           #= All Monitors
           {
             matches = [
-              {
-                app-id = "org.telegram.desktop";
-              }
+              { app-id = "org.telegram.desktop"; }
             ];
             open-floating = true;
             default-floating-position = {
@@ -56,12 +54,8 @@
           {
             matches = [
               { app-id = "jetbrains-rustrover"; }
-              {
-                app-id = "obsidian";
-              }
-              {
-                app-id = "chromium-browser";
-              }
+              { app-id = "obsidian"; }
+              { app-id = "chromium-browser"; }
             ];
             default-column-width = {
               proportion = 2. / 3.;
@@ -74,6 +68,7 @@
               { app-id = "com.saivert.pwvucontrol"; }
               { app-id = "yazi-floating"; }
               { app-id = "volume"; }
+              { app-id = "btm"; }
             ];
             open-floating = true;
             default-floating-position = {

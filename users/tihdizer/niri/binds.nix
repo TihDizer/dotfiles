@@ -33,6 +33,14 @@
           exec ${getExe pkgs.telegram-desktop}
         fi
       '');
+      btm = getExe (pkgs.writeshellscriptbin "btm" ''
+        window_id="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "btm") | .id' | head -n 1)"
+        if [ -n "$window_id" ]; then
+          ${niri} msg action focus-window --id "$window_id"
+        else
+          exec ${term} --class btm -e ${getExe pkgs.bottom}
+        fi
+      '');
     in
     {
       programs.niri.settings.binds =
@@ -95,7 +103,8 @@
             "Mod+A".action.spawn = [ telegram ];
             "Mod+D".action.spawn = [ launcher ];
             "Mod+P".action.spawn = [ volume ];
-            "Mod+Escape".action.spawn = [ logout ];
+            "Mod+Escape".action.spawn = [ btm ];
+            "Mod+Shift+Escape".action.spawn = [ logout ];
 
             #= Screenshots
             "Mod+Shift+S".action.screenshot.show-pointer = true;
