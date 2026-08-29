@@ -1,4 +1,14 @@
 { inputs, ... }:
+let
+  nixSettings = {
+    extra-substituters = [ "https://cache.numtide.com" ];
+    extra-trusted-public-keys = [
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+    ];
+  };
+
+  getPackage = pkgs: inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.herdr;
+in
 {
   flake-file.inputs = {
     llm-agents = {
@@ -10,30 +20,19 @@
   flake.modules.nixos.herdr =
     { pkgs, ... }:
     {
-      nix.settings = {
-        extra-substituters = [ "https://cache.numtide.com" ];
-        extra-trusted-public-keys = [
-          "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
-        ];
-      };
-
-      environment.systemPackages = [
-        inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.herdr
-      ];
+      nix.settings = nixSettings;
+      environment.systemPackages = [ (getPackage pkgs) ];
     };
 
   flake.modules.homeManager.herdr =
     { pkgs, ... }:
     {
-      nix.settings = {
-        extra-substituters = [ "https://cache.numtide.com" ];
-        extra-trusted-public-keys = [
-          "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
-        ];
-      };
+      nix.settings = nixSettings;
+      home.packages = [ (getPackage pkgs) ];
 
-      home.packages = [
-        inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.herdr
-      ];
+      xdg.configFile."herdr/config.toml".text = ''
+        [theme]
+        name = "terminal"
+      '';
     };
 }
