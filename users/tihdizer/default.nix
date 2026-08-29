@@ -43,6 +43,7 @@
         telegram
         omniroute
         jcode
+        herdr
         nirimap
         usb
         bluetooth

@@ -16,6 +16,7 @@
 
       #= Dev
       jcode
+      herdr
 
       #= Networking
       networkmanager
