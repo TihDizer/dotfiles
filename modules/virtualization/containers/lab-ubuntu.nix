@@ -9,7 +9,7 @@
     }:
     let
       containerName = "ubuntu-container";
-      image = "ubuntu:latest";
+      image = "docker.io/library/ubuntu:latest";
       hostname = "ubuntu-dev";
       dataDir = "${config.home.homeDirectory}/.local/share/ubuntu-container";
     in
