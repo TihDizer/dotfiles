@@ -111,6 +111,7 @@ let
         suffix: leechers-paradise.org,
         suffix: linkedin.com,
         suffix: nixos.org,
+        suffix: numtide.com,
         suffix: open.stealth.si,
         suffix: openbittorrent.com,
         suffix: opentrackr.org,
