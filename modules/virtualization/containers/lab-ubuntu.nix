@@ -23,7 +23,7 @@
           hostname = "localhost";
           user = config.home.username;
           requestTTY = "force";
-          remoteCommand = "${pkgs.podman}/bin/podman exec -it ${containerName} bash";
+          remoteCommand = "systemctl --user start lab-ubuntu && ${pkgs.podman}/bin/podman exec -it ${containerName} bash";
         };
       };
 
@@ -37,7 +37,6 @@
           ExecStartPre = [
             "${pkgs.coreutils}/bin/mkdir -p ${dataDir}"
             "-${pkgs.podman}/bin/podman rm -f ${containerName}"
-            "${pkgs.podman}/bin/podman pull ${image}"
           ];
 
           ExecStart = lib.concatStringsSep " \\\n  " [
@@ -49,7 +48,7 @@
             "-p 2222:22"
             "-p 8080:80"
             "-v ${dataDir}:/data:U"
-            "-v /var/run/docker.sock:/var/run/docker.sock"
+            "-v %t/podman/podman.sock:/var/run/docker.sock"
             "-e TZ=Europe/Moscow"
             "-e LANG=en_US.UTF-8"
             "--stop-timeout=40"
