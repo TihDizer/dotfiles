@@ -27,6 +27,16 @@
         CACHE_DIR="''${XDG_CACHE_HOME:-$HOME/.cache}/art-wallpaper"
         mkdir -p "$CACHE_DIR"
 
+        FORCE=0
+        RANDOM_PICK=0
+
+        for arg in "$@"; do
+            case "$arg" in
+                -f|--force) FORCE=1 ;;
+                -r|--random) RANDOM_PICK=1 ;;
+            esac
+        done
+
         TODAY=$(date +%Y-%m-%d)
 
         # Ensure awww-daemon is running and responsive
@@ -79,10 +89,13 @@
             CURRENT_COMPOSED="$CACHE_DIR/current-''${OUT_NAME}.jpg"
             CURRENT_INFO="$CACHE_DIR/current-''${OUT_NAME}.json"
 
-            if [ ! -f "$TARGET_COMPOSED" ]; then
+            if [ "$FORCE" -eq 1 ] || [ "$RANDOM_PICK" -eq 1 ] || [ ! -f "$TARGET_COMPOSED" ]; then
                 if [ "$TOTAL_COUNT" -gt 0 ]; then
-                    # Deterministic hash from date and monitor name
-                    SEED=$(echo "''${TODAY}-''${OUT_NAME}" | cksum | awk '{print $1}')
+                    if [ "$RANDOM_PICK" -eq 1 ]; then
+                        SEED=$(echo "$RANDOM-''${OUT_NAME}-$(date +%s%N)" | cksum | awk '{print $1}')
+                    else
+                        SEED=$(echo "''${TODAY}-''${OUT_NAME}" | cksum | awk '{print $1}')
+                    fi
                     INDEX=$(( SEED % TOTAL_COUNT ))
 
                     IMG_URL=""
