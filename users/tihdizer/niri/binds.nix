@@ -33,7 +33,7 @@
           exec ${getExe pkgs.telegram-desktop}
         fi
       '');
-      btm = getExe (pkgs.writeshellscriptbin "btm" ''
+      btm = getExe (pkgs.writeShellScriptBin "btm" ''
         window_id="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "btm") | .id' | head -n 1)"
         if [ -n "$window_id" ]; then
           ${niri} msg action focus-window --id "$window_id"
