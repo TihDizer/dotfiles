@@ -4,7 +4,7 @@
     { ... }:
     {
       programs.fish = {
-        functions.fish_greeting = "fastfetch";
+        functions.fish_greeting = "macchina";
         interactiveShellInit = ''
           fish_vi_key_bindings
           set fish_cursor_default block blink

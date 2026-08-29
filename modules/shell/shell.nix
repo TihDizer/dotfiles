@@ -8,6 +8,7 @@
       cli
       kitty
       fastfetch
+      macchina
     ];
   };
 
@@ -19,6 +20,7 @@
       cli
       kitty
       fastfetch
+      macchina
     ];
   };
 }
