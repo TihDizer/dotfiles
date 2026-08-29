@@ -23,7 +23,7 @@
           hostname = "localhost";
           user = config.home.username;
           requestTTY = "force";
-          remoteCommand = "systemctl --user start lab-ubuntu && while ! ${pkgs.podman}/bin/podman exec ${containerName} true 2>/dev/null; do sleep 0.2; done && ${pkgs.podman}/bin/podman exec -it ${containerName} bash";
+          remoteCommand = "sh -c 'systemctl --user start lab-ubuntu && while ! ${pkgs.podman}/bin/podman exec ${containerName} true 2>/dev/null; do sleep 0.2; done && exec ${pkgs.podman}/bin/podman exec -it ${containerName} bash'";
         };
       };
 
