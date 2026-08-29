@@ -29,10 +29,11 @@
 
         TODAY=$(date +%Y-%m-%d)
 
-        # Ensure awww-daemon is running
-        if ! pgrep -x awww-daemon >/dev/null; then
+        # Ensure awww-daemon is running and responsive
+        if ! awww query >/dev/null 2>&1; then
+            rm -f "/run/user/$(id -u)/wayland-"*"-awww-daemon"*.sock 2>/dev/null || true
             awww-daemon &
-            sleep 0.8
+            sleep 1
         fi
 
         # Discover active outputs from awww query
@@ -54,8 +55,6 @@
         SEARCH_RESP=$(curl -s --max-time 15 "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isHighlight=true&q=painting" || true)
         TOTAL_COUNT=$(echo "$SEARCH_RESP" | jq -r '.total // 0')
 
-        DAY_NUM=$(date +%s | awk '{print int($1 / 86400)}')
-
         for i in "''${!OUTPUT_NAMES[@]}"; do
             OUT_NAME="''${OUTPUT_NAMES[$i]}"
             RES="''${OUTPUT_RES[$i]:-1920x1080}"
@@ -71,6 +70,7 @@
             PAD_Y=$(( 48 * SCALE_FACTOR ))
             TITLE_PT=$(( 28 * SCALE_FACTOR ))
             META_PT=$(( 16 * SCALE_FACTOR ))
+            GRAD_H=$(( 360 * SCALE_FACTOR ))
 
             TARGET_BASE="$CACHE_DIR/''${TODAY}-''${OUT_NAME}"
             TARGET_RAW="''${TARGET_BASE}-raw.jpg"
@@ -81,8 +81,9 @@
 
             if [ ! -f "$TARGET_COMPOSED" ]; then
                 if [ "$TOTAL_COUNT" -gt 0 ]; then
-                    # Distinct index per monitor per day
-                    INDEX=$(( (DAY_NUM * 17 + i * 53) % TOTAL_COUNT ))
+                    # Deterministic hash from date and monitor name
+                    SEED=$(echo "''${TODAY}-''${OUT_NAME}" | cksum | awk '{print $1}')
+                    INDEX=$(( SEED % TOTAL_COUNT ))
 
                     IMG_URL=""
                     ATTEMPTS=0
@@ -121,8 +122,6 @@
 
                             TITLE_ESC=$(echo "$TITLE" | sed 's/"/\\"/g')
                             META_ESC=$(echo "$META_LINE" | sed 's/"/\\"/g')
-
-                            GRAD_H=$(( 360 * SCALE_FACTOR ))
 
                             echo "Monitor $OUT_NAME: Rendering uncropped image at ''${WIDTH}x''${HEIGHT}..."
                             magick "$TARGET_RAW" \
