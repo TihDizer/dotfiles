@@ -49,6 +49,7 @@
         bluetooth
         ssh
         wallpaper
+        lab-ubuntu
       ])
       ++ [
         inputs.niri.homeModules.niri
