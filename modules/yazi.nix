@@ -52,6 +52,29 @@
         enableBashIntegration = true;
         enableZshIntegration = true;
         enableFishIntegration = true;
+
+        keymap = {
+          mgr.prepend_keymap = [
+            {
+              on = "y";
+              run = [
+                ''shell -- for path in %s; do echo "file://$path"; done | wl-copy -t text/uri-list''
+                "yank"
+              ];
+            }
+            {
+              on = "x";
+              run = [
+                ''shell -- for path in %s; do echo "file://$path"; done | wl-copy -t text/uri-list''
+                "yank --cut"
+              ];
+            }
+            {
+              on = "<C-p>";
+              run = ''shell -- wl-paste -t text/uri-list 2>/dev/null | tr -d "\r" | while IFS= read -r uri; do [ -z "$uri" ] && continue; if [[ "$uri" =~ ^file://(.*) ]]; then path="''${BASH_REMATCH[1]}"; printf -v path '%b' "''${path//%/\\x}"; else path="$uri"; fi; [ -e "$path" ] && cp -r -- "$path" .; done'';
+            }
+          ];
+        };
       };
 
       home.sessionVariables = {
@@ -130,6 +153,7 @@
         atuin # Shell history search (atuin)
         lsd # Modern ls alternative
         ripdrag # Drag and drop utility
+        wl-clipboard-rs # Wayland clipboard
       ];
     };
 }
