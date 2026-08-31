@@ -23,10 +23,10 @@
       (with inputs.self.modules.homeManager; [
         tihdizer-niri
         tihdizer-walker
-        tihdizer-files
+        tihdizer-userdirs
         tihdizer-git
-        tihdizer-utils
-        tihdizer-shell
+        tihdizer-packages
+        tihdizer-starship
 
         sops
         dev
