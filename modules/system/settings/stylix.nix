@@ -12,6 +12,12 @@
     {
       imports = [ inputs.stylix.nixosModules.stylix ];
 
+      environment.systemPackages = with pkgs; [
+        papirus-icon-theme
+        papirus-folders
+        bibata-cursors
+      ];
+
       stylix = {
         enable = true;
         # base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
