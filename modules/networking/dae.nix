@@ -49,13 +49,13 @@ let
     group {
       proxy {
         filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия|швеция|гейминг|франция).*')
-        policy: min_avg10
+        policy: min_moving_avg
       }
 
       google {
         filter: name(regex: '.*(AI).*')
-        filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия|швеция|гейминг|франция).*') [add_latency: 1000ms]
-        policy: min_avg10
+        # filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия|швеция|гейминг|франция).*') [add_latency: 1000ms]
+        policy: min_moving_avg
       }
     }
 
@@ -90,10 +90,9 @@ let
         geosite:github,
         geosite:openai,
         geosite:telegram,
+        geosite:amazon,
 
         suffix: 1flex.org,
-        suffix: amazon.com,
-        suffix: amazonaws.com,
         suffix: annas-archive.li,
         suffix: b-cdn.net,
         suffix: b4mcx2ml.net,
