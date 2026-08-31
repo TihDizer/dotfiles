@@ -1,14 +1,15 @@
 { ... }:
 let
   sharedAliases = {
-    ls = "eza --icons --group-directories-first";
-    ll = "eza -lbGh --icons --git --group-directories-first";
+    ls = "lsd";
+    e = "eza -lbGh --icons --git --group-directories-first";
     la = "eza -lbghia --icons --git --group-directories-first";
   };
 
   sharedPackages =
     pkgs: with pkgs; [
-      eza # replacement for ls
+      lsd # replacement for ls
+      eza # alternative for ls
       bat # replacement for cat
       zoxide # replacement for cd
       ripgrep # replacement for grep
