@@ -9,6 +9,7 @@
       kitty
       fastfetch
       macchina
+      tmux
     ];
   };
 
@@ -21,6 +22,7 @@
       kitty
       fastfetch
       macchina
+      tmux
     ];
   };
 }
