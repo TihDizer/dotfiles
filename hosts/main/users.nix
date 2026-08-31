@@ -5,7 +5,7 @@
     {
       users.users.tihdizer = {
         isNormalUser = true;
-        shell = pkgs.fish;
+        shell = pkgs.zsh;
         description = "TihDizer";
         extraGroups = [
           # TODO: move in modules
