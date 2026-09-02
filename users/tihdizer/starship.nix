@@ -47,7 +47,8 @@ in
       programs.fish.enable = lib.mkDefault true;
       programs.zsh = {
         enable = lib.mkDefault true;
-        initExtra = ''
+        initContent = ''
+          export KEYTIMEOUT=1
           ZLE_RPROMPT_INDENT=0
         '';
       };
