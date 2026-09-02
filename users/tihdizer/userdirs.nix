@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.tihdizer-files-userdirs =
+  flake.modules.homeManager.tihdizer-userdirs =
     { config, ... }:
     {
       xdg.userDirs = {
