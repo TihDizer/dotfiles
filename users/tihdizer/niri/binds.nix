@@ -17,6 +17,14 @@
       logout = getExe pkgs.wlogout;
       niri = getExe config.programs.niri.package;
       jq = getExe pkgs.jq;
+      explorer = getExe (pkgs.writeShellScriptBin "yazi-floating" ''
+        WINDOW_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "yazi-floating") | .id' | head -n 1)"
+        if [ -n "$WINDOW_ID" ]; then
+          ${niri} msg action focus-window --id "$WINDOW_ID"
+        else
+          exec ${term} --class yazi-floating -e ${getExe pkgs.yazi}
+        fi
+      '');
       volume = getExe (pkgs.writeShellScriptBin "volume" ''
         WINDOW_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "volume") | .id' | head -n 1)"
         if [ -n "$WINDOW_ID" ]; then
@@ -92,13 +100,7 @@
 
             #= Launch/Spawn Software
             "Mod+T".action.spawn = [ term ];
-            "Mod+E".action.spawn = [
-              term
-              "--class"
-              "yazi-floating"
-              "-e"
-              "yazi"
-            ];
+            "Mod+E".action.spawn = [ explorer ];
             "Mod+B".action.spawn = [ browser ];
             "Mod+A".action.spawn = [ telegram ];
             "Mod+D".action.spawn = [ launcher ];
@@ -111,8 +113,8 @@
             "Mod+Ctrl+S".action.screenshot-window.write-to-disk = true;
 
             #= Dynamic Cast Target (Screencast)
-            "Mod+Shift+M".action = set-dynamic-cast-window;
-            "Mod+Ctrl+M".action = set-dynamic-cast-monitor;
+            "Mod+Ctrl+M".action = set-dynamic-cast-window;
+            "Mod+Shift+M".action = set-dynamic-cast-monitor;
             "Mod+Ctrl+Shift+M".action = clear-dynamic-cast-target;
 
             #= Actions
