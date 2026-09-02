@@ -20,7 +20,7 @@
           config.lib.stylix.colors.withHashtag
         else
           {
-            base00 = "#272e33"; 
+            base00 = "#272e33";
             base01 = "#2e383c";
             base02 = "#414b50";
             base03 = "#859289";
@@ -37,6 +37,9 @@
             base0E = "#d699b6";
             base0F = "#9da9a0";
           };
+
+      homeDir = config.home.homeDirectory or "/home/${config.home.username or "tihdizer"}";
+      shortPwd = "#{s|^${homeDir}|~|;s|^/home/[^/]+|~|;s|/(\\.?[^/.])[^/]+/|/\\\\1/|;s|/(\\.?[^/.])[^/]+/|/\\\\1/|;s|/(\\.?[^/.])[^/]+/|/\\\\1/|;s|/(\\.?[^/.])[^/]+/|/\\\\1/|;s|/(\\.?[^/.])[^/]+/|/\\\\1/|;s|/(\\.?[^/.])[^/]+/|/\\\\1/|;s|/(\\.?[^/.])[^/]+/|/\\\\1/|;s|/(\\.?[^/.])[^/]+/|/\\\\1/|:pane_current_path}";
     in
     {
       stylix = lib.mkIf (options ? stylix) {
@@ -47,6 +50,7 @@
         enable = true;
         baseIndex = 1;
         keyMode = "vi";
+        mouse = true;
         escapeTime = 0;
         historyLimit = 50000;
         terminal = "tmux-256color";
@@ -58,25 +62,20 @@
         ];
 
         extraConfig = ''
-          set -g destroy-unattached on
-          bind d set destroy-unattached off \; detach-client
-
           set -g status-position bottom
           set -g status-style "bg=default"
           set -g status-justify left
-          set -g status-left-length 100
-          set -g status-right-length 150
+          set -g status-left-length 50
+          set -g status-right-length 100
           set -g renumber-windows on
           set -g automatic-rename on
           set -g automatic-rename-format "#{pane_current_command}"
 
-          set -g window-status-current-format "#[fg=${colors.base02},bg=default]#[fg=${colors.base05},bg=${colors.base02}]#W #[fg=${colors.base00},bg=${colors.base09},bold] #I #[fg=${colors.base09},bg=default]"
-          set -g window-status-format "#[fg=${colors.base01},bg=default]#[fg=${colors.base04},bg=${colors.base01}]#W #[fg=${colors.base03},bg=${colors.base02}] #I #[fg=${colors.base02},bg=default]"
           set -g window-status-separator " "
-
-          set -g status-left "#[fg=#{?client_prefix,${colors.base08},${colors.base0B}},bg=default]#[fg=${colors.base00},bg=#{?client_prefix,${colors.base08},${colors.base0B}},bold]#{?client_prefix,󰌌 , }#[fg=${colors.base05},bg=${colors.base02}] #S #[fg=${colors.base02},bg=default] "
-
-          set -g status-right "#[fg=${colors.base0E},bg=default]#[fg=${colors.base00},bg=${colors.base0E},bold] #[fg=${colors.base05},bg=${colors.base02}] #{s|^$HOME|~|:pane_current_path} #[fg=${colors.base02},bg=default] #[fg=${colors.base0D},bg=default]#[fg=${colors.base00},bg=${colors.base0D},bold]󰃰 #[fg=${colors.base05},bg=${colors.base02}] %H:%M #[fg=${colors.base02},bg=default]"
+          set -g status-left "#[fg=#{?client_prefix,${colors.base08},${colors.base0B}},bg=default]#[fg=${colors.base00},bg=#{?client_prefix,${colors.base08},${colors.base0B}},bold] #S #[fg=#{?client_prefix,${colors.base08},${colors.base0B}},bg=default] "
+          set -g window-status-current-format "#[fg=${colors.base0A},bg=default]#[fg=${colors.base00},bg=${colors.base0A},bold] #I #W #[fg=${colors.base0A},bg=default]"
+          set -g window-status-format "#[fg=${colors.base02},bg=default]#[fg=${colors.base04},bg=${colors.base02}] #I #W #[fg=${colors.base02},bg=default]"
+          set -g status-right "#[fg=${colors.base02},bg=default]#[fg=${colors.base05},bg=${colors.base02}]  ${shortPwd} #[fg=${colors.base02},bg=default] #[fg=${colors.base02},bg=default]#[fg=${colors.base0D},bg=${colors.base02}] 󰃰 %H:%M #[fg=${colors.base02},bg=default]"
 
           set -g pane-border-style "fg=${colors.base02}"
           set -g pane-active-border-style "fg=${colors.base0D}"
@@ -84,6 +83,8 @@
 
           bind '"' split-window -v -c "#{pane_current_path}"
           bind % split-window -h -c "#{pane_current_path}"
+          bind - split-window -v -c "#{pane_current_path}"
+          bind | split-window -h -c "#{pane_current_path}"
           bind c new-window -c "#{pane_current_path}"
           bind r source-file ~/.config/tmux/tmux.conf \; display "Reloaded!"
         '';
@@ -93,11 +94,7 @@
         [[ -n "$TMUX" ]] && export STARSHIP_CONFIG="$HOME/.config/starship-tmux.toml"
 
         if [[ -z "$TMUX" && -n "$PS1" && -z "$SSH_CONNECTION" ]]; then
-          if tmux has-session -t main 2>/dev/null; then
-            exec tmux new-session
-          else
-            exec tmux new-session -s main
-          fi
+          exec tmux new-session -A -s main
         fi
       '';
 
@@ -105,11 +102,7 @@
         set -q TMUX; and set -gx STARSHIP_CONFIG "$HOME/.config/starship-tmux.toml"
 
         if status is-interactive; and not set -q TMUX; and test -z "$SSH_CONNECTION"
-          if tmux has-session -t main 2>/dev/null
-            exec tmux new-session
-          else
-            exec tmux new-session -s main
-          end
+          exec tmux new-session -A -s main
         end
       '';
     };
