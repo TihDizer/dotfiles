@@ -8,6 +8,7 @@
         codex # AI code assistant
         antigravity-cli # AI code assistant
         gtypist # Touch typing tutor
+        timr-tui # TUI to organize your time: Pomodoro, Tabata, Countdown, Timer, Event
       ];
     };
 }
