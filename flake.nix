@@ -57,6 +57,10 @@
       url = "github:argosnothing/niri-scratchpad";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri-sidebar = {
+      url = "github:Vigintillionn/niri-sidebar";
+      flake = false;
+    };
     nirimap = {
       url = "github:alexandergknoll/nirimap/develop";
       flake = false;

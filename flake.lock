@@ -570,6 +570,22 @@
         "type": "github"
       }
     },
+    "niri-sidebar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1778931842,
+        "narHash": "sha256-MYP1ZiwV9+yJhl0zpuri6NQkQHlaYZjGBhXpZEaPZyI=",
+        "owner": "Vigintillionn",
+        "repo": "niri-sidebar",
+        "rev": "954f62e7e395ae14f01af582296e25a548133dc0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Vigintillionn",
+        "repo": "niri-sidebar",
+        "type": "github"
+      }
+    },
     "niri-stable": {
       "flake": false,
       "locked": {
@@ -862,6 +878,7 @@
         "niri": "niri",
         "niri-autoselect-portal": "niri-autoselect-portal",
         "niri-scratchpad": "niri-scratchpad",
+        "niri-sidebar": "niri-sidebar",
         "nirimap": "nirimap",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_3",
