@@ -45,6 +45,7 @@
         jcode
         herdr
         nirimap
+        niri-sidebar
         usb
         bluetooth
         ssh
