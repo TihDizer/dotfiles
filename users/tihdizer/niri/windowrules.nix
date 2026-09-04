@@ -32,6 +32,12 @@
             clip-to-geometry = true;
           }
 
+          {
+            matches = [ { is-floating = true; } ];
+            min-width = 100;
+            min-height = 100;
+          }
+
           #= All Monitors
           {
             matches = [

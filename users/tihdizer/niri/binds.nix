@@ -109,8 +109,14 @@
             "Mod+Shift+Escape".action.spawn = [ logout ];
 
             #= Screenshots
-            "Mod+Shift+S".action.screenshot.show-pointer = true;
-            "Mod+Ctrl+S".action.screenshot-window.write-to-disk = true;
+            "Print".action.screenshot.show-pointer = true;
+            "Shift+Print".action.screenshot-window.write-to-disk = true;
+
+            #= Sidebar (niri-sidebar)
+            "Mod+Shift+S".action.spawn = [ "niri-sidebar" "toggle-window" ];
+            "Mod+S".action.spawn = [ "niri-sidebar" "toggle-visibility" ];
+            "Mod+Ctrl+S".action.spawn = [ "niri-sidebar" "flip" ];
+            "Mod+Alt+R".action.spawn = [ "niri-sidebar" "reorder" ];
 
             #= Dynamic Cast Target (Screencast)
             "Mod+Ctrl+M".action = set-dynamic-cast-window;
@@ -127,8 +133,8 @@
             "Mod+F".action = maximize-column;
             "Mod+Ctrl+F".action = expand-column-to-available-width;
             "Mod+Shift+F".action = fullscreen-window;
-            "Mod+V".action = toggle-window-floating;
-            "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
+            "Mod+Shift+V".action = toggle-window-floating;
+            "Mod+V".action = switch-focus-between-floating-and-tiling;
 
             "Mod+Shift+Slash".action = show-hotkey-overlay;
 
