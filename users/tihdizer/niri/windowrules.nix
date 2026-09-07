@@ -55,6 +55,7 @@
             default-window-height = {
               proportion = 2. / 3.;
             };
+            min-height = 100;
             block-out-from = "screencast";
           }
           {
@@ -117,7 +118,7 @@
             open-focused = false;
           }
 
-          #= Primary Monitor (DP-3)
+          #= Primary Monitor (DP-4)
           {
             matches = [
               { app-id = "^steam_app_\\d+"; }
@@ -125,13 +126,13 @@
               { app-id = "cs2"; }
               { title = "^Geometry Dash$"; }
             ];
-            open-on-output = "DP-3";
+            open-on-output = "DP-4";
             open-focused = false;
           }
 
           {
             matches = [ { app-id = ".virt-manager-wrapped"; } ];
-            open-on-output = "DP-3";
+            open-on-output = "DP-4";
           }
 
           #= Secondary Monitor (DP-5)
@@ -234,7 +235,7 @@
             default-column-width = {
               proportion = 2. / 3.;
             };
-            open-on-output = "DP-3";
+            open-on-output = "DP-4";
             open-focused = false;
           }
 

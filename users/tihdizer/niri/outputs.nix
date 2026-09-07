@@ -6,7 +6,7 @@
       #= Displays
       programs.niri.settings.outputs = {
         # Primary
-        "DP-3" = {
+        "DP-4" = {
           mode = {
             width = 1920;
             height = 1080;
@@ -34,7 +34,7 @@
         };
 
         # TV
-        "HDMI-A-1" = {
+        "HDMI-A-2" = {
           mode = {
             width = 3840;
             height = 2160;
