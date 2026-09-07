@@ -51,6 +51,7 @@
         ssh
         wallpaper
         lab-ubuntu
+        n8n
       ])
       ++ [
         inputs.niri.homeModules.niri
