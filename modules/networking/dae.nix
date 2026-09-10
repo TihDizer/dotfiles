@@ -11,7 +11,7 @@ let
       dial_mode: domain++
       tls_implementation: utls
       utls_imitate: chrome_auto
-      tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1'
+      # tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1'
       tcp_check_http_method: GET
       # udp_check_dns: '8.8.8.8:53'
       check_interval: 30s
@@ -52,9 +52,8 @@ let
         policy: min_moving_avg
       }
 
-      google {
+      ai {
         filter: name(regex: '.*(AI).*')
-        # filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия|швеция|гейминг|франция).*') [add_latency: 1000ms]
         policy: min_moving_avg
       }
     }
@@ -115,6 +114,7 @@ let
         suffix: openbittorrent.com,
         suffix: opentrackr.org,
         suffix: ororo.tv,
+        suffix: pages.dev,
         suffix: p4p.arenabg.com,
         suffix: perplexity.ai,
         suffix: primevideo.com,
@@ -152,16 +152,16 @@ let
 
       #google
       domain(
+        geosite:google-gemini
+      ) -> ai
+
+      domain(
         geosite:youtube
       ) -> proxy
 
       domain(
         geosite:google
-      ) -> google
-
-      pname(
-        agy
-      ) -> google
+      ) -> proxy
 
       #fallback
       fallback: direct
