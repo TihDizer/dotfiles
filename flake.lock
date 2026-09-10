@@ -886,6 +886,7 @@
         "rust-overlay": "rust-overlay_2",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
+        "torlink": "torlink",
         "walker": "walker",
         "winapps": "winapps",
         "yazi": "yazi"
@@ -1170,6 +1171,26 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "torlink": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788717747,
+        "narHash": "sha256-gCVHDepbkYHbm3RlKxa6jpYQnjza97UYeK09qtaMQt8=",
+        "owner": "baairon",
+        "repo": "torlink",
+        "rev": "cd230f1de8ed6dc5cb56333b2454fdc8243014b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "baairon",
+        "repo": "torlink",
         "type": "github"
       }
     },

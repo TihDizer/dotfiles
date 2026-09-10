@@ -52,6 +52,7 @@
         wallpaper
         lab-ubuntu
         n8n
+        torlink
       ])
       ++ [
         inputs.niri.homeModules.niri
