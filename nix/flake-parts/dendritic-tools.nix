@@ -29,16 +29,19 @@
   flake-file.outputs = ''
     inputs: let
       inherit (inputs.nixpkgs) lib;
-      inherit (lib.fileset) toList fileFilter;
+      inherit (lib.fileset) toList fileFilter difference maybeMissing;
 
       isNixModule = file:
         file.hasExt "nix"
         && file.name != "flake.nix"
-        && !lib.hasPrefix "_" file.name
-        && !lib.hasInfix "template" file.name;
+        && !lib.hasPrefix "_" file.name;
 
       importTree = path:
-        toList (fileFilter isNixModule path);
+        toList (
+          difference
+            (fileFilter isNixModule path)
+            (maybeMissing (path + "/templates"))
+        );
 
       mkFlake = inputs.flake-parts.lib.mkFlake { inherit inputs; };
     in
