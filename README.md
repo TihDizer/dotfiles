@@ -12,7 +12,7 @@ This repository uses a decentralized dendritic module structure. Modules are sel
 - **Host Management**: Centralized host definitions under `hosts/` utilizing reusable modules.
 - **User Configurations**: Home Manager profiles organized in `users/`.
 - **Secret Management**: Encrypted secrets via `sops-nix` with Age key authentication.
-- **Theming**: System-wide unified styling via `stylix` (Everforest dark palette).
+- **Theming**: System-wide unified styling via `stylix`.
 
 ---
 
@@ -21,15 +21,14 @@ This repository uses a decentralized dendritic module structure. Modules are sel
 ### Core System
 - **OS**: NixOS (Unstable channel)
 - **Architecture**: `x86_64-linux`
-- **Host**: `main` (AMD Ryzen 7 5700G + Radeon RX 5600/5700 series GPU)
+- **Host**: `main` (AMD Ryzen 7 5700G + Radeon Vega 8 iGPU)
 - **GPU Control**: AMDGPU optimizations with `lact` daemon
 - **Filesystems**: BTRFS and ext4 with tmpfiles management and swap hibernation support
 - **Audio**: PipeWire audio stack managed via WirePlumber and `wiremix`
 
 ### Desktop & Window Management
 - **Compositor**: [Niri](https://github.com/sodiboo/niri-flake) (scrollable-tiling Wayland compositor)
-- **XWayland**: `xwayland-satellite`
-- **App Launcher**: [Walker](https://github.com/abenz1267/walker) with [Elephant](https://github.com/abenz1267/elephant) desktop engine
+- **App Launcher**: [Walker](https://github.com/abenz1267/walker) 
 - **Navigation & Widgets**:
   - `nirimap` (interactive minimap overview)
   - `niri-sidebar` (collapsible window manager sidebar)
@@ -39,14 +38,12 @@ This repository uses a decentralized dendritic module structure. Modules are sel
 
 ### Shell & Terminal
 - **Shells**: Zsh (default interactive shell), Fish, Bash
-- **Terminal Emulator**: Kitty
+- **Terminal Emulator**: Kitty (cuz of yazi)
 - **Prompt**: Starship with custom status segments for normal shells and tmux
 - **CLI Utilities**: `zoxide`, `eza`, `lsd`, `bat`, `ripgrep`, `fd`, `duf`, `dust`, `gping`, `httpie`, `tldr`, `television`, `yazi`, `bottom`
 
 ### Development Environment
 - **Neovim**: Modular Neovim configured with [NVF](https://github.com/notashelf/nvf)
-  - Languages: Nix (`nixd`), Rust (`rust-analyzer`), Python, Bash, Terraform, SQL, Typst, Markdown
-  - Features: Blink-cmp completion, Treesitter, DAP debugging, Trouble diagnostics, Grug-far search, Yazi file manager integration, TV (Television) picker
 - **Rust**: Pinned and nightly toolchains via `rust-overlay`, cargo tooling, JetBrains RustRover integration
 - **AI Tooling**:
   - `jcode` built from source with OmniRoute AI gateway integration
@@ -56,12 +53,12 @@ This repository uses a decentralized dendritic module structure. Modules are sel
 
 ### Networking & Virtualization
 - **Proxy & Routing**: `dae` (eBPF-based transparent proxy routing with GeoIP and domain routing rules)
-- **Networking**: NetworkManager, SSH configurations, Cloudflared, Throne
-- **Containers & Virtualization**: Podman, Docker, QEMU / KVM, OmniRoute AI Gateway container
+- **Networking**: NetworkManager, SSH configurations, Throne
+- **Containers & Virtualization**: Podman, Docker, QEMU / KVM
 
 ### Productivity & Multimedia
 - **Browser**: Google Chrome, Mozilla Firefox
-- **Communication**: Telegram Desktop, Vesktop / Discord via `nixcord`
+- **Communication**: Telegram Desktop, Vesktop via [nixcord](https://github.com/4evy/nixcord)
 - **Knowledge Base**: Obsidian
 - **Streaming & Gaming**: Sunshine (game streaming server configured for multi-monitor outputs), Steam, Prism Launcher, OBS Studio
 - **Media**: MPV, Transmission BitTorrent client
@@ -96,5 +93,5 @@ This repository uses a decentralized dendritic module structure. Modules are sel
 ├── templates/              # Module templates for easy expansion
 └── users/                  # User home-manager environments
     ├── tihdizer/           # Primary user profile (Niri rules, starship, walker, git)
-    └── guest/              # Guest user profile
+    └── guest/              # Guest user profile (WIP)
 ```
