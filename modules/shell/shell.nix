@@ -10,6 +10,7 @@
       fastfetch
       macchina
       tmux
+      atuin
     ];
   };
 
@@ -23,6 +24,7 @@
       fastfetch
       macchina
       tmux
+      atuin
     ];
   };
 }

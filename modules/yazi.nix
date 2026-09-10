@@ -194,7 +194,6 @@
         resvg # SVG rasterizer
         imagemagick # Image manipulation
         bat # Cat clone with syntax highlighting
-        atuin # Shell history search (atuin)
         lsd # Modern ls alternative
         ripdrag # Drag and drop utility
         wl-clipboard-rs # Wayland clipboard
