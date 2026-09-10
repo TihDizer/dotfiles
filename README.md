@@ -44,7 +44,6 @@ This repository uses a decentralized dendritic module structure. Modules are sel
 
 ### Development Environment
 - **Neovim**: Modular Neovim configured with [NVF](https://github.com/notashelf/nvf)
-- **Rust**: Pinned and nightly toolchains via `rust-overlay`, cargo tooling, JetBrains RustRover integration
 - **AI Tooling**:
   - `jcode` built from source with OmniRoute AI gateway integration
   - `herdr` multi-agent runner via `llm-agents.nix`
@@ -74,7 +73,7 @@ This repository uses a decentralized dendritic module structure. Modules are sel
 ├── hosts/                  # Host definitions
 │   └── main/               # Main desktop workstation configuration
 ├── modules/                # Modular feature components
-│   ├── dev/                # Neovim (nvf), Rust, Zed, Nix, Jcode, Herdr
+│   ├── dev/                # Neovim (nvf), Zed, Nix, Jcode, Herdr
 │   ├── networking/         # dae, networkmanager, ssh, firewall, throne
 │   ├── niri/               # Niri Wayland compositor integrations
 │   ├── shell/              # Shells (zsh, fish, bash), Kitty, Tmux, CLI tools

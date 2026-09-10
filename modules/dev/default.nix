@@ -2,9 +2,7 @@
 {
   flake.modules.homeManager.dev = {
     imports = with inputs.self.modules.homeManager; [
-      zed-editor
       nix
-      rust
       nvf
     ];
   };
