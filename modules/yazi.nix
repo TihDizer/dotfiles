@@ -53,8 +53,49 @@
         enableZshIntegration = true;
         enableFishIntegration = true;
 
+        plugins = {
+          mount = pkgs.yaziPlugins.mount;
+          fast-enter = pkgs.fetchFromGitHub {
+            owner = "ourongxing";
+            repo = "fast-enter.yazi";
+            rev = "main";
+            hash = "sha256-E0r0XsyECKMJ8w+9OVJKDggSXhAqlwD3u9ZSEXHc6J0=";
+          };
+          ouch = pkgs.yaziPlugins.ouch;
+          piper = pkgs.yaziPlugins.piper;
+        };
+
+        settings = {
+          plugin = {
+            prepend_previewers = [
+              {
+                url = "*.html";
+                run = ''piper -- w3m -dump -T text/html -cols "$w" "$1"'';
+              }
+              {
+                url = "*.htm";
+                run = ''piper -- w3m -dump -T text/html -cols "$w" "$1"'';
+              }
+              {
+                mime = "text/html";
+                run = ''piper -- w3m -dump -T text/html -cols "$w" "$1"'';
+              }
+            ];
+          };
+        };
+
         keymap = {
           mgr.prepend_keymap = [
+            {
+              on = "l";
+              run = "plugin fast-enter";
+              desc = "Enter subfolder faster, extract archive, or open file";
+            }
+            {
+              on = "M";
+              run = "plugin mount";
+              desc = "Mount device / disk";
+            }
             {
               on = "y";
               run = [
@@ -139,6 +180,9 @@
       home.packages = with pkgs; [
         trash-cli # Trash manager
         ouch # Painless compression and decompression in the terminal
+        unar # Archive extractor used by fast-enter
+        w3m # Text-based web browser / HTML renderer
+        util-linux # Provides lsblk, eject for mount plugin
         ffmpeg # Multimedia framework
         poppler # PDF rendering library
         fd # Fast find alternative
