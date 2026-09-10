@@ -6,6 +6,10 @@
       nix = {
         channel.enable = false;
         settings = {
+          trusted-users = [
+            "root"
+            "@wheel"
+          ];
           cores = 4;
           max-jobs = 2;
           substituters = [ "https://cache.nixos.org/" ];
