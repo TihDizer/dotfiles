@@ -1,18 +1,24 @@
 { ... }:
 {
   flake.modules.nixos.host-main-users =
-    { pkgs, lib, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     {
       users.mutableUsers = lib.mkDefault true;
 
       users.users.tihdizer = {
         isNormalUser = true;
-        initialPassword = "nixos";
+        hashedPasswordFile = config.sops.secrets."tihdizer".path;
         shell = pkgs.zsh;
         description = "TihDizer";
         extraGroups = [
           # TODO: move in modules
           "wheel"
+          "systemd-journal"
           "libvirtd"
           "kvm"
           "plugdev"
@@ -25,7 +31,7 @@
       };
 
       users.users.root = {
-        initialPassword = "nixos";
+        hashedPasswordFile = config.sops.secrets."root".path;
       };
     };
 }

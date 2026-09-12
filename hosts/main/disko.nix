@@ -17,8 +17,11 @@
         "vfat"
       ];
 
-      boot.tmp.useTmpfs = lib.mkDefault true;
-      boot.tmp.tmpfsSize = lib.mkDefault "50%";
+      boot.tmp.useTmpfs = false;
+      boot.tmp.cleanOnBoot = true;
+
+      fileSystems."/nix".neededForBoot = true;
+      fileSystems."/persistent".neededForBoot = true;
 
       disko.devices = {
         # 1. Ephemeral Root in RAM
@@ -197,12 +200,20 @@
       systemd.tmpfiles.rules = [
         "d /mnt/ssd 0755 root root -"
         "d /mnt/ssd/tihdizer 0700 tihdizer users -"
+        "d /mnt/ssd/tihdizer/games 0700 tihdizer users -"
+        "d /mnt/ssd/tihdizer/vms 0700 tihdizer users -"
         "d /mnt/ssd/shared 0777 root root -"
         "d /mnt/ssd/.Trash 1777 root root -"
         "d /mnt/ssd/.Trash/1000 0700 tihdizer users -"
         "d /mnt/ssd/.Trash-1000 0700 tihdizer users -"
         "d /mnt/archive 0755 root root -"
         "d /mnt/archive/tihdizer 0700 tihdizer users -"
+        "d /mnt/archive/tihdizer/downloads 0700 tihdizer users -"
+        "d /mnt/archive/tihdizer/documents 0700 tihdizer users -"
+        "d /mnt/archive/tihdizer/notes 0700 tihdizer users -"
+        "d /mnt/archive/tihdizer/medias 0700 tihdizer users -"
+        "d /mnt/archive/tihdizer/games 0700 tihdizer users -"
+        "d /mnt/archive/tihdizer/vms 0700 tihdizer users -"
         "d /mnt/archive/shared 0777 root root -"
         "d /mnt/archive/.Trash 1777 root root -"
         "d /mnt/archive/.Trash/1000 0700 tihdizer users -"

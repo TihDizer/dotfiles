@@ -8,7 +8,6 @@
 
   flake.modules.nixos.host-main-preservation =
     {
-      config,
       lib,
       options,
       ...
@@ -33,49 +32,12 @@
               "/var/lib/sunshine"
               "/var/lib/dae"
               "/etc/NetworkManager/system-connections"
-              "/etc/ssh"
             ];
 
             # Persistent system files
             files = [
               {
                 file = "/etc/machine-id";
-                inInitrd = true;
-                how = "symlink";
-                configureParent = true;
-              }
-              {
-                file = "/etc/passwd";
-                inInitrd = true;
-                how = "symlink";
-                configureParent = true;
-              }
-              {
-                file = "/etc/group";
-                inInitrd = true;
-                how = "symlink";
-                configureParent = true;
-              }
-              {
-                file = "/etc/shadow";
-                inInitrd = true;
-                how = "symlink";
-                configureParent = true;
-              }
-              {
-                file = "/etc/gshadow";
-                inInitrd = true;
-                how = "symlink";
-                configureParent = true;
-              }
-              {
-                file = "/etc/subuid";
-                inInitrd = true;
-                how = "symlink";
-                configureParent = true;
-              }
-              {
-                file = "/etc/subgid";
                 inInitrd = true;
                 how = "symlink";
                 configureParent = true;
@@ -122,7 +84,8 @@
                 ".local/share/nix"
                 ".local/share/icons"
                 ".local/share/fonts"
-                ".local/share/TelegramDesktop"
+                ".local/share/containers"
+                ".local/share/omniroute"
                 ".local/share/transmission"
 
                 # Secrets, SSH & GPG Keys
@@ -130,22 +93,18 @@
                 ".gnupg"
                 ".pki"
 
-                # Web Browsers & Mail
+                # Communication, Browsers & Mail
+                ".local/share/TelegramDesktop"
+                ".local/share/vesktop"
+                ".config/vesktop"
+                ".config/Vencord"
                 ".mozilla"
                 ".zen"
                 ".floorp"
                 ".thunderbird"
-
-                # Media, Documents & Notes
-                "downloads"
-                "documents"
-                "pictures"
-                "videos"
-                "music"
               ];
 
               files = [
-                ".bash_history"
                 ".zsh_history"
               ];
             };
