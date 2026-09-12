@@ -4,6 +4,8 @@
     imports = with inputs.self.modules.nixos; [
       #= Host
       host-main-hardware
+      host-main-disko
+      host-main-preservation
       host-main-system
       host-main-locales
       host-main-users

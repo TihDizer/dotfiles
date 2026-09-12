@@ -21,74 +21,6 @@
       boot.supportedFilesystems = [ "btrfs" ];
       boot.extraModulePackages = [ ];
 
-      fileSystems."/" = {
-        device = "/dev/disk/by-uuid/c7ddec8b-9743-419d-94da-fa95dddf6d80";
-        fsType = "ext4";
-      };
-
-      fileSystems."/boot" = {
-        device = "/dev/disk/by-uuid/EFE3-ED5A";
-        fsType = "vfat";
-        options = [
-          "fmask=0022"
-          "dmask=0022"
-        ];
-      };
-
-      fileSystems."/mnt/hdd1" = {
-        device = "/dev/disk/by-label/hdd1";
-        fsType = "btrfs";
-        options = [
-          "defaults"
-          "nofail"
-          "compress=zstd:1"
-          "space_cache=v2"
-          "autodefrag"
-        ];
-      };
-
-      fileSystems."/mnt/hdd2" = {
-        device = "/dev/disk/by-label/hdd2";
-        fsType = "ext4";
-        options = [
-          "nofail"
-          "noatime"
-        ];
-      };
-
-      fileSystems."/mnt/nvme" = {
-        device = "/dev/disk/by-label/nvme";
-        fsType = "ext4";
-        options = [
-          "nofail"
-          "noatime"
-        ];
-      };
-
-      systemd.tmpfiles.rules = [
-        "d /mnt/nvme/.Trash 1777 root root -"
-        "d /mnt/nvme/.Trash/1000 0700 tihdizer users -"
-        "d /mnt/nvme/.Trash-1000 0700 tihdizer users -"
-        "d /mnt/hdd1/.Trash 1777 root root -"
-        "d /mnt/hdd1/.Trash/1000 0700 tihdizer users -"
-        "d /mnt/hdd1/.Trash-1000 0700 tihdizer users -"
-        "d /mnt/hdd2/.Trash 1777 root root -"
-        "d /mnt/hdd2/.Trash/1000 0700 tihdizer users -"
-        "d /mnt/hdd2/.Trash-1000 0700 tihdizer users -"
-        "d /mnt/hdd1/shared 0777 root root -"
-        "d /mnt/hdd2/shared 0777 root root -"
-      ];
-
-      boot.resumeDevice = "/dev/disk/by-uuid/c7ddec8b-9743-419d-94da-fa95dddf6d80";
-      boot.kernelParams = [ "resume_offset=11253760" ];
-
-      swapDevices = [
-        {
-          device = "/var/lib/swapfile";
-          size = 32 * 1024;
-        }
-      ];
-
       # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
       # (the default) this is the recommended approach. When using systemd-networkd it's
       # still possible to use this option, but it's recommended to use it in conjunction
@@ -98,5 +30,6 @@
       networking.interfaces.enp42s0.wakeOnLan.enable = true;
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+      hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     };
 }

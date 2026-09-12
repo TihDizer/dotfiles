@@ -87,18 +87,6 @@
               keyColor = "green";
             }
             {
-              type = "custom";
-              key = "󰾲 GPU";
-              keyColor = "green";
-              format = "AMD Radeon Vega 8 [Integrated]";
-            }
-            {
-              type = "custom";
-              key = "󰾲 GPU";
-              keyColor = "green";
-              format = "AMD Radeon RX 5700 XT [Discrete]";
-            }
-            {
               type = "memory";
               key = " Memory";
               keyColor = "magenta";
@@ -106,34 +94,6 @@
             {
               type = "swap";
               key = "󰓡 Swap";
-              keyColor = "magenta";
-            }
-            {
-              type = "disk";
-              key = " Disk (/)";
-              folders = "/";
-              format = "{size-used} / {size-total} ({size-percentage})";
-              keyColor = "magenta";
-            }
-            {
-              type = "disk";
-              key = " Disk (nvme)";
-              folders = "/mnt/nvme";
-              format = "{size-used} / {size-total} ({size-percentage})";
-              keyColor = "magenta";
-            }
-            {
-              type = "disk";
-              key = " Disk (hdd1)";
-              folders = "/mnt/hdd1";
-              format = "{size-used} / {size-total} ({size-percentage})";
-              keyColor = "magenta";
-            }
-            {
-              type = "disk";
-              key = " Disk (hdd2)";
-              folders = "/mnt/hdd2";
-              format = "{size-used} / {size-total} ({size-percentage})";
               keyColor = "magenta";
             }
             {

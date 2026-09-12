@@ -1,10 +1,13 @@
 { ... }:
 {
   flake.modules.nixos.host-main-users =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
+      users.mutableUsers = lib.mkDefault true;
+
       users.users.tihdizer = {
         isNormalUser = true;
+        initialPassword = "nixos";
         shell = pkgs.zsh;
         description = "TihDizer";
         extraGroups = [
@@ -19,6 +22,10 @@
           "video"
           "input"
         ];
+      };
+
+      users.users.root = {
+        initialPassword = "nixos";
       };
     };
 }
