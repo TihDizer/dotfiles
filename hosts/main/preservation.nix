@@ -31,6 +31,7 @@
               "/var/lib/containers"
               "/var/lib/sunshine"
               "/var/lib/dae"
+              "/var/lib/OpenRGB"
               "/etc/NetworkManager/system-connections"
             ];
 
@@ -72,15 +73,19 @@
                 "projects"
                 "dotfiles"
                 ".jcode"
+                ".gemini"
+                ".n8n"
 
                 # Core XDG and Application State
                 ".config"
                 ".local/state"
                 ".local/bin"
+                ".cache/cliphist"
                 ".local/share/keyrings"
                 ".local/share/direnv"
                 ".local/share/zsh"
                 ".local/share/atuin"
+                ".local/share/zoxide"
                 ".local/share/nix"
                 ".local/share/icons"
                 ".local/share/fonts"
@@ -92,6 +97,9 @@
                 ".ssh"
                 ".gnupg"
                 ".pki"
+
+                # Gaming
+                ".steam"
 
                 # Communication, Browsers & Mail
                 ".local/share/TelegramDesktop"
