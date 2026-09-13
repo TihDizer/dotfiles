@@ -16,7 +16,7 @@
 
         image = lib.mkOption {
           type = lib.types.str;
-          default = "diegosouzapw/omniroute:latest";
+          default = "docker.io/diegosouzapw/omniroute:latest";
           description = "Container image for OmniRoute.";
         };
 
