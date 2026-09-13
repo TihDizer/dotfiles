@@ -28,7 +28,7 @@ This repository uses a decentralized dendritic module structure. Modules are sel
 
 ### Desktop & Window Management
 - **Compositor**: [Niri](https://github.com/sodiboo/niri-flake) (scrollable-tiling Wayland compositor)
-- **App Launcher**: [Walker](https://github.com/abenz1267/walker) 
+- **App Launcher**: [fuzzel](https://codeberg.org/dnkl/fuzzel) 
 - **Navigation & Widgets**:
   - `nirimap` (interactive minimap overview)
   - `niri-sidebar` (collapsible window manager sidebar)

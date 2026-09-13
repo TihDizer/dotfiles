@@ -5,24 +5,12 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    elephant = {
-      url = "github:abenz1267/elephant";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    walker = {
-      url = "github:abenz1267/walker";
-      inputs.elephant.follows = "elephant";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   flake.modules.homeManager.tihdizer = {
     imports =
       (with inputs.self.modules.homeManager; [
         tihdizer-niri
-        tihdizer-walker
         tihdizer-userdirs
         tihdizer-git
         tihdizer-packages
@@ -53,10 +41,10 @@
         lab-ubuntu
         n8n
         torlink
+        fuzzel
       ])
       ++ [
         inputs.niri.homeModules.niri
-        inputs.walker.homeManagerModules.default
       ];
 
     home.username = "tihdizer";

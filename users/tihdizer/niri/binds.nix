@@ -11,7 +11,8 @@
       inherit (lib) getExe mkMerge;
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
       playerctl = "${pkgs.playerctl}/bin/playerctl";
-      launcher = "${pkgs.walker}/bin/walker";
+      launcher = getExe pkgs.fuzzel;
+      clipboard = "cliphist-fuzzel";
       browser = getExe pkgs.google-chrome;
       term = getExe pkgs.kitty;
       logout = getExe pkgs.wlogout;
@@ -104,6 +105,7 @@
             "Mod+B".action.spawn = [ browser ];
             "Mod+A".action.spawn = [ telegram ];
             "Mod+D".action.spawn = [ launcher ];
+            "Mod+Y".action.spawn = [ clipboard ];
             "Mod+P".action.spawn = [ volume ];
             "Mod+Escape".action.spawn = [ btm ];
             "Mod+Shift+Escape".action.spawn = [ logout ];
