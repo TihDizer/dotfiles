@@ -16,11 +16,19 @@
         defaultSopsFile = ../../secrets/secrets.yaml;
         validateSopsFiles = false;
 
-        age.keyFile = "/var/lib/sops-nix/key.txt";
+        age.keyFile = "/persistent/var/lib/sops-nix/key.txt";
 
         secrets = {
           subscription = { };
           omniroute = { };
+          "tihdizer" = {
+            sopsFile = ../../secrets/passwords.yaml;
+            neededForUsers = true;
+          };
+          "root" = {
+            sopsFile = ../../secrets/passwords.yaml;
+            neededForUsers = true;
+          };
         };
       };
     };
