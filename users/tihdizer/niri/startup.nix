@@ -12,7 +12,6 @@
         { sh = "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch cliphist store"; }
         # { sh = "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all"; }
         { sh = "uwsm finalize"; }
-        { command = [ "${pkgs.awww}/bin/awww-daemon" ]; }
         { sh = "daily-art-wallpaper"; }
         { command = [ "${pkgs.swaylock-effects}/bin/swaylock" "-f" ]; }
         { command = [ "${pkgs.google-chrome}/bin/google-chrome" ]; }
