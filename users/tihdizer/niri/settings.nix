@@ -74,5 +74,14 @@
         hotkey-overlay.skip-at-startup = true;
         screenshot-path = "~/medias/pictures/screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
       };
+
+      dconf.settings."org/gnome/desktop/wm/preferences" = {
+        button-layout = "";
+      };
+
+      gtk = {
+        gtk3.extraConfig.gtk-decoration-layout = ":";
+        gtk4.extraConfig.gtk-decoration-layout = ":";
+      };
     };
 }
