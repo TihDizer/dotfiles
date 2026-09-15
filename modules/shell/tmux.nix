@@ -64,18 +64,15 @@
         extraConfig = ''
           set -g status-position bottom
           set -g status-style "bg=default"
-          set -g status-justify left
           set -g status-left-length 50
           set -g status-right-length 100
           set -g renumber-windows on
           set -g automatic-rename on
           set -g automatic-rename-format "#{pane_current_command}"
 
-          set -g window-status-separator " "
-          set -g status-left "#[fg=#{?client_prefix,${colors.base08},${colors.base0B}},bg=default]#[fg=${colors.base00},bg=#{?client_prefix,${colors.base08},${colors.base0B}},bold] #S #[fg=#{?client_prefix,${colors.base08},${colors.base0B}},bg=default] "
-          set -g window-status-current-format "#[fg=${colors.base0A},bg=default]#[fg=${colors.base00},bg=${colors.base0A},bold] #I #W #[fg=${colors.base0A},bg=default]"
-          set -g window-status-format "#[fg=${colors.base02},bg=default]#[fg=${colors.base04},bg=${colors.base02}] #I #W #[fg=${colors.base02},bg=default]"
-          set -g status-right "#[fg=${colors.base02},bg=default]#[fg=${colors.base05},bg=${colors.base02}]  ${shortPwd} #[fg=${colors.base02},bg=default] #[fg=${colors.base02},bg=default]#[fg=${colors.base0D},bg=${colors.base02}] 󰃰 %H:%M #[fg=${colors.base02},bg=default]"
+          set -g status-left "#[fg=#{?client_prefix,${colors.base08},${colors.base0B}},bg=default]#[fg=${colors.base00},bg=#{?client_prefix,${colors.base08},${colors.base0B}},bold]#S#[fg=#{?client_prefix,${colors.base08},${colors.base0B}},bg=default] #[fg=${colors.base0A},bg=default]#[fg=${colors.base00},bg=${colors.base0A},bold]#I/#{session_windows} #W#[fg=${colors.base0A},bg=default]"
+          set -g status-right "#[fg=${colors.base02},bg=default]#[fg=${colors.base05},bg=${colors.base02}] ${shortPwd}#[fg=${colors.base02},bg=default] #[fg=${colors.base02},bg=default]#[fg=${colors.base0D},bg=${colors.base02}]󰃰 %a %H:%M#[fg=${colors.base02},bg=default]"
+          set -g status-format[0] "#[align=left range=left #{E:status-left-style}]#[push-default]#{T;=/#{status-left-length}:status-left}#[pop-default]#[norange default]#[align=right range=right #{E:status-right-style}]#[push-default]#{T;=/#{status-right-length}:status-right}#[pop-default]#[norange default]"
 
           set -g pane-border-style "fg=${colors.base02}"
           set -g pane-active-border-style "fg=${colors.base0D}"
