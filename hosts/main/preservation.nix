@@ -89,6 +89,7 @@
                 ".local/share/nix"
                 ".local/share/icons"
                 ".local/share/fonts"
+                ".local/share/applications"
                 ".local/share/containers"
                 ".local/share/omniroute"
                 ".local/share/transmission"
