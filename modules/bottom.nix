@@ -20,6 +20,15 @@
             expanded_view = false;
             left_legend = true;
           };
+          disk.mount_filter = {
+            is_list_ignored = true;
+            regex = true;
+            list = [
+              "^/(home|var|etc|run|sys|proc|dev)(/.*)?$"
+              "^/persistent/.*"
+              "^/nix/.*"
+            ];
+          };
         };
       };
     };
