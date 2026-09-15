@@ -31,7 +31,6 @@
         telegram
         omniroute
         jcode
-        herdr
         nirimap
         niri-sidebar
         usb
