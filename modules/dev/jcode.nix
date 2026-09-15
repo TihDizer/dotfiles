@@ -56,7 +56,7 @@ in
             nativeBuildInputs = [ pkgs.pkg-config ];
             buildInputs = [ pkgs.openssl ];
 
-            cargoHash = "sha256-QUfkbunDf4L1iehKsqvxSX3QkkL2HOIEhkc5sVmPCrA=";
+            cargoHash = "sha256-TJCB4kSkOIC2iUi8oYfqmvTa1UxOLi+uMWH2uEnhSlo=";
           };
           description = "The jcode package built from source via flake";
         };
