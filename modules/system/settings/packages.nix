@@ -6,7 +6,6 @@
 
       environment.systemPackages = with pkgs; [
         # CLI essentials
-        vim # Text editor
         wget # HTTP downloader
 
         pciutils # Hardware info
