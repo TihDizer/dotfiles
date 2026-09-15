@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.nixos.qemu =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       boot.binfmt.emulatedSystems = [
         "aarch64-linux"
@@ -17,6 +17,8 @@
           swtpm.enable = true;
         };
       };
+      # Socket activation on demand
+      systemd.services.libvirtd.wantedBy = lib.mkForce [ ];
 
       security.wrappers.spice-client-glib-usb-acl-helper = {
         source = "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper";

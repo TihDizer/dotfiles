@@ -8,13 +8,11 @@
 
       boot.kernelModules = [
         "kvm-amd" # AMD Virtualization
-        "amdgpu"  # Radeon RX dGPU + iGPU
         "k10temp" # Ryzen CPU Temperature Sensors
       ];
 
       boot.kernelParams = [
         "amdgpu.ppfeaturemask=0xffffffff"
-        "amdgpu.force_performance_level=high"
 
         "pcie_aspm=off"
         "amdgpu.gpu_recovery=1"

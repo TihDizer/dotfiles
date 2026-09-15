@@ -9,10 +9,6 @@
           "ru_RU.UTF-8/UTF-8"
           "en_US.UTF-8/UTF-8"
         ];
-        inputMethod = {
-          enable = true;
-          type = "fcitx5";
-        };
       };
 
       time.timeZone = "Europe/Moscow";

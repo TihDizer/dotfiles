@@ -25,10 +25,12 @@
         settings = {
           terminal.vt = lib.mkForce 7;
           default_session = {
-            command = "${pkgs.uwsm}/bin/uwsm start niri-session";
+            command = "${pkgs.uwsm}/bin/uwsm start -g -1 niri-session";
             user = "tihdizer";
           };
         };
       };
+
+      systemd.services.greetd.serviceConfig.Type = lib.mkForce "simple";
     };
 }

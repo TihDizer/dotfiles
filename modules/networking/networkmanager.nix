@@ -8,6 +8,8 @@
         dns = "default";
       };
 
+      systemd.services.NetworkManager-wait-online.enable = false;
+
       networking.enableIPv6 = false;
 
       networking.nameservers = [

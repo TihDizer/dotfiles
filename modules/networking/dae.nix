@@ -16,6 +16,7 @@ let
       # udp_check_dns: '8.8.8.8:53'
       check_interval: 30s
       check_tolerance: 50ms
+      disable_waiting_network: false
     }
 
     subscription {
@@ -173,6 +174,7 @@ in
     {
       config,
       pkgs,
+      lib,
       ...
     }:
     {
@@ -199,6 +201,11 @@ in
           config.sops.templates."dae-config.dae".path
           (builtins.hashString "sha256" (daeConfigTemplate ""))
         ];
+        serviceConfig = {
+          Type = lib.mkForce "exec";
+          Restart = "on-failure";
+          RestartSec = "2s";
+        };
       };
     };
 }
