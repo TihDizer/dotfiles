@@ -55,12 +55,7 @@
 
         plugins = {
           mount = pkgs.yaziPlugins.mount;
-          fast-enter = pkgs.fetchFromGitHub {
-            owner = "ourongxing";
-            repo = "fast-enter.yazi";
-            rev = "main";
-            hash = "sha256-E0r0XsyECKMJ8w+9OVJKDggSXhAqlwD3u9ZSEXHc6J0=";
-          };
+          smart-enter = pkgs.yaziPlugins.smart-enter;
           ouch = pkgs.yaziPlugins.ouch;
           piper = pkgs.yaziPlugins.piper;
         };
@@ -88,8 +83,8 @@
           mgr.prepend_keymap = [
             {
               on = "l";
-              run = "plugin fast-enter";
-              desc = "Enter subfolder faster, extract archive, or open file";
+              run = "plugin smart-enter";
+              desc = "Enter the child directory, or open the file";
             }
             {
               on = "M";
@@ -180,7 +175,6 @@
       home.packages = with pkgs; [
         trash-cli # Trash manager
         ouch # Painless compression and decompression in the terminal
-        unar # Archive extractor used by fast-enter
         w3m # Text-based web browser / HTML renderer
         util-linux # Provides lsblk, eject for mount plugin
         ffmpeg # Multimedia framework
