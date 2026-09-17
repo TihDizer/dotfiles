@@ -23,7 +23,7 @@
         if [ -n "$WINDOW_ID" ]; then
           ${niri} msg action focus-window --id "$WINDOW_ID"
         else
-          exec ${term} --class yazi-floating -e ${getExe pkgs.yazi}
+          exec ${term} --class yazi-floating -e ${getExe config.programs.yazi.package}
         fi
       '');
       volume = getExe (pkgs.writeShellScriptBin "volume" ''
