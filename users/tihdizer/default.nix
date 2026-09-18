@@ -20,6 +20,7 @@
         dev
         firefox
         chrome
+        chrome-server
         bottom
         yazi
         mpv

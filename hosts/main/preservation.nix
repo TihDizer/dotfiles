@@ -93,6 +93,7 @@
                 ".local/share/containers"
                 ".local/share/omniroute"
                 ".local/share/transmission"
+                ".local/share/chrome-server"
 
                 # Secrets, SSH & GPG Keys
                 ".ssh"
