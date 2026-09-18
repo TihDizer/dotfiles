@@ -3,12 +3,14 @@ let
   jcodeConfigTemplate = apiKey: ''
     [provider]
     default_provider = "omniroute"
+    default_model = "jcode-default"
     model_picker_providers = ["omniroute"]
 
     [providers.omniroute]
     type = "openai-compatible"
     base_url = "http://localhost:8000/v1"
     api_key = "${apiKey}"
+    model = "jcode-default"
     model_catalog = true
   '';
 in
