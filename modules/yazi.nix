@@ -173,6 +173,7 @@
       };
 
       home.packages = with pkgs; [
+        _7zz # 7-Zip archiver (required by yazi for extraction)
         trash-cli # Trash manager
         ouch # Painless compression and decompression in the terminal
         w3m # Text-based web browser / HTML renderer
