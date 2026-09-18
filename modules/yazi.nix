@@ -61,8 +61,21 @@
         };
 
         settings = {
+          open = {
+            prepend_rules = [
+              {
+                url = "*.{zip,rar,7z,7z.*,tar,tgz,tbz2,txz,gz,xz,zst,bz2}";
+                use = [ "extract" "reveal" ];
+              }
+            ];
+          };
+
           plugin = {
             prepend_previewers = [
+              {
+                url = "*.{zip,rar,7z,7z.*,tar,tgz,tbz2,txz,gz,xz,zst,bz2}";
+                run = "archive";
+              }
               {
                 url = "*.html";
                 run = ''piper -- w3m -dump -T text/html -cols "$w" "$1"'';
