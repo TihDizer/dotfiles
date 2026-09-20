@@ -72,7 +72,7 @@
         };
         prefer-no-csd = true;
         hotkey-overlay.skip-at-startup = true;
-        screenshot-path = "~/medias/pictures/screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+        screenshot-path = "~/screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
       };
 
       dconf.settings."org/gnome/desktop/wm/preferences" = {
