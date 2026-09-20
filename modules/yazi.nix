@@ -75,6 +75,20 @@
           };
         };
 
+        theme = {
+          git = {
+            unknown_sign = "";
+            clean_sign = "";
+            unstaged_sign = "M";
+            staged_sign = "S";
+            added_sign = "A";
+            deleted_sign = "D";
+            untracked_sign = "U";
+            ignored_sign = "I";
+            updated_sign = "!";
+          };
+        };
+
         settings = {
           open = {
             prepend_rules = [
