@@ -58,6 +58,21 @@
           smart-enter = pkgs.yaziPlugins.smart-enter;
           ouch = pkgs.yaziPlugins.ouch;
           piper = pkgs.yaziPlugins.piper;
+          git = {
+            package = pkgs.yaziPlugins.git;
+            setup = true;
+          };
+          lazygit = pkgs.yaziPlugins.lazygit;
+          open-git-remote = pkgs.yaziPlugins.mkYaziPlugin {
+            pname = "open-git-remote";
+            version = "0-unstable-2026-05-12";
+            src = pkgs.fetchFromGitHub {
+              owner = "larry-oates";
+              repo = "open-git-remote.yazi";
+              rev = "72158d607c01b63bc4eb5ac6fc0dc0691b41ce8c";
+              hash = "sha256-DGiGn5NveIGU0BikQ9U3vPL2R/qo1VA9ZfElOwl6qPk=";
+            };
+          };
         };
 
         settings = {
@@ -71,6 +86,19 @@
           };
 
           plugin = {
+            prepend_fetchers = [
+              {
+                url = "*";
+                run = "git";
+                group = "git";
+              }
+              {
+                url = "*/";
+                run = "git";
+                group = "git";
+              }
+            ];
+
             prepend_previewers = [
               {
                 url = "*.{zip,rar,7z,7z.*,tar,tgz,tbz2,txz,gz,xz,zst,bz2}";
@@ -135,6 +163,16 @@
               on = "M";
               run = "plugin mount";
               desc = "Mount device / disk";
+            }
+            {
+              on = [ "g" "i" ];
+              run = "plugin lazygit";
+              desc = "Run lazygit";
+            }
+            {
+              on = [ "g" "l" ];
+              run = "plugin open-git-remote";
+              desc = "Open git remote URL in browser";
             }
             {
               on = "y";
@@ -218,6 +256,7 @@
       };
 
       home.packages = with pkgs; [
+        lazygit # Terminal UI for git
         _7zz # 7-Zip archiver (required by yazi for extraction)
         trash-cli # Trash manager
         ouch # Painless compression and decompression in the terminal
