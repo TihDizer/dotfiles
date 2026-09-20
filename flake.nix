@@ -1,4 +1,4 @@
-# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# DO-NOT-EDIT. This file was auto-generated using github:denful/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
   outputs =
@@ -30,10 +30,6 @@
     };
     disko = {
       url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    elephant = {
-      url = "github:abenz1267/elephant";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-file.url = "github:vic/flake-file";
@@ -95,13 +91,6 @@
     torlink = {
       url = "github:baairon/torlink";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    walker = {
-      url = "github:abenz1267/walker";
-      inputs = {
-        elephant.follows = "elephant";
-        nixpkgs.follows = "nixpkgs";
-      };
     };
     winapps = {
       url = "github:winapps-org/winapps";
