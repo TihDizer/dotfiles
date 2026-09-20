@@ -151,6 +151,22 @@
                 run = "archive";
               }
               {
+                url = "*.csv";
+                run = ''piper -- mlr --icsv --opprint --barred-unicode --right-align-numeric --ragged --lazy-quotes -C cat "$1"'';
+              }
+              {
+                mime = "text/csv";
+                run = ''piper -- mlr --icsv --opprint --barred-unicode --right-align-numeric --ragged --lazy-quotes -C cat "$1"'';
+              }
+              {
+                url = "*.tsv";
+                run = ''piper -- mlr --itsv --opprint --barred-unicode --right-align-numeric --ragged --lazy-quotes -C cat "$1"'';
+              }
+              {
+                mime = "text/tab-separated-values";
+                run = ''piper -- mlr --itsv --opprint --barred-unicode --right-align-numeric --ragged --lazy-quotes -C cat "$1"'';
+              }
+              {
                 url = "*.html";
                 run = ''piper -- w3m -dump -T text/html -cols "$w" "$1"'';
               }
@@ -327,6 +343,7 @@
       };
 
       home.packages = with pkgs; [
+        miller # Fast tabular data processor (CSV, TSV, JSON)
         lazygit # Terminal UI for git
         _7zz # 7-Zip archiver (required by yazi for extraction)
         trash-cli # Trash manager
