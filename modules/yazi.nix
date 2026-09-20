@@ -88,6 +88,38 @@
                 mime = "text/html";
                 run = ''piper -- w3m -dump -T text/html -cols "$w" "$1"'';
               }
+              {
+                url = "*.docx";
+                run = ''piper -- pandoc --quiet -s -t plain --columns="$w" "$1"'';
+              }
+              {
+                mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                run = ''piper -- pandoc --quiet -s -t plain --columns="$w" "$1"'';
+              }
+              {
+                url = "*.doc";
+                run = ''piper -- catdoc -d utf-8 -m "$w" "$1"'';
+              }
+              {
+                mime = "application/msword";
+                run = ''piper -- catdoc -d utf-8 -m "$w" "$1"'';
+              }
+              {
+                url = "*.odt";
+                run = ''piper -- pandoc --quiet -s -t plain --columns="$w" "$1"'';
+              }
+              {
+                mime = "application/vnd.oasis.opendocument.text";
+                run = ''piper -- pandoc --quiet -s -t plain --columns="$w" "$1"'';
+              }
+              {
+                url = "*.rtf";
+                run = ''piper -- pandoc --quiet -s -t plain --columns="$w" "$1"'';
+              }
+              {
+                mime = "application/rtf";
+                run = ''piper -- pandoc --quiet -s -t plain --columns="$w" "$1"'';
+              }
             ];
           };
         };
@@ -190,6 +222,8 @@
         trash-cli # Trash manager
         ouch # Painless compression and decompression in the terminal
         w3m # Text-based web browser / HTML renderer
+        pandoc # Document converter (docx, odt, etc.)
+        catdoc # MS-Word (.doc) text extractor
         util-linux # Provides lsblk, eject for mount plugin
         ffmpeg # Multimedia framework
         poppler # PDF rendering library
