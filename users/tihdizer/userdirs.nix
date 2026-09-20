@@ -22,13 +22,13 @@
       home.file."downloads".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/tihdizer/downloads";
       home.file."notes".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/tihdizer/notes";
       home.file."documents".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/tihdizer/documents";
-      home.file."screenshots".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/tihdizer/screenshots";
       home.file."shared/archive".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/shared";
       home.file."games/archive".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/tihdizer/games";
       home.file."vms/archive".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/tihdizer/vms";
       home.file."desktop".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/tihdizer/desktop";
       home.file."music".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/tihdizer/music";
-      home.file."pictures".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/tihdizer/pictures";
+      home.file."pictures/screenshots".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/tihdizer/pictures/screenshots";
+      home.file."pictures/wallpapers".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.cacheHome}/art-wallpaper";
       home.file."videos".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/tihdizer/videos";
       home.file."templates".source = config.lib.file.mkOutOfStoreSymlink "/mnt/archive/tihdizer/templates";
 
