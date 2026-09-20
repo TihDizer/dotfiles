@@ -21,8 +21,15 @@ in
     {
       home.packages = [ (getPackage pkgs) ];
 
-      xdg.configFile."torlink/config.json".text = builtins.toJSON {
-        downloadDir = "${config.home.homeDirectory}/medias/videos";
-      };
+      xdg.configFile."torlink/config.json".text =
+        let
+          downloadDir = builtins.replaceStrings
+            [ "$HOME" "~" ]
+            [ config.home.homeDirectory config.home.homeDirectory ]
+            config.xdg.userDirs.download;
+        in
+        builtins.toJSON {
+          inherit downloadDir;
+        };
     };
 }
