@@ -81,6 +81,7 @@
                 ".local/state"
                 ".local/bin"
                 ".cache/cliphist"
+                ".cache/art-wallpaper"
                 ".local/share/keyrings"
                 ".local/share/direnv"
                 ".local/share/zsh"
