@@ -15,6 +15,7 @@
         tihdizer-git
         tihdizer-packages
         tihdizer-starship
+        tihdizer-mime
 
         sops
         dev
