@@ -73,6 +73,16 @@
               hash = "sha256-DGiGn5NveIGU0BikQ9U3vPL2R/qo1VA9ZfElOwl6qPk=";
             };
           };
+          omni-trash = pkgs.yaziPlugins.mkYaziPlugin {
+            pname = "omni-trash";
+            version = "0-unstable-2026-09-20";
+            src = pkgs.fetchFromGitHub {
+              owner = "goon";
+              repo = "omni-trash.yazi";
+              rev = "3c2a9923673e0552a093afc4122473df1d427a93";
+              hash = "sha256-heqqEWzJCoNt3CIJAEaWfqUX4J9BfVEw3OsU7Xjc17M=";
+            };
+          };
         };
 
         theme = {
@@ -187,6 +197,21 @@
               on = [ "g" "l" ];
               run = "plugin open-git-remote";
               desc = "Open git remote URL in browser";
+            }
+            {
+              on = [ "g" "t" ];
+              run = "plugin omni-trash";
+              desc = "Open trash manager";
+            }
+            {
+              on = [ "g" "c" ];
+              run = "cd ${config.home.homeDirectory}/dotfiles";
+              desc = "Go to ~/dotfiles";
+            }
+            {
+              on = [ "g" "d" ];
+              run = "cd ${config.xdg.userDirs.download}";
+              desc = "Go to downloads";
             }
             {
               on = "y";
