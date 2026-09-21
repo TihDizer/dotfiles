@@ -88,16 +88,12 @@
       };
 
       programs.zsh.initContent = lib.mkAfter ''
-        [[ -n "$TMUX" ]] && export STARSHIP_CONFIG="$HOME/.config/starship-tmux.toml"
-
         if [[ -z "$TMUX" && -n "$PS1" && -z "$SSH_CONNECTION" ]]; then
           exec tmux new-session -A -s main
         fi
       '';
 
       programs.fish.interactiveShellInit = lib.mkAfter ''
-        set -q TMUX; and set -gx STARSHIP_CONFIG "$HOME/.config/starship-tmux.toml"
-
         if status is-interactive; and not set -q TMUX; and test -z "$SSH_CONNECTION"
           exec tmux new-session -A -s main
         end

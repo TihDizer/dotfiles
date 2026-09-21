@@ -1,38 +1,94 @@
 { ... }:
 let
-  commonSettings = {
+  settings = {
     add_newline = false;
     command_timeout = 1300;
     scan_timeout = 50;
     jobs.disabled = true;
     shell.disabled = true;
+
+    format = ''
+      [╭──╼](bold blue) $username [at](bright-black) $hostname [on](bright-black) $os
+      [┆](bold blue) $directory$git_branch$git_commit$git_state$git_metrics$git_status$kubernetes$rust
+      [╰─>](bold blue) '';
+    right_format = ''($cmd_duration )($status )at $time'';
+
     character = {
       success_symbol = "❯";
       error_symbol = "";
       vimcmd_symbol = "❮";
     };
+
     directory = {
       read_only = " ";
+      format = "[$path]($style)[$read_only]($read_only_style) ";
+      style = "bold cyan";
     };
-  };
 
-  defaultSettings = commonSettings // {
-    format = "$directory$shlvl$character";
-    right_format = "$git_branch$git_status$nix_shell$cmd_duration";
-    shlvl = {
+    cmd_duration = {
+      min_time = 2000;
+      format = "took [$duration]($style)";
+      style = "bold yellow";
+    };
+
+    git_branch = {
+      format = "[$branch]($style) ";
+      style = "bright-black";
+    };
+
+    git_status = {
+      format = "$ahead_behind$all_status";
+      ahead = "[↑\${count}](green) ";
+      behind = "[↓\${count}](red) ";
+      diverged = "[↑\${ahead_count}](green)[↓\${behind_count}](red) ";
+      modified = "[~\${count}](yellow) ";
+      staged = "[+\${count}](green) ";
+      untracked = "[?\${count}](blue) ";
+      deleted = "[-\${count}](red) ";
+      conflicted = "[=\${count}](red) ";
+      stashed = "[*\${count}](bright-black) ";
+    };
+
+    rust = {
+      format = "via [rust]($style) ";
+      style = "bold red";
+    };
+
+    status = {
       disabled = false;
-      format = "$symbol";
-      repeat = true;
-      symbol = "❯";
-      repeat_offset = 1;
+      format = "[$symbol$status]($style)";
+      symbol = " ";
+      style = "bold red";
     };
-  };
 
-  tmuxSettings = commonSettings // {
-    format = "$character";
-    right_format = "$git_branch$git_status$nix_shell$cmd_duration";
-    shlvl.disabled = true;
-    directory.disabled = true;
+    time = {
+      disabled = false;
+      format = "[$time]($style)";
+      style = "bright-black";
+      time_format = "%R";
+    };
+
+    username = {
+      show_always = true;
+      format = "[$user]($style)";
+      style_user = "bold green";
+      style_root = "bold red";
+    };
+
+    hostname = {
+      ssh_only = false;
+      format = "[$hostname]($style)";
+      style = "bold blue";
+    };
+
+    os = {
+      disabled = false;
+      format = "[$symbol$name v$version]($style)";
+      style = "bold cyan";
+      symbols = {
+        NixOS = " ";
+      };
+    };
   };
 in
 {
@@ -59,11 +115,8 @@ in
         package = pkgs.starship;
         enableZshIntegration = config.programs.zsh.enable;
         enableFishIntegration = config.programs.fish.enable;
-        settings = defaultSettings;
+        enableNushellIntegration = config.programs.fish.enable;
+        settings = settings;
       };
-
-      xdg.configFile."starship-tmux.toml".source =
-        (pkgs.formats.toml { }).generate "starship-tmux.toml" tmuxSettings;
     };
 }
-
