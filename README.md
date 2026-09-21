@@ -46,9 +46,7 @@ This repository uses a decentralized dendritic module structure. Modules are sel
 - **Neovim**: Modular Neovim configured with [NVF](https://github.com/notashelf/nvf)
 - **AI Tooling**:
   - `jcode` built from source with OmniRoute AI gateway integration
-  - `herdr` multi-agent runner via `llm-agents.nix`
-  - `codex` and `antigravity-cli`
-- **Editors**: Zed Editor, Neovim, RustRover
+- **Editors**: Neovim
 
 ### Networking & Virtualization
 - **Proxy & Routing**: `dae` (eBPF-based transparent proxy routing with GeoIP and domain routing rules)
@@ -56,11 +54,10 @@ This repository uses a decentralized dendritic module structure. Modules are sel
 - **Containers & Virtualization**: Podman, Docker, QEMU / KVM
 
 ### Productivity & Multimedia
-- **Browser**: Google Chrome, Mozilla Firefox
+- **Browser**: Google Chrome
 - **Communication**: Telegram Desktop, Vesktop via [nixcord](https://github.com/4evy/nixcord)
-- **Knowledge Base**: Obsidian
 - **Streaming & Gaming**: Sunshine (game streaming server configured for multi-monitor outputs), Steam, Prism Launcher, OBS Studio
-- **Media**: MPV, Transmission BitTorrent client
+- **Media**: MPV, Transmission BitTorrent client, [torlink](https://github.com/baairon/torlink)
 
 ---
 
