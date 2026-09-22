@@ -1,7 +1,7 @@
 { ... }:
 let
   sharedAliases = {
-    ls = "lsd";
+    ls = "lsd --group-directories-first --oneline";
     e = "eza -lbGh --icons --git --group-directories-first";
     la = "eza -lbghia --icons --git --group-directories-first";
   };
