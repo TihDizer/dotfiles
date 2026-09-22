@@ -103,6 +103,7 @@ let
         suffix: b-cdn.net,
         suffix: b4mcx2ml.net,
         suffix: britishcouncil.org,
+        suffix: coursera.org,
         suffix: cyberia.is,
         suffix: dub.co,
         suffix: ets.org,
