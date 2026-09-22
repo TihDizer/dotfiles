@@ -34,7 +34,6 @@
 
       #= TODO: Desktop
       programs-desktop-niri
-      niri-scratchpad
       sunshine
 
       #= Gaming
