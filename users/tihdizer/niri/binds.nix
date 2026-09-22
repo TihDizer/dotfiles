@@ -18,6 +18,15 @@
       logout = getExe pkgs.wlogout;
       niri = getExe config.programs.niri.package;
       jq = getExe pkgs.jq;
+      tmux = getExe pkgs.tmux;
+      term-floating = getExe (pkgs.writeShellScriptBin "term-floating" ''
+        WINDOW_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "term-floating") | .id' | head -n 1)"
+        if [ -n "$WINDOW_ID" ]; then
+          ${niri} msg action focus-window --id "$WINDOW_ID"
+        else
+          exec ${term} --class term-floating -e ${tmux} new-session -A -s float
+        fi
+      '');
       explorer = getExe (pkgs.writeShellScriptBin "yazi-floating" ''
         WINDOW_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "yazi-floating") | .id' | head -n 1)"
         if [ -n "$WINDOW_ID" ]; then
@@ -101,6 +110,7 @@
 
             #= Launch/Spawn Software
             "Mod+T".action.spawn = [ term ];
+            "Mod+Shift+T".action.spawn = [ term-floating ];
             "Mod+E".action.spawn = [ explorer ];
             "Mod+B".action.spawn = [ browser ];
             "Mod+A".action.spawn = [ telegram ];

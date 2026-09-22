@@ -76,6 +76,7 @@
               { app-id = "yazi-floating"; }
               { app-id = "volume"; }
               { app-id = "btm"; }
+              { app-id = "term-floating"; }
             ];
             open-floating = true;
             default-floating-position = {
