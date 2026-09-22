@@ -9,14 +9,15 @@ let
 
     format = ''
       [╭──╼](bold blue) $username [at](bright-black) $hostname [on](bright-black) $os
-      [┆](bold blue) $directory$git_branch$git_commit$git_state$git_metrics$git_status$kubernetes$rust
-      [╰─>](bold blue) '';
+      [│](bold blue) $directory$git_branch$git_commit$git_state$git_metrics$git_status$kubernetes$rust
+      [╰─](bold blue)$character'';
     right_format = ''($cmd_duration )($status )at $time'';
 
     character = {
-      success_symbol = "❯";
-      error_symbol = "";
-      vimcmd_symbol = "❮";
+      success_symbol = "[>](bold yellow)";
+      error_symbol = "[>](bold red)";
+      vimcmd_symbol = "[<](bold yellow)";
+      vimcmd_visual_symbol = "[v](bold yellow)";
     };
 
     directory = {
