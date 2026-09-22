@@ -122,11 +122,123 @@
         };
 
         settings = {
+          opener = {
+            edit = [
+              {
+                run = "nvim %s";
+                desc = "Neovim";
+                block = true;
+              }
+            ];
+            play = [
+              {
+                run = "mpv %s";
+                desc = "MPV";
+                orphan = true;
+              }
+              {
+                run = "mediainfo %s1; echo 'Press enter to exit'; read _";
+                desc = "Show media info";
+                block = true;
+              }
+            ];
+            office = [
+              {
+                run = "onlyoffice-desktopeditors %s";
+                desc = "ONLYOFFICE";
+                orphan = true;
+              }
+            ];
+            readest = [
+              {
+                run = "readest %s";
+                desc = "Readest";
+                orphan = true;
+              }
+            ];
+            imv = [
+              {
+                run = "imv %s";
+                desc = "imv";
+                orphan = true;
+              }
+            ];
+            chrome = [
+              {
+                run = "google-chrome-stable %s";
+                desc = "Google Chrome";
+                orphan = true;
+              }
+            ];
+            firefox = [
+              {
+                run = "firefox %s";
+                desc = "Firefox";
+                orphan = true;
+              }
+            ];
+            glow = [
+              {
+                run = "glow -p -w 0 %s";
+                desc = "Glow";
+                block = true;
+              }
+            ];
+          };
+
           open = {
             prepend_rules = [
               {
                 url = "*.{zip,rar,7z,7z.*,tar,tgz,tbz2,txz,gz,xz,zst,bz2}";
                 use = [ "extract" "reveal" ];
+              }
+              {
+                mime = "application/{vnd.openxmlformats-officedocument.*,msword,vnd.ms-*,vnd.oasis.opendocument.*,x-msword}";
+                use = [ "office" "open" "reveal" ];
+              }
+              {
+                url = "*.{doc,docx,odt,rtf,xls,xlsx,ods,ppt,pptx,odp}";
+                use = [ "office" "open" "reveal" ];
+              }
+              {
+                mime = "application/pdf";
+                use = [ "readest" "chrome" "firefox" "open" "reveal" ];
+              }
+              {
+                url = "*.pdf";
+                use = [ "readest" "chrome" "firefox" "open" "reveal" ];
+              }
+              {
+                mime = "text/markdown";
+                use = [ "edit" "glow" "open" "reveal" ];
+              }
+              {
+                url = "*.{md,markdown,mdown,mkd}";
+                use = [ "edit" "glow" "open" "reveal" ];
+              }
+              {
+                mime = "image/*";
+                use = [ "imv" "chrome" "open" "reveal" ];
+              }
+              {
+                mime = "{audio,video}/*";
+                use = [ "play" "reveal" ];
+              }
+              {
+                mime = "text/html";
+                use = [ "chrome" "firefox" "edit" "open" "reveal" ];
+              }
+              {
+                url = "*.{html,htm}";
+                use = [ "chrome" "firefox" "edit" "open" "reveal" ];
+              }
+              {
+                mime = "application/{json,ndjson,javascript,wine-extension-ini,xml,toml,yaml,x-yaml}";
+                use = [ "edit" "chrome" "reveal" ];
+              }
+              {
+                mime = "text/*";
+                use = [ "edit" "glow" "open" "reveal" ];
               }
             ];
           };
@@ -343,6 +455,7 @@
       };
 
       home.packages = with pkgs; [
+        glow # Terminal markdown viewer / pager
         miller # Fast tabular data processor (CSV, TSV, JSON)
         lazygit # Terminal UI for git
         _7zz # 7-Zip archiver (required by yazi for extraction)
