@@ -93,6 +93,7 @@
                 ".local/share/applications"
                 ".local/share/containers"
                 ".local/share/omniroute"
+                ".local/share/winapps"
                 ".local/share/transmission"
                 ".local/share/chrome-server"
 

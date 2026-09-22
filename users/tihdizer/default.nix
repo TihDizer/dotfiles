@@ -43,6 +43,7 @@
         n8n
         torlink
         fuzzel
+        winapps
       ])
       ++ [
         inputs.niri.homeModules.niri
