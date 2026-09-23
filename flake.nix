@@ -58,10 +58,6 @@
       url = "git+https://codeberg.org/debugloop/niri-autoselect-portal.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri-scratchpad = {
-      url = "github:argosnothing/niri-scratchpad";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     niri-sidebar = {
       url = "github:Vigintillionn/niri-sidebar";
       flake = false;
@@ -90,10 +86,6 @@
     };
     torlink = {
       url = "github:baairon/torlink";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    winapps = {
-      url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     yazi = {

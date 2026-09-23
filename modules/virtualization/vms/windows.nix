@@ -1,19 +1,15 @@
-{ inputs, ... }:
+{ ... }:
+let
+  vmName = "RDPWindows";
+in
 {
-  flake-file.inputs = {
-    winapps = {
-      url = "github:winapps-org/winapps";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
-  flake.modules.nixos.winapps =
+  flake.modules.nixos.windows =
     { pkgs, ... }:
     let
-      vmName = "RDPWindows";
       domainXml = pkgs.writeText "${vmName}.xml" ''
         <domain type='kvm'>
           <name>${vmName}</name>
+          <uuid>4faf0385-bd45-4f36-99e3-05b2a85d43da</uuid>
           <memory unit='KiB'>8388608</memory>
           <currentMemory unit='KiB'>4194304</currentMemory>
           <vcpu placement='static'>4</vcpu>
@@ -56,6 +52,10 @@
           <on_poweroff>destroy</on_poweroff>
           <on_reboot>restart</on_reboot>
           <on_crash>destroy</on_crash>
+          <pm>
+            <suspend-to-mem enabled='no'/>
+            <suspend-to-disk enabled='no'/>
+          </pm>
           <devices>
             <disk type='file' device='disk'>
               <driver name='qemu' type='qcow2' discard='unmap'/>
@@ -69,7 +69,7 @@
             </disk>
             <disk type='file' device='cdrom'>
               <driver name='qemu' type='raw'/>
-              <source file='/var/lib/libvirt/images/virtio-win.iso'/>
+              <source file='/home/tihdizer/vms/ssd/virtio-win.iso'/>
               <target dev='sdc' bus='sata'/>
               <readonly/>
             </disk>
@@ -109,14 +109,8 @@
       '';
     in
     {
-      environment.systemPackages = [
-        inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps
-        inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps-launcher
-        pkgs.freerdp
-      ];
-
-      systemd.services.winapps-libvirt-vm = {
-        description = "Define WinApps libvirt virtual machine (${vmName})";
+      systemd.services.windows-libvirt-vm = {
+        description = "Define Windows libvirt virtual machine (${vmName})";
         after = [ "libvirtd.service" ];
         wants = [ "libvirtd.service" ];
         wantedBy = [ "multi-user.target" ];
@@ -124,6 +118,8 @@
           pkgs.libvirt
           pkgs.qemu-utils
           pkgs.coreutils
+          pkgs.gnugrep
+          pkgs.gnused
         ];
         serviceConfig = {
           Type = "oneshot";
@@ -148,37 +144,24 @@
             virsh pool-start ssd || true
           fi
 
-          virsh define ${domainXml}
+          if virsh dominfo "${vmName}" >/dev/null 2>&1; then
+            EXISTING_UUID=$(virsh domuuid "${vmName}" 2>/dev/null || true)
+            if [ -n "$EXISTING_UUID" ]; then
+              TEMP_XML=$(mktemp)
+              if grep -q "<uuid>" ${domainXml}; then
+                sed "s|<uuid>.*</uuid>|<uuid>$EXISTING_UUID</uuid>|" ${domainXml} > "$TEMP_XML"
+              else
+                sed "s|<name>${vmName}</name>|<name>${vmName}</name>\n  <uuid>$EXISTING_UUID</uuid>|" ${domainXml} > "$TEMP_XML"
+              fi
+              virsh define "$TEMP_XML"
+              rm -f "$TEMP_XML"
+            else
+              virsh define ${domainXml}
+            fi
+          else
+            virsh define ${domainXml}
+          fi
         '';
       };
-    };
-
-  flake.modules.homeManager.winapps =
-    { pkgs, ... }:
-    let
-      vmName = "RDPWindows";
-    in
-    {
-      home.packages = [
-        inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps
-        inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps-launcher
-        pkgs.freerdp
-      ];
-
-      xdg.configFile."winapps/winapps.conf".text = ''
-        # WinApps Configuration File (libvirt backend)
-        RDP_USER="MyWindowsUser"
-        RDP_PASS="MyWindowsPassword"
-        RDP_DOMAIN=""
-        RDP_IP=""
-        RDP_PORT="3389"
-        VM_NAME="${vmName}"
-        WAFLAVOR="libvirt"
-        RDP_SCALE="100"
-        REMOVABLE_MEDIA="/run/media"
-        RDP_FLAGS="/cert:tofu /sound /microphone +home-drive"
-        DEBUG="true"
-        AUTOPAUSE="off"
-      '';
     };
 }

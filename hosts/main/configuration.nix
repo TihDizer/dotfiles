@@ -30,7 +30,7 @@
       #= Virtualization
       qemu
       podman
-      winapps
+      windows
       # docker
 
       #= TODO: Desktop
