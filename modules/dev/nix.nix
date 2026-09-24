@@ -10,6 +10,7 @@
         nixd # Nix LSP
 
         # Utils
+        comma
         nix-diff
         nix-tree
         nix-du

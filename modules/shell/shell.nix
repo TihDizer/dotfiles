@@ -5,6 +5,7 @@
       fish
       zsh
       bash
+      nushell
       cli
       kitty
       fastfetch
@@ -19,6 +20,7 @@
       fish
       zsh
       bash
+      nushell
       cli
       kitty
       fastfetch
