@@ -17,7 +17,12 @@
         "pcie_aspm=off"
         "amdgpu.gpu_recovery=1"
         "amdgpu.lockup_timeout=10000"
+        "amdgpu.runpm=0"
       ];
+
+      services.udev.extraRules = ''
+        SUBSYSTEM=="pci", ATTR{vendor}=="0x1002", ATTR{device}=="0x731f", ATTR{power/control}="on"
+      '';
 
       environment.systemPackages = with pkgs; [
         lact
