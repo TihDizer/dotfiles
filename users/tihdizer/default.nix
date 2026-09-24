@@ -25,7 +25,6 @@
         bottom
         yazi
         mpv
-        obsidian
         obs
         nixcord
         shell
