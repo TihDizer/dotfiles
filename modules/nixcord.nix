@@ -17,6 +17,9 @@
         enable = true;
         vesktop.enable = true;
         discord.enable = false;
+        config = {
+          disableMinSize = true;
+        };
       };
     };
 }
