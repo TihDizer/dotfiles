@@ -106,15 +106,12 @@
           }
 
           {
-            matches = [ { title = "(?i)picture in picture"; } ];
+            matches = [ { title = "(?i)picture[- ]in[- ]picture"; } ];
             open-floating = true;
             default-floating-position = {
               x = 2;
-              y = 2;
-              relative-to = "bottom-right";
-            };
-            default-column-width = {
-              proportion = 2. / 3.;
+              y = 6;
+              relative-to = "bottom-left";
             };
             open-focused = false;
           }

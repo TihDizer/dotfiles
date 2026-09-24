@@ -25,6 +25,14 @@ let
     peek = 0
     focus_peek = 128
     sticky = false
+
+    [[window_rule]]
+    title = "(?i)^picture[- ]in[- ]picture$"
+    auto_add = true
+
+    [[window_rule]]
+    app_id = "^org\\.telegram\\.desktop$"
+    height = 480
   '';
 in
 {
