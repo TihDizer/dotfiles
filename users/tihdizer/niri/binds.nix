@@ -19,46 +19,53 @@
       niri = getExe config.programs.niri.package;
       jq = getExe pkgs.jq;
       tmux = getExe pkgs.tmux;
-      term-floating = getExe (pkgs.writeShellScriptBin "term-floating" ''
-        WINDOW_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "term-floating") | .id' | head -n 1)"
-        if [ -n "$WINDOW_ID" ]; then
-          ${niri} msg action focus-window --id "$WINDOW_ID"
-        else
-          exec ${term} --class term-floating -e ${tmux} new-session -A -s float
-        fi
-      '');
-      explorer = getExe (pkgs.writeShellScriptBin "yazi-floating" ''
-        WINDOW_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "yazi-floating") | .id' | head -n 1)"
-        if [ -n "$WINDOW_ID" ]; then
-          ${niri} msg action focus-window --id "$WINDOW_ID"
-        else
-          exec ${term} --class yazi-floating -e ${getExe config.programs.yazi.package}
-        fi
-      '');
-      volume = getExe (pkgs.writeShellScriptBin "volume" ''
-        WINDOW_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "volume") | .id' | head -n 1)"
-        if [ -n "$WINDOW_ID" ]; then
-          ${niri} msg action focus-window --id "$WINDOW_ID"
-        else
-          exec ${term} --class volume -e ${getExe pkgs.wiremix}
-        fi
-      '');
-      telegram = getExe (pkgs.writeShellScriptBin "telegram" ''
-        WINDOW_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "org.telegram.desktop") | .id' | head -n 1)"
-        if [ -n "$WINDOW_ID" ]; then
-          ${niri} msg action focus-window --id "$WINDOW_ID"
-        else
-          exec ${getExe pkgs.telegram-desktop}
-        fi
-      '');
-      btm = getExe (pkgs.writeShellScriptBin "btm" ''
-        window_id="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "btm") | .id' | head -n 1)"
-        if [ -n "$window_id" ]; then
-          ${niri} msg action focus-window --id "$window_id"
-        else
-          exec ${term} --class btm -e ${getExe pkgs.bottom}
-        fi
-      '');
+      toggleFloatingApp =
+        {
+          name,
+          appId,
+          execCmd,
+        }:
+        getExe (
+          pkgs.writeShellScriptBin name ''
+            FOCUSED_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "${appId}" and .is_focused == true) | .id' | head -n 1)"
+            if [ -n "$FOCUSED_ID" ]; then
+              ${niri} msg action close-window --id "$FOCUSED_ID"
+            else
+              WIN_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "${appId}") | .id' | head -n 1)"
+              if [ -n "$WIN_ID" ]; then
+                ${niri} msg action focus-window --id "$WIN_ID"
+              else
+                exec ${execCmd}
+              fi
+            fi
+          ''
+        );
+
+      term-floating = toggleFloatingApp {
+        name = "term-floating";
+        appId = "term-floating";
+        execCmd = "${term} --class term-floating -e ${tmux} new-session -A -s float";
+      };
+      explorer = toggleFloatingApp {
+        name = "yazi-floating";
+        appId = "yazi-floating";
+        execCmd = "${term} --class yazi-floating -e ${getExe config.programs.yazi.package}";
+      };
+      volume = toggleFloatingApp {
+        name = "volume";
+        appId = "volume";
+        execCmd = "${term} --class volume -e ${getExe pkgs.wiremix}";
+      };
+      telegram = toggleFloatingApp {
+        name = "telegram";
+        appId = "org.telegram.desktop";
+        execCmd = "${getExe pkgs.telegram-desktop}";
+      };
+      btm = toggleFloatingApp {
+        name = "btm";
+        appId = "btm";
+        execCmd = "${term} --class btm -e ${getExe pkgs.bottom}";
+      };
     in
     {
       programs.niri.settings.binds =
@@ -66,47 +73,71 @@
         mkMerge [
           {
             #= Audio
-            "XF86AudioMute".action.spawn = [
-              wpctl
-              "set-mute"
-              "@DEFAULT_AUDIO_SINK@"
-              "toggle"
-            ];
-            "XF86AudioMicMute".action.spawn = [
-              wpctl
-              "set-mute"
-              "@DEFAULT_AUDIO_SOURCE@"
-              "toggle"
-            ];
-            "XF86AudioRaiseVolume".action.spawn = [
-              wpctl
-              "set-volume"
-              "@DEFAULT_AUDIO_SINK@"
-              "5%+"
-            ];
-            "XF86AudioLowerVolume".action.spawn = [
-              wpctl
-              "set-volume"
-              "@DEFAULT_AUDIO_SINK@"
-              "5%-"
-            ];
+            "XF86AudioMute" = {
+              allow-when-locked = true;
+              action.spawn = [
+                wpctl
+                "set-mute"
+                "@DEFAULT_AUDIO_SINK@"
+                "toggle"
+              ];
+            };
+            "XF86AudioMicMute" = {
+              allow-when-locked = true;
+              action.spawn = [
+                wpctl
+                "set-mute"
+                "@DEFAULT_AUDIO_SOURCE@"
+                "toggle"
+              ];
+            };
+            "XF86AudioRaiseVolume" = {
+              allow-when-locked = true;
+              action.spawn = [
+                wpctl
+                "set-volume"
+                "@DEFAULT_AUDIO_SINK@"
+                "5%+"
+              ];
+            };
+            "XF86AudioLowerVolume" = {
+              allow-when-locked = true;
+              action.spawn = [
+                wpctl
+                "set-volume"
+                "@DEFAULT_AUDIO_SINK@"
+                "5%-"
+              ];
+            };
 
-            "XF86AudioPlay".action.spawn = [
-              playerctl
-              "play-pause"
-            ];
-            "XF86AudioStop".action.spawn = [
-              playerctl
-              "pause"
-            ];
-            "XF86AudioPrev".action.spawn = [
-              playerctl
-              "previous"
-            ];
-            "XF86AudioNext".action.spawn = [
-              playerctl
-              "next"
-            ];
+            "XF86AudioPlay" = {
+              allow-when-locked = true;
+              action.spawn = [
+                playerctl
+                "play-pause"
+              ];
+            };
+            "XF86AudioStop" = {
+              allow-when-locked = true;
+              action.spawn = [
+                playerctl
+                "pause"
+              ];
+            };
+            "XF86AudioPrev" = {
+              allow-when-locked = true;
+              action.spawn = [
+                playerctl
+                "previous"
+              ];
+            };
+            "XF86AudioNext" = {
+              allow-when-locked = true;
+              action.spawn = [
+                playerctl
+                "next"
+              ];
+            };
 
             #= Launch/Spawn Software
             "Mod+T".action.spawn = [ term ];
@@ -142,6 +173,10 @@
             "Mod+R".action = switch-preset-column-width;
             "Mod+Ctrl+R".action = reset-window-height;
             "Mod+Shift+R".action = switch-preset-window-height;
+            "Mod+Minus".action = set-column-width "-10%";
+            "Mod+Equal".action = set-column-width "+10%";
+            "Mod+Shift+Minus".action = set-window-height "-10%";
+            "Mod+Shift+Equal".action = set-window-height "+10%";
             "Mod+F".action = maximize-column;
             "Mod+Ctrl+F".action = expand-column-to-available-width;
             "Mod+Shift+F".action = fullscreen-window;
