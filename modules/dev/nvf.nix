@@ -165,6 +165,10 @@ let
             '';
           };
 
+          extraPlugins.vim-tmux-navigator = {
+            package = pkgs.vimPlugins.vim-tmux-navigator;
+          };
+
           keymaps = [
             {
               key = "<leader>y";
