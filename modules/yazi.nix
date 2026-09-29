@@ -354,12 +354,12 @@
               desc = "Open trash manager";
             }
             {
-              on = "<A-y>";
+              on = "<A-Y>";
               run = "plugin copy-file-contents -- plain";
               desc = "Copy contents of file(s)";
             }
             {
-              on = "<A-Y>";
+              on = "<A-y>";
               run = "plugin copy-file-contents -- multi";
               desc = "Copy contents of file(s) with filename + code fence";
             }

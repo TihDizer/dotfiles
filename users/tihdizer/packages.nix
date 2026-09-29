@@ -9,7 +9,6 @@
         antigravity-cli # AI code assistant
         gtypist # Touch typing tutor
         timr-tui # TUI to organize your time: Pomodoro, Tabata, Countdown, Timer, Event
-        code2prompt # Context engineering tool
         readest # E-book reader
         onlyoffice-desktopeditors # Office suite
       ];
