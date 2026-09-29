@@ -121,7 +121,7 @@
         sway-audio-idle-inhibit
         gnome-keyring
         # Clipboard-specific
-        wl-clipboard-rs
+        wl-clipboard
         cliphist
         # Image Viewer
         imv

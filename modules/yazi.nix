@@ -478,7 +478,7 @@
         bat # Cat clone with syntax highlighting
         lsd # Modern ls alternative
         ripdrag # Drag and drop utility
-        wl-clipboard-rs # Wayland clipboard
+        wl-clipboard # Wayland clipboard
       ];
     };
 }
