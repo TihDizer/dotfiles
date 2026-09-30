@@ -93,6 +93,7 @@
                 ".local/share/applications"
                 ".local/share/containers"
                 ".local/share/omniroute"
+                ".config/cli-proxy-api"
                 ".local/share/transmission"
                 ".local/share/chrome-server"
 

@@ -20,7 +20,7 @@
 
         secrets = {
           subscription = { };
-          omniroute = { };
+          "ai-proxy" = { };
           "tihdizer" = {
             sopsFile = ../../secrets/passwords.yaml;
             neededForUsers = true;

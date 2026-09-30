@@ -86,17 +86,16 @@ let
 
       #proxy
       domain(
-        geosite:discord,
-        geosite:github,
-        geosite:openai,
-        geosite:telegram,
-        geosite:amazon,
-        geosite:category-public-tracker,
-        geosite:piratebay,
-        geosite:1337x,
-        geosite:nyaa,
-        geosite:rutracker,
-        geosite:btdig,
+        geosite: discord,
+        geosite: github,
+        geosite: telegram,
+        geosite: amazon,
+        geosite: category-public-tracker,
+        geosite: piratebay,
+        geosite: 1337x,
+        geosite: nyaa,
+        geosite: rutracker,
+        geosite: btdig,
 
         suffix: 1flex.org,
         suffix: annas-archive.li,
@@ -111,6 +110,7 @@ let
         suffix: exodus.desync.com,
         suffix: givefreely.com,
         suffix: glotorrents.pw,
+        suffix: jcode.sh,
         suffix: jetbrains.com,
         suffix: justwatch.com,
         suffix: kick.com,
@@ -133,6 +133,8 @@ let
         suffix: roku.com,
         suffix: rutor.org,
         suffix: speedtest.net,
+        suffix: speedtest.com,
+        suffix: speed.cloudflare.com,
         suffix: starship.rs,
         suffix: throne.me,
         suffix: tor2me.info,
@@ -158,17 +160,33 @@ let
         vesktop
       ) -> proxy
 
-      #google
+      #ai
       domain(
-        geosite:google-gemini
+        geosite: openai,
+        geosite: google-gemini,
+        geosite: anthropic,
+        
+        suffix: auth.openai.com,
+        suffix: chatgpt.com,
+        suffix: claude.ai,
+        suffix: claude.com,
+        suffix: anthropic.com,
+        suffix: kimi.ai,
+        suffix: kimi.com,
+        suffix: moonshot.cn,
+        suffix: x.ai,
+        suffix: grok.com,
+        suffix: devin.ai,
+        suffix: antigravity.google,
+        suffix: cloudcode-pa.googleapis.com,
+        suffix: fast.com
       ) -> ai
-
+      
       domain(
-        geosite:youtube
-      ) -> proxy
+        geosite: youtube,
+        geosite: google,
 
-      domain(
-        geosite:google
+        suffix: mail.google.com
       ) -> proxy
 
       #fallback

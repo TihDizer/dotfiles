@@ -30,8 +30,8 @@
         shell
         television
         telegram
-        omniroute
         jcode
+        cli-proxy-api
         nirimap
         niri-sidebar
         usb
