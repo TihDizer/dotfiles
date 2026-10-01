@@ -12,6 +12,8 @@
         readest # E-book reader
         onlyoffice-desktopeditors # Office suite
         anki # Flashcard program
+        helix
+        feishin
       ];
     };
 }

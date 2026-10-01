@@ -1,6 +1,9 @@
 { inputs, ... }:
 let
-  getPackage = pkgs: inputs.herdr.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  getPackage = pkgs:
+    inputs.herdr.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (_: {
+      RUSTFLAGS = "-C link-arg=-lgcc";
+    });
 in
 {
   flake-file.inputs = {
