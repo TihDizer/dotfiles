@@ -116,6 +116,7 @@ let
         suffix: kick.com,
         suffix: kinozal.me,
         suffix: kinozal.tv,
+        suffix: last.fm,
         suffix: linkedin.com,
         suffix: nixos.org,
         suffix: numtide.com,
