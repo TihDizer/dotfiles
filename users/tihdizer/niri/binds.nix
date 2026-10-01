@@ -13,7 +13,6 @@
       playerctl = "${pkgs.playerctl}/bin/playerctl";
       launcher = getExe pkgs.fuzzel;
       clipboard = "cliphist-fuzzel";
-      browser = getExe pkgs.google-chrome;
       term = getExe pkgs.kitty;
       logout = getExe pkgs.wlogout;
       niri = getExe config.programs.niri.package;
@@ -31,7 +30,7 @@
             if [ -n "$FOCUSED_ID" ]; then
               ${niri} msg action close-window --id "$FOCUSED_ID"
             else
-              WIN_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "${appId}") | .id' | head -n 1)"
+              WIN_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '[.[] | select(.app_id == "${appId}")] | sort_by([.focus_timestamp.secs // 0, .focus_timestamp.nanos // 0]) | reverse | .[0].id // empty')"
               if [ -n "$WIN_ID" ]; then
                 ${niri} msg action focus-window --id "$WIN_ID"
               else
@@ -40,6 +39,34 @@
             fi
           ''
         );
+
+      focusOrOpenApp =
+        {
+          name,
+          appId,
+          execCmd,
+        }:
+        getExe (
+          pkgs.writeShellScriptBin name ''
+            FOCUSED_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "${appId}" and .is_focused == true) | .id' | head -n 1)"
+            if [ -n "$FOCUSED_ID" ]; then
+              exec ${execCmd}
+            else
+              WIN_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '[.[] | select(.app_id == "${appId}")] | sort_by([.focus_timestamp.secs // 0, .focus_timestamp.nanos // 0]) | reverse | .[0].id // empty')"
+              if [ -n "$WIN_ID" ]; then
+                ${niri} msg action focus-window --id "$WIN_ID"
+              else
+                exec ${execCmd}
+              fi
+            fi
+          ''
+        );
+
+      browser = focusOrOpenApp {
+        name = "browser";
+        appId = "google-chrome";
+        execCmd = "${getExe pkgs.google-chrome}";
+      };
 
       term-floating = toggleFloatingApp {
         name = "term-floating";
