@@ -83,28 +83,6 @@
               hash = "sha256-heqqEWzJCoNt3CIJAEaWfqUX4J9BfVEw3OsU7Xjc17M=";
             };
           };
-          copy-file-contents = {
-            package = pkgs.yaziPlugins.mkYaziPlugin {
-              pname = "copy-file-contents";
-              version = "0-unstable-2026-08-07";
-              src = pkgs.fetchFromGitHub {
-                owner = "AnirudhG07";
-                repo = "plugins-yazi";
-                rev = "3f4f1a3ea58707ce87b6455ebc25e7954b261e43";
-                hash = "sha256-hNw+1BRVHPR1LgUE6MYtnJEAO4fhSI3m+3M8wzw53UQ=";
-              };
-              installPhase = ''
-                runHook preInstall
-                cp -r copy-file-contents.yazi $out
-                runHook postInstall
-              '';
-            };
-            setup = true;
-            settings = {
-              append_char = "\n";
-              notification = true;
-            };
-          };
         };
 
         theme = {
@@ -354,14 +332,9 @@
               desc = "Open trash manager";
             }
             {
-              on = "<A-Y>";
-              run = "plugin copy-file-contents -- plain";
-              desc = "Copy contents of file(s)";
-            }
-            {
               on = "<A-y>";
-              run = "plugin copy-file-contents -- multi";
-              desc = "Copy contents of file(s) with filename + code fence";
+              run = "shell -- cat %s | wl-copy";
+              desc = "Copy contents of file(s) to clipboard";
             }
             {
               on = [ "g" "c" ];
