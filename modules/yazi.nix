@@ -24,18 +24,35 @@
         path="$4"
         out="$5"
 
-        if [ "$save" = "1" ]; then
-          set -- --chooser-file="$out" "$path"
-        elif [ "$directory" = "1" ]; then
-          set -- --chooser-file="$out" --cwd-file="$out" "$path"
+        if [ -n "$path" ] && [ -e "$path" ]; then
+          target="$path"
+        elif [ -n "$path" ] && [ -d "$(dirname "$path")" ]; then
+          target="$(dirname "$path")"
         else
-          set -- --chooser-file="$out" "$path"
+          target="$HOME"
         fi
 
-        exec ${lib.getExe pkgs.kitty} \
+        if [ "$save" = "1" ]; then
+          set -- --chooser-file="$out" "$target"
+        elif [ "$directory" = "1" ]; then
+          set -- --chooser-file="$out" --cwd-file="$out.1" "$target"
+        else
+          set -- --chooser-file="$out" "$target"
+        fi
+
+        ${lib.getExe pkgs.kitty} \
           --class=file_chooser \
           -e ${lib.getExe config.programs.yazi.package} \
           "$@"
+
+        if [ "$directory" = "1" ]; then
+          if [ ! -s "$out" ] && [ -s "$out.1" ]; then
+            cat "$out.1" > "$out"
+            rm -f "$out.1"
+          else
+            rm -f "$out.1"
+          fi
+        fi
       '';
 
       yazi-floating = pkgs.writeShellScriptBin "yazi-floating" ''
