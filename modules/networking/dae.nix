@@ -50,7 +50,7 @@ let
     group {
       proxy {
         filter: !name(regex: '(?i).*(support|info|chat|канал|hysteria|grpc|⛔️|россия|швеция|гейминг|франция).*')
-        policy: min_moving_avg
+        policy: min_avg10
       }
 
       ai {
@@ -163,7 +163,6 @@ let
       #ai
       domain(
         geosite: openai,
-        geosite: google-gemini,
         geosite: anthropic,
         
         suffix: auth.openai.com,
@@ -177,17 +176,19 @@ let
         suffix: x.ai,
         suffix: grok.com,
         suffix: devin.ai,
-        suffix: antigravity.google,
-        suffix: cloudcode-pa.googleapis.com,
         suffix: fast.com
       ) -> ai
       
+      #google
       domain(
         geosite: youtube,
         geosite: google,
+        geosite: google-gemini,
 
-        suffix: mail.google.com
-      ) -> proxy
+        suffix: mail.google.com,
+        suffix: antigravity.google,
+        suffix: cloudcode-pa.googleapis.com
+      ) -> ai
 
       #fallback
       fallback: direct
