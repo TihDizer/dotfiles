@@ -3,6 +3,7 @@ let
   jcodeConfigTemplate = apiKey: ''
     [provider]
     default_provider = "ai-proxy"
+    default_model = "auto"
     model_picker_providers = ["ai-proxy"]
     openai_reasoning_effort = "high"
 
