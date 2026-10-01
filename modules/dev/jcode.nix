@@ -4,12 +4,14 @@ let
     [provider]
     default_provider = "ai-proxy"
     model_picker_providers = ["ai-proxy"]
+    openai_reasoning_effort = "high"
 
     [providers.ai-proxy]
     type = "openai-compatible"
     base_url = "http://localhost:8317/v1"
     api_key = "${apiKey}"
     model_catalog = true
+    supports_reasoning_effort = true
 
     [gateway]
     enabled = true
