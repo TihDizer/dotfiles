@@ -10,6 +10,17 @@
     {
       users.mutableUsers = lib.mkDefault true;
 
+      sops.secrets = {
+        "tihdizer" = {
+          sopsFile = ../../secrets/passwords.yaml;
+          neededForUsers = true;
+        };
+        "root" = {
+          sopsFile = ../../secrets/passwords.yaml;
+          neededForUsers = true;
+        };
+      };
+
       users.users.tihdizer = {
         isNormalUser = true;
         hashedPasswordFile = config.sops.secrets."tihdizer".path;
