@@ -1,5 +1,10 @@
 creation_rules:
-  - path_regex: secrets/.*\.yaml$
+  - path_regex: secrets/secrets\.yaml$
+    key_groups:
+      - age:
+          - &main "age1c6qdx9eypwx0mkuh9ucpt8a5hj0qm8fd6v8canauh83jl498kd0qpay48t"
+          - &music "age1xj6ze3dej4f035qwfs2z2fkm03tju05sxjhjy8s3lmca06m9k9ksqemk67"
+  - path_regex: secrets/passwords\.yaml$
     key_groups:
       - age:
           - "age1c6qdx9eypwx0mkuh9ucpt8a5hj0qm8fd6v8canauh83jl498kd0qpay48t"

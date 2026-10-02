@@ -8,7 +8,7 @@
   };
 
   flake.modules.nixos.sops =
-    { ... }:
+    { lib, ... }:
     {
       imports = [ inputs.sops-nix.nixosModules.sops ];
 
@@ -16,20 +16,7 @@
         defaultSopsFile = ../../secrets/secrets.yaml;
         validateSopsFiles = false;
 
-        age.keyFile = "/persistent/var/lib/sops-nix/key.txt";
-
-        secrets = {
-          subscription = { };
-          "ai-proxy" = { };
-          "tihdizer" = {
-            sopsFile = ../../secrets/passwords.yaml;
-            neededForUsers = true;
-          };
-          "root" = {
-            sopsFile = ../../secrets/passwords.yaml;
-            neededForUsers = true;
-          };
-        };
+        age.keyFile = lib.mkDefault "/persistent/var/lib/sops-nix/key.txt";
       };
     };
 
