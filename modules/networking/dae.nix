@@ -155,6 +155,9 @@ let
         suffix: tracker.internetwarriors.net,
         suffix: trustedhousesitters.com,
         suffix: whatismyipaddress.com,
+        suffix: oracle.com,
+        suffix: oraclecloud.com,
+        suffix: oracleiaas.com,
         suffix: zoom.us
       ) -> proxy
 
