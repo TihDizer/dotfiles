@@ -101,6 +101,7 @@
                 ".ssh"
                 ".gnupg"
                 ".pki"
+                ".android"
 
                 # Gaming
                 ".steam"
