@@ -12,6 +12,8 @@
         enable = true;
         virtualHosts."music.tihdizer.online, direct-music.tihdizer.online" = {
           extraConfig = ''
+            reverse_proxy /metube* 127.0.0.1:8081
+
             @cf header CF-Connecting-IP *
             reverse_proxy @cf 127.0.0.1:8095 {
               transport http {

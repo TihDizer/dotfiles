@@ -48,6 +48,27 @@
             TOKEN_TTL = "6";
           };
         };
+
+        metube = {
+          image = "ghcr.io/alexta69/metube:latest";
+          autoStart = true;
+          extraOptions = [
+            "--net=host"
+          ];
+          volumes = [
+            "/var/media/music:/downloads"
+          ];
+          environment = {
+            PORT = "8081";
+            URL_PREFIX = "/metube";
+            DOWNLOAD_DIR = "/downloads";
+            AUDIO_DOWNLOAD_DIR = "/downloads";
+            CUSTOM_DIRS = "true";
+            CREATE_DIR = "true";
+            DELETE_FILE_ON_TRASH_AND_CANCEL = "true";
+            DEFAULT_THEME = "dark";
+          };
+        };
       };
 
       systemd.tmpfiles.rules = [
