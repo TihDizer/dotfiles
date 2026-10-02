@@ -96,6 +96,7 @@ let
         geosite: nyaa,
         geosite: rutracker,
         geosite: btdig,
+        geosite: spotify,
 
         suffix: 1flex.org,
         suffix: annas-archive.li,
