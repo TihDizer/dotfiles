@@ -26,6 +26,7 @@
         yazi
         mpv
         obs
+        scrcpy
         nixcord
         shell
         television
