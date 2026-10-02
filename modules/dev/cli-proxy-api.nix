@@ -30,6 +30,34 @@ let
         mainProgram = "cli-proxy-api";
       };
     };
+
+  quotaInspector =
+    pkgs:
+    pkgs.stdenvNoCC.mkDerivation rec {
+      pname = "CLIProxyAPI-Quota-Inspector";
+      version = "0.4.0";
+
+      src = pkgs.fetchurl {
+        url = "https://github.com/AllenReder/CLIProxyAPI-Quota-Inspector/releases/download/v${version}/CLIProxyAPI-Quota-Inspector_${version}_linux_amd64.tar.gz";
+        hash = "sha256-VGITPb5podNtErjfnAW+zUK1ki5tM/WQpSR6Jvnk9a4=";
+      };
+
+      sourceRoot = ".";
+
+      installPhase = ''
+        runHook preInstall
+        install -Dm755 cpa-quota-inspector $out/bin/cpa-quota-inspector
+        runHook postInstall
+      '';
+
+      meta = with pkgs.lib; {
+        description = "Quota inspector for CLIProxyAPI, including Codex, Gemini CLI, and Antigravity";
+        homepage = "https://github.com/AllenReder/CLIProxyAPI-Quota-Inspector";
+        license = licenses.mit;
+        platforms = [ "x86_64-linux" ];
+        mainProgram = "cpa-quota-inspector";
+      };
+    };
 in
 {
   flake.packages.x86_64-linux.CLIProxyAPI = cliproxyapi (
@@ -39,16 +67,29 @@ in
     }
   );
 
+  flake.packages.x86_64-linux.CLIProxyAPI-Quota-Inspector = quotaInspector (
+    import inputs.nixpkgs {
+      system = "x86_64-linux";
+      config.allowUnfree = true;
+    }
+  );
+
   flake.modules.nixos.cli-proxy-api =
     { pkgs, ... }:
     {
-      environment.systemPackages = [ (cliproxyapi pkgs) ];
+      environment.systemPackages = [
+        (cliproxyapi pkgs)
+        (quotaInspector pkgs)
+      ];
     };
 
   flake.modules.homeManager.cli-proxy-api =
     { pkgs, ... }:
     {
-      home.packages = [ (cliproxyapi pkgs) ];
+      home.packages = [
+        (cliproxyapi pkgs)
+        (quotaInspector pkgs)
+      ];
 
       systemd.user.services.cli-proxy-api = {
         Unit = {
