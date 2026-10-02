@@ -15,6 +15,9 @@
       ssh
       music-assistant
       music-reverse-proxy
+
+      #= CLI
+      yazi
     ];
 
     sops.age.keyFile = null;

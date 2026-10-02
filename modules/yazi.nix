@@ -7,6 +7,27 @@
     };
   };
 
+  flake.modules.nixos.yazi =
+    { pkgs, ... }:
+    {
+      programs.yazi = {
+        enable = true;
+        package = inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default or pkgs.yazi;
+      };
+
+      environment.systemPackages = with pkgs; [
+        file
+        fzf
+        ripgrep
+        fd
+        zoxide
+        jq
+        poppler
+        ffmpeg
+        _7zz
+      ];
+    };
+
   flake.modules.homeManager.yazi =
     {
       pkgs,
