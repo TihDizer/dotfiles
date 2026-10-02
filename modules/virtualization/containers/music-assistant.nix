@@ -13,8 +13,8 @@
       };
 
       networking.firewall.allowedTCPPorts = [
-        8095 # UI
-        8097
+        # 8095 # UI
+        # 8097
       ];
 
       virtualisation.oci-containers.backend = "podman";
