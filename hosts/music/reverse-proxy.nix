@@ -1,41 +1,34 @@
 { ... }:
 {
   flake.modules.nixos.music-reverse-proxy =
-    { config, pkgs, ... }:
+    { ... }:
     {
       networking.firewall.allowedTCPPorts = [
         80
         443
       ];
 
-      sops.secrets.metube = {
-        owner = "caddy";
-      };
-
-      systemd.services.caddy = {
-        preStart = ''
-          if [ -f "${config.sops.secrets.metube.path}" ]; then
-            HASH=$(${pkgs.caddy}/bin/caddy hash-password --plaintext "$(< ${config.sops.secrets.metube.path})")
-            cat << EOF > /var/lib/caddy/metube-auth
-basic_auth /metube* {
-  tihdizer $HASH
-}
-EOF
-          fi
-        '';
-        restartTriggers = [
-          config.sops.secrets.metube.path
-        ];
-      };
-
       services.caddy = {
         enable = true;
+
+        virtualHosts."navidrome.tihdizer.online" = {
+          extraConfig = ''
+            handle_path /covers/* {
+              root * /var/lib/music-dl-bot/covers
+              file_server
+            }
+
+            handle_path /audio/* {
+              root * /var/media/music
+              file_server
+            }
+
+            reverse_proxy 127.0.0.1:4533
+          '';
+        };
+
         virtualHosts."music.tihdizer.online, direct-music.tihdizer.online" = {
           extraConfig = ''
-            import /var/lib/caddy/metube-auth*
-
-            reverse_proxy /metube* 127.0.0.1:8081
-
             @cf header CF-Connecting-IP *
             reverse_proxy @cf 127.0.0.1:8095 {
               transport http {
