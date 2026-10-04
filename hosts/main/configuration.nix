@@ -36,6 +36,7 @@
       #= TODO: Desktop
       programs-desktop-niri
       sunshine
+      chromium
 
       #= Gaming
       steam

@@ -22,6 +22,7 @@
         firefox
         chrome
         chrome-server
+        chromium
         bottom
         yazi
         mpv
