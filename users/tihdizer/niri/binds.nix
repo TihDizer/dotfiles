@@ -26,11 +26,11 @@
         }:
         getExe (
           pkgs.writeShellScriptBin name ''
-            FOCUSED_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "${appId}" and .is_focused == true) | .id' | head -n 1)"
+            FOCUSED_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select((.app_id != null and (.app_id | test("${appId}"))) and .is_focused == true) | .id' | head -n 1)"
             if [ -n "$FOCUSED_ID" ]; then
               ${niri} msg action close-window --id "$FOCUSED_ID"
             else
-              WIN_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '[.[] | select(.app_id == "${appId}")] | sort_by([.focus_timestamp.secs // 0, .focus_timestamp.nanos // 0]) | reverse | .[0].id // empty')"
+              WIN_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '[.[] | select(.app_id != null and (.app_id | test("${appId}")))] | sort_by([.focus_timestamp.secs // 0, .focus_timestamp.nanos // 0]) | reverse | .[0].id // empty')"
               if [ -n "$WIN_ID" ]; then
                 ${niri} msg action focus-window --id "$WIN_ID"
               else
@@ -48,11 +48,11 @@
         }:
         getExe (
           pkgs.writeShellScriptBin name ''
-            FOCUSED_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select(.app_id == "${appId}" and .is_focused == true) | .id' | head -n 1)"
+            FOCUSED_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '.[] | select((.app_id != null and (.app_id | test("${appId}"))) and .is_focused == true) | .id' | head -n 1)"
             if [ -n "$FOCUSED_ID" ]; then
               exec ${execCmd}
             else
-              WIN_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '[.[] | select(.app_id == "${appId}")] | sort_by([.focus_timestamp.secs // 0, .focus_timestamp.nanos // 0]) | reverse | .[0].id // empty')"
+              WIN_ID="$(${niri} msg -j windows 2>/dev/null | ${jq} -r '[.[] | select(.app_id != null and (.app_id | test("${appId}")))] | sort_by([.focus_timestamp.secs // 0, .focus_timestamp.nanos // 0]) | reverse | .[0].id // empty')"
               if [ -n "$WIN_ID" ]; then
                 ${niri} msg action focus-window --id "$WIN_ID"
               else
@@ -85,8 +85,8 @@
       };
       telegram = toggleFloatingApp {
         name = "telegram";
-        appId = "org.telegram.desktop";
-        execCmd = "${getExe pkgs.telegram-desktop}";
+        appId = "chrome-web.telegram.org";
+        execCmd = "${getExe pkgs.chromium} --app=https://web.telegram.org";
       };
       btm = toggleFloatingApp {
         name = "btm";

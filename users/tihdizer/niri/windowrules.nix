@@ -42,6 +42,7 @@
           {
             matches = [
               { app-id = "org.telegram.desktop"; }
+              { app-id = "^chrome-web\\.telegram\\.org"; }
             ];
             open-floating = true;
             default-floating-position = {

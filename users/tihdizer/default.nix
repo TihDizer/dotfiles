@@ -31,7 +31,6 @@
         nixcord
         shell
         television
-        telegram
         jcode
         cli-proxy-api
         nirimap
