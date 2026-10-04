@@ -1,7 +1,7 @@
 { inputs, ... }:
 let
   sharedPackages = pkgs: with pkgs; [
-    television
+    fzf
     ripgrep
     fd
     lazygit
@@ -150,18 +150,9 @@ let
             fastaction.enable = true;
           };
 
-          extraPlugins.tv-nvim = {
-            package = pkgs.vimPlugins.tv-nvim;
-            setup = ''
-              require('tv').setup({})
-
-              vim.api.nvim_create_autocmd("BufEnter", {
-                callback = function()
-                  local root = vim.fs.root(0, { ".git", "flake.nix", "Cargo.toml", "package.json", "go.mod", "pyproject.toml" })
-                  if root then vim.uv.chdir(root) end
-                end,
-              })
-            '';
+          fzf-lua = {
+            enable = true;
+            profile = "telescope";
           };
 
           extraPlugins.vim-tmux-navigator = {
@@ -186,17 +177,31 @@ let
             }
 
             {
-              key = "<leader>ff";
+              key = "<leader><space>";
               mode = "n";
-              action = "<cmd>Tv files<cr>";
+              action = "<cmd>FzfLua files<cr>";
               desc = "Find files";
             }
 
             {
-              key = "<leader>fg";
+              key = "<leader>sf";
               mode = "n";
-              action = "<cmd>Tv text<cr>";
-              desc = "Grep";
+              action = "<cmd>FzfLua files<cr>";
+              desc = "Search files";
+            }
+
+            {
+              key = "<leader>/";
+              mode = "n";
+              action = "<cmd>FzfLua live_grep<cr>";
+              desc = "Grep text";
+            }
+
+            {
+              key = "<leader>sg";
+              mode = "n";
+              action = "<cmd>FzfLua live_grep<cr>";
+              desc = "Search grep";
             }
 
             {
@@ -207,7 +212,7 @@ let
             }
 
             {
-              key = "<leader>ft";
+              key = "<leader>fm";
               mode = "n";
               action = "<cmd>lua vim.lsp.buf.format()<cr>";
               desc = "Format buffer";
