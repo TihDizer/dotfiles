@@ -103,6 +103,7 @@ let
         suffix: annas-archive.li,
         suffix: b-cdn.net,
         suffix: b4mcx2ml.net,
+        suffix: berserk-games.com,
         suffix: britishcouncil.org,
         suffix: captcha-delivery.com,
         suffix: coursera.org,
@@ -167,7 +168,14 @@ let
         .Discord-wrapped,
         discord,
         .Vesktop-wrapped,
-        vesktop
+        vesktop,
+        Tabletop,
+        Tabletop.x86_64,
+        'Tabletop Simulator',
+        'Tabletop Simulator.x86_64',
+        'Tabletop Simula',
+        Tabletop.exe,
+        'Tabletop Simulator.exe'
       ) -> proxy
 
       #ai
