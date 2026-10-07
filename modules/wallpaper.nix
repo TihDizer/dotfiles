@@ -62,8 +62,11 @@
         fi
 
         # Fetch highlight paintings collection
-        SEARCH_RESP=$(curl -s --max-time 15 "https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&isHighlight=true&q=painting" || true)
-        TOTAL_COUNT=$(echo "$SEARCH_RESP" | jq -r '.total // 0')
+        SEARCH_RESP=$(curl -s --max-time 15 "https://collectionapi.metmuseum.org/public/collection/v1.1/search?hasImages=true&isHighlight=true&q=painting" || true)
+        TOTAL_COUNT=$(echo "$SEARCH_RESP" | jq -r 'if type == "object" and (.total | type == "number") then .total else 0 end' 2>/dev/null || echo 0)
+        if ! [[ "$TOTAL_COUNT" =~ ^[0-9]+$ ]]; then
+            TOTAL_COUNT=0
+        fi
 
         for OUT_NAME in "''${!OUTPUTS_MAP[@]}"; do
             RES="''${OUTPUTS_MAP[$OUT_NAME]:-1920x1080}"
@@ -98,24 +101,24 @@
                     INDEX=$(( SEED % TOTAL_COUNT ))
 
                     IMG_URL=""
-                    ATTEMPTS=0
-                    while [ -z "$IMG_URL" ] || [ "$IMG_URL" = "null" ]; do
-                        OBJECT_ID=$(echo "$SEARCH_RESP" | jq -r ".objectIDs[$INDEX]")
-                        OBJ_DATA=$(curl -s --max-time 10 "https://collectionapi.metmuseum.org/public/collection/v1/objects/$OBJECT_ID" || true)
-                        IMG_URL=$(echo "$OBJ_DATA" | jq -r '.primaryImage // empty')
+                    OBJ_DATA=""
 
-                        if [ -n "$IMG_URL" ]; then
-                            break
-                        fi
+                    # Query paginated search results at the selected offset
+                    PAGE_RESP=$(curl -s --max-time 15 "https://collectionapi.metmuseum.org/public/collection/v1.1/search?hasImages=true&isHighlight=true&q=painting&offset=''${INDEX}&limit=20" || true)
+                    PAGE_COUNT=$(echo "$PAGE_RESP" | jq -r 'if type == "object" and (.objectIDs | type == "array") then (.objectIDs | length) else 0 end' 2>/dev/null || echo 0)
 
-                        INDEX=$(( (INDEX + 1) % TOTAL_COUNT ))
-                        ATTEMPTS=$(( ATTEMPTS + 1 ))
-                        if [ "$ATTEMPTS" -ge 20 ]; then
-                            break
+                    for ((i=0; i<PAGE_COUNT; i++)); do
+                        OBJECT_ID=$(echo "$PAGE_RESP" | jq -r ".objectIDs[$i]" 2>/dev/null || true)
+                        if [ -n "$OBJECT_ID" ] && [ "$OBJECT_ID" != "null" ]; then
+                            OBJ_DATA=$(curl -s --max-time 10 "https://collectionapi.metmuseum.org/public/collection/v1/objects/$OBJECT_ID" || true)
+                            IMG_URL=$(echo "$OBJ_DATA" | jq -r '.primaryImage // empty' 2>/dev/null || true)
+                            if [ -n "$IMG_URL" ] && [ "$IMG_URL" != "null" ]; then
+                                break
+                            fi
                         fi
                     done
 
-                    if [ -n "$IMG_URL" ]; then
+                    if [ -n "$IMG_URL" ] && [ "$IMG_URL" != "null" ]; then
                         TITLE=$(echo "$OBJ_DATA" | jq -r '.title // "Untitled"')
                         ARTIST=$(echo "$OBJ_DATA" | jq -r '.artistDisplayName // "Unknown Artist"')
                         DATE=$(echo "$OBJ_DATA" | jq -r '.objectDate // ""')
@@ -156,15 +159,28 @@
                 fi
             fi
 
+            WALLPAPER_TO_APPLY=""
             if [ -f "$TARGET_COMPOSED" ]; then
                 ln -sf "$TARGET_COMPOSED" "$CURRENT_COMPOSED"
                 [ -f "$TARGET_INFO" ] && cp "$TARGET_INFO" "$CURRENT_INFO"
-
-                # If this output is currently active in awww, apply wallpaper immediately
-                if echo "$OUTPUTS_INFO" | grep -q ": $OUT_NAME:"; then
-                    echo "Output $OUT_NAME: Setting wallpaper via awww..."
-                    awww img -o "$OUT_NAME" "$CURRENT_COMPOSED" --transition-type fade --transition-duration 2 || true
+                WALLPAPER_TO_APPLY="$TARGET_COMPOSED"
+            elif [ -f "$CURRENT_COMPOSED" ]; then
+                WALLPAPER_TO_APPLY="$CURRENT_COMPOSED"
+            else
+                LATEST_COMPOSED=$(find "$CACHE_DIR" -type f -name "*-''${OUT_NAME}-composed.jpg" 2>/dev/null | sort -r | head -n1 || true)
+                if [ -z "$LATEST_COMPOSED" ]; then
+                    LATEST_COMPOSED=$(find "$CACHE_DIR" -type f -name "*-composed.jpg" 2>/dev/null | sort -r | head -n1 || true)
                 fi
+                if [ -n "$LATEST_COMPOSED" ] && [ -f "$LATEST_COMPOSED" ]; then
+                    WALLPAPER_TO_APPLY="$LATEST_COMPOSED"
+                    ln -sf "$WALLPAPER_TO_APPLY" "$CURRENT_COMPOSED"
+                fi
+            fi
+
+            # If this output is currently active in awww, apply wallpaper immediately
+            if [ -n "$WALLPAPER_TO_APPLY" ] && echo "$OUTPUTS_INFO" | grep -q ": $OUT_NAME:"; then
+                echo "Output $OUT_NAME: Setting wallpaper via awww ($WALLPAPER_TO_APPLY)..."
+                awww img -o "$OUT_NAME" "$WALLPAPER_TO_APPLY" --transition-type fade --transition-duration 2 || true
             fi
         done
 
@@ -224,6 +240,9 @@
         Service = {
           Type = "oneshot";
           ExecStart = "${dailyArtScript}/bin/daily-art-wallpaper";
+        };
+        Install = {
+          WantedBy = [ "graphical-session.target" ];
         };
       };
 
