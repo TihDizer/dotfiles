@@ -244,6 +244,10 @@
                 app-id = "org.telegram.desktop";
                 at-startup = true;
               }
+              {
+                app-id = "^chrome-web\\.telegram\\.org";
+                at-startup = true;
+              }
             ];
             default-column-width = {
               proportion = 1. / 3.;
