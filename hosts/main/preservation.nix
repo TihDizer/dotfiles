@@ -106,6 +106,9 @@
                 # Gaming
                 ".steam"
 
+                # Learning
+                ".local/share/Anki2"
+
                 # Communication, Browsers & Mail
                 ".local/share/TelegramDesktop"
                 ".local/share/vesktop"
