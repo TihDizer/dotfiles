@@ -12,6 +12,9 @@ let
     api_key = "${apiKey}"
     model = "jcode-default"
     model_catalog = true
+
+    [gateway]
+    enabled = true
   '';
 in
 {
