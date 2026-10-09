@@ -100,6 +100,8 @@ let
         geosite: soundcloud,
 
         suffix: 1flex.org,
+        suffix: ankiweb.net,
+        suffix: ankisrs.net,
         suffix: annas-archive.li,
         suffix: b-cdn.net,
         suffix: b4mcx2ml.net,
@@ -174,6 +176,9 @@ let
         discord,
         .Vesktop-wrapped,
         vesktop,
+        .anki-wrapped,
+        anki,
+        Anki,
         Tabletop,
         Tabletop.x86_64,
         'Tabletop Simulator',
