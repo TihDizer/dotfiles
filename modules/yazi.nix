@@ -22,9 +22,10 @@
         fd
         zoxide
         jq
-        poppler
+        poppler-utils
         ffmpeg
         _7zz
+        tabiew
       ];
     };
 
@@ -138,6 +139,15 @@
         };
 
         settings = {
+          preview = {
+            image_delay = 0;
+          };
+
+          tasks = {
+            suppress_preload = false;
+            preload_workers = 4;
+          };
+
           opener = {
             edit = [
               {
@@ -200,6 +210,20 @@
                 block = true;
               }
             ];
+            tabiew = [
+              {
+                run = "tw %s";
+                desc = "Tabiew";
+                block = true;
+              }
+            ];
+            tdf = [
+              {
+                run = "tdf %s";
+                desc = "tdf";
+                block = true;
+              }
+            ];
           };
 
           open = {
@@ -218,11 +242,11 @@
               }
               {
                 mime = "application/pdf";
-                use = [ "readest" "chrome" "firefox" "open" "reveal" ];
+                use = [ "tdf" "readest" "chrome" "firefox" "open" "reveal" ];
               }
               {
                 url = "*.pdf";
-                use = [ "readest" "chrome" "firefox" "open" "reveal" ];
+                use = [ "tdf" "readest" "chrome" "firefox" "open" "reveal" ];
               }
               {
                 mime = "text/markdown";
@@ -251,6 +275,26 @@
               {
                 mime = "application/{json,ndjson,javascript,wine-extension-ini,xml,toml,yaml,x-yaml}";
                 use = [ "edit" "chrome" "reveal" ];
+              }
+              {
+                mime = "text/csv";
+                use = [ "tabiew" "edit" "reveal" ];
+              }
+              {
+                url = "*.csv";
+                use = [ "tabiew" "edit" "reveal" ];
+              }
+              {
+                mime = "text/tab-separated-values";
+                use = [ "tabiew" "edit" "reveal" ];
+              }
+              {
+                url = "*.tsv";
+                use = [ "tabiew" "edit" "reveal" ];
+              }
+              {
+                url = "*.{dsv,parquet,arrow,jsonl}";
+                use = [ "tabiew" "edit" "reveal" ];
               }
               {
                 mime = "text/*";
@@ -468,6 +512,7 @@
       home.packages = with pkgs; [
         glow # Terminal markdown viewer / pager
         miller # Fast tabular data processor (CSV, TSV, JSON)
+        tabiew # Lightweight terminal UI for viewing tabular data
         lazygit # Terminal UI for git
         _7zz # 7-Zip archiver (required by yazi for extraction)
         trash-cli # Trash manager
@@ -477,7 +522,8 @@
         catdoc # MS-Word (.doc) text extractor
         util-linux # Provides lsblk, eject for mount plugin
         ffmpeg # Multimedia framework
-        poppler # PDF rendering library
+        poppler-utils # PDF rendering library (pdftoppm)
+        tdf # Terminal PDF viewer
         fd # Fast find alternative
         file # File type detector
         jq # JSON processor
