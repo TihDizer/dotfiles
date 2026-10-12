@@ -13,6 +13,7 @@
         BUCKET="$(< ${config.sops.secrets.r2_bucket.path})"
         exec ${rclonePkg}/bin/rclone mount "r2:$BUCKET" /var/media/music \
           --config ${config.sops.templates."rclone-r2.conf".path} \
+          --cache-dir /var/cache/rclone-r2 \
           --allow-other \
           --allow-non-empty \
           --uid 1000 \
@@ -20,11 +21,17 @@
           --umask 022 \
           --vfs-cache-mode full \
           --vfs-cache-max-size 10G \
-          --vfs-cache-max-age 72h \
-          --dir-cache-time 1m \
+          --vfs-cache-max-age 720h \
+          --dir-cache-time 72h \
+          --attr-timeout 72h \
           --vfs-read-chunk-size 2M \
           --vfs-read-chunk-size-limit 64M \
-          --buffer-size 16M
+          --vfs-fast-fingerprint \
+          --buffer-size 16M \
+          --poll-interval 0 \
+          --rc \
+          --rc-addr 127.0.0.1:5572 \
+          --rc-no-auth
       '';
     in
     {
@@ -63,8 +70,16 @@
         after = [ "network-online.target" ];
         wants = [ "network-online.target" ];
         wantedBy = [ "multi-user.target" ];
+        path = [
+          pkgs.fuse3
+          "/run/wrappers"
+        ];
         serviceConfig = {
-          Type = "simple";
+          Type = "notify";
+          CacheDirectory = "rclone-r2";
+          ExecStartPre = [
+            "-${pkgs.fuse3}/bin/fusermount3 -u -z /var/media/music"
+          ];
           ExecStart = mountScript;
           ExecStop = "${pkgs.fuse3}/bin/fusermount3 -u -z /var/media/music";
           Restart = "on-failure";

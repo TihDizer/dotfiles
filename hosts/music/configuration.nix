@@ -1,27 +1,30 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.music = {
+  flake.modules.nixos.music =
+    { config, ... }:
+    {
     imports = with inputs.self.modules.nixos; [
-      #= Host
       music-disko
       music-hardware
       music-locales
       music-system
       music-users
-
-      #= Secrets & Networking
-      sops
-      dae
-      ssh
-      music-assistant
       music-reverse-proxy
+      music-smolsonic
+      music-litestream
+      music-r2-mount
 
-      #= CLI
+      sops
+      ssh
       yazi
     ];
 
     sops.age.keyFile = null;
     sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    sops.secrets."music-bot-token" = {
+      sopsFile = ../../secrets/music-secrets.yaml;
+      owner = "tihdizer";
+    };
 
     networking.hostName = "music";
 
