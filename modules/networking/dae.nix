@@ -11,9 +11,9 @@ let
       dial_mode: domain++
       tls_implementation: utls
       utls_imitate: chrome_auto
-      # tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1'
+      tcp_check_url: 'http://cp.cloudflare.com,1.1.1.1'
       tcp_check_http_method: GET
-      # udp_check_dns: '8.8.8.8:53'
+      udp_check_dns: '8.8.8.8:53'
       check_interval: 30s
       check_tolerance: 50ms
       disable_waiting_network: false
@@ -73,17 +73,6 @@ let
 
       l4proto(udp) && dport(443) -> block
 
-      dip(
-        77.88.8.8,
-        geoip:ru
-      ) -> direct
-
-      domain(
-        suffix: ru,
-        suffix: su,
-        suffix: xn--p1ai
-      ) -> direct
-
       #proxy
       domain(
         geosite: discord,
@@ -119,6 +108,7 @@ let
         suffix: englishclub.com,
         suffix: hetzner.com,
         suffix: hetzner.de,
+        suffix: hostbrr.com,
         suffix: jcode.sh,
         suffix: jetbrains.com,
         suffix: justwatch.com,
@@ -127,7 +117,9 @@ let
         suffix: kinozal.tv,
         suffix: last.fm,
         suffix: linkedin.com,
+        suffix: metabrainz.org,
         suffix: music-assistant.io,
+        suffix: musicbrainz.org,
         suffix: nixos.org,
         suffix: numtide.com,
         suffix: open.demonii.com,
@@ -185,7 +177,8 @@ let
         'Tabletop Simulator.x86_64',
         'Tabletop Simula',
         Tabletop.exe,
-        'Tabletop Simulator.exe'
+        'Tabletop Simulator.exe',
+        'python3.13'
       ) -> proxy
 
       #ai
@@ -217,6 +210,19 @@ let
         suffix: antigravity.google,
         suffix: cloudcode-pa.googleapis.com
       ) -> ai
+
+      dip(
+        77.88.8.8,
+        geoip:ru
+      ) -> direct
+
+      domain(
+        suffix: ru,
+        suffix: su,
+        suffix: xn--p1ai
+      ) -> direct
+
+
 
       #fallback
       fallback: direct
