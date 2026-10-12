@@ -11,7 +11,6 @@
         timr-tui # TUI to organize your time: Pomodoro, Tabata, Countdown, Timer, Event
         readest # E-book reader
         onlyoffice-desktopeditors # Office suite
-        anki # Flashcard program
         helix
         feishin
       ];

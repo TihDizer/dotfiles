@@ -43,6 +43,7 @@
         n8n
         torlink
         fuzzel
+        anki
       ])
       ++ [
         inputs.niri.homeModules.niri
