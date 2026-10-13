@@ -78,6 +78,7 @@
               { app-id = "volume"; }
               { app-id = "btm"; }
               { app-id = "term-floating"; }
+              { app-id = "herdr"; }
             ];
             open-floating = true;
             default-floating-position = {

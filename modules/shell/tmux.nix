@@ -88,13 +88,13 @@
       };
 
       programs.zsh.initContent = lib.mkAfter ''
-        if [[ -z "$TMUX" && -n "$PS1" && -z "$SSH_CONNECTION" ]]; then
+        if [[ -z "$TMUX" && -z "$HERDR" && -n "$PS1" && -z "$SSH_CONNECTION" ]]; then
           exec tmux new-session -A -s main
         fi
       '';
 
       programs.fish.interactiveShellInit = lib.mkAfter ''
-        if status is-interactive; and not set -q TMUX; and test -z "$SSH_CONNECTION"
+        if status is-interactive; and not set -q TMUX; and not set -q HERDR; and test -z "$SSH_CONNECTION"
           exec tmux new-session -A -s main
         end
       '';

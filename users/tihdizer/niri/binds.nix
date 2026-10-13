@@ -67,7 +67,11 @@
         appId = "google-chrome";
         execCmd = "${getExe pkgs.google-chrome}";
       };
-
+      herdr = toggleFloatingApp {
+        name = "herdr";
+        appId = "herdr";
+        execCmd = "${term} --class herdr -e env HERDR=1 ${getExe pkgs.herdr}";
+      };
       term-floating = toggleFloatingApp {
         name = "term-floating";
         appId = "term-floating";
@@ -169,6 +173,7 @@
             #= Launch/Spawn Software
             "Mod+T".action.spawn = [ term ];
             "Mod+Shift+T".action.spawn = [ term-floating ];
+            "Mod+Ctrl+T".action.spawn = [ herdr ];
             "Mod+E".action.spawn = [ explorer ];
             "Mod+B".action.spawn = [ browser ];
             "Mod+A".action.spawn = [ telegram ];
@@ -183,10 +188,22 @@
             "Shift+Print".action.screenshot-window.write-to-disk = true;
 
             #= Sidebar (niri-sidebar)
-            "Mod+Shift+S".action.spawn = [ "niri-sidebar" "toggle-window" ];
-            "Mod+S".action.spawn = [ "niri-sidebar" "toggle-visibility" ];
-            "Mod+Ctrl+S".action.spawn = [ "niri-sidebar" "flip" ];
-            "Mod+Alt+R".action.spawn = [ "niri-sidebar" "reorder" ];
+            "Mod+Shift+S".action.spawn = [
+              "niri-sidebar"
+              "toggle-window"
+            ];
+            "Mod+S".action.spawn = [
+              "niri-sidebar"
+              "toggle-visibility"
+            ];
+            "Mod+Ctrl+S".action.spawn = [
+              "niri-sidebar"
+              "flip"
+            ];
+            "Mod+Alt+R".action.spawn = [
+              "niri-sidebar"
+              "reorder"
+            ];
 
             #= Dynamic Cast Target (Screencast)
             "Mod+Ctrl+M".action = set-dynamic-cast-window;
