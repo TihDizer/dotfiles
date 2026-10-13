@@ -116,6 +116,7 @@ let
         suffix: kinozal.me,
         suffix: kinozal.tv,
         suffix: last.fm,
+        suffix: lrclib.net,
         suffix: linkedin.com,
         suffix: metabrainz.org,
         suffix: music-assistant.io,
