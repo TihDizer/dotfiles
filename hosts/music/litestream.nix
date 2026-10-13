@@ -8,19 +8,20 @@
     }:
     let
       rcloneConf = config.sops.templates."rclone-r2.conf".path;
-      backupScript = pkgs.writeShellScript "backup-smolsonic-db" ''
+      backupScript = pkgs.writeShellScript "backup-navidrome-db" ''
         set -euo pipefail
         BUCKET="$(< ${config.sops.secrets.r2_bucket.path})"
         BACKUP_DIR="$(mktemp -d)"
         trap 'rm -rf "$BACKUP_DIR"' EXIT
 
-        for inst in 1 2; do
-          DB="/var/lib/smolsonic-$inst/smolsonic.db"
-          if [ -f "$DB" ]; then
-            echo "Backing up smolsonic-$inst database..."
-            ${pkgs.sqlite}/bin/sqlite3 "$DB" ".backup '$BACKUP_DIR/smolsonic-$inst.db'"
-          fi
-        done
+        DB="/var/lib/navidrome/navidrome.db"
+        if [ -f "$DB" ]; then
+          echo "Backing up Navidrome database..."
+          ${pkgs.sqlite}/bin/sqlite3 "$DB" ".backup '$BACKUP_DIR/navidrome.db'"
+        else
+          echo "Navidrome database not found at $DB" >&2
+          exit 1
+        fi
 
         echo "Uploading database backups to R2..."
         ${pkgs.rclone}/bin/rclone copy "$BACKUP_DIR" "r2:$BUCKET/backups/db" \
@@ -29,8 +30,8 @@
       '';
     in
     {
-      systemd.services.smolsonic-db-backup = {
-        description = "Daily Smolsonic SQLite Database Backup to Cloudflare R2";
+      systemd.services.navidrome-db-backup = {
+        description = "Daily Navidrome SQLite Database Backup to Cloudflare R2";
         after = [ "network-online.target" ];
         wants = [ "network-online.target" ];
 
@@ -40,8 +41,8 @@
         };
       };
 
-      systemd.timers.smolsonic-db-backup = {
-        description = "Trigger nightly Smolsonic SQLite backup";
+      systemd.timers.navidrome-db-backup = {
+        description = "Trigger nightly Navidrome SQLite backup";
         wantedBy = [ "timers.target" ];
         timerConfig = {
           OnCalendar = "03:00";

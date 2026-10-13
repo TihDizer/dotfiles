@@ -10,6 +10,18 @@
       rclonePkg = pkgs.rclone;
       mountScript = pkgs.writeShellScript "rclone-r2-mount" ''
         mkdir -p /var/media/music
+        for attempt in $(seq 1 60); do
+          if [ -r ${config.sops.secrets.r2_bucket.path} ] && [ -r ${
+            config.sops.templates."rclone-r2.conf".path
+          } ]; then
+            break
+          fi
+          if [ "$attempt" -eq 60 ]; then
+            echo "Timed out waiting for SOPS R2 credentials" >&2
+            exit 1
+          fi
+          sleep 1
+        done
         BUCKET="$(< ${config.sops.secrets.r2_bucket.path})"
         exec ${rclonePkg}/bin/rclone mount "r2:$BUCKET" /var/media/music \
           --config ${config.sops.templates."rclone-r2.conf".path} \
@@ -67,8 +79,14 @@
 
       systemd.services.rclone-r2-music = {
         description = "Mount Cloudflare R2 bucket to /var/media/music";
-        after = [ "network-online.target" ];
-        wants = [ "network-online.target" ];
+        after = [
+          "network-online.target"
+          "sops-install-secrets.service"
+        ];
+        wants = [
+          "network-online.target"
+          "sops-install-secrets.service"
+        ];
         wantedBy = [ "multi-user.target" ];
         path = [
           pkgs.fuse3
@@ -85,6 +103,11 @@
           Restart = "on-failure";
           RestartSec = "10s";
         };
+      };
+
+      systemd.services.navidrome = {
+        after = [ "rclone-r2-music.service" ];
+        requires = [ "rclone-r2-music.service" ];
       };
     };
 }

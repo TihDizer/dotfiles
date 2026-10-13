@@ -20,7 +20,6 @@
           DefaultTheme = "Dark";
           EnableSharing = true;
           EnableInsightsCollector = false;
-          Scanner.PurgeMissing = "always";
         };
       };
     };
