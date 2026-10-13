@@ -10,11 +10,11 @@
       music-system
       music-users
       music-reverse-proxy
-      music-smolsonic
       music-litestream
       music-r2-mount
 
       sops
+      navidrome
       ssh
       yazi
     ];
