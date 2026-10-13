@@ -34,8 +34,8 @@
           --vfs-cache-mode full \
           --vfs-cache-max-size 10G \
           --vfs-cache-max-age 720h \
-          --dir-cache-time 72h \
-          --attr-timeout 72h \
+          --dir-cache-time 12h \
+          --attr-timeout 12h \
           --vfs-read-chunk-size 2M \
           --vfs-read-chunk-size-limit 64M \
           --vfs-fast-fingerprint \
