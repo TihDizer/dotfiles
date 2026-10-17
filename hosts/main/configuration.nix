@@ -31,7 +31,7 @@
       qemu
       podman
       windows
-      # docker
+      docker
 
       #= TODO: Desktop
       programs-desktop-niri
