@@ -100,6 +100,7 @@ let
         suffix: cdn-perfprod.com,
         suffix: coursera.org,
         suffix: cyberia.is,
+        suffix: deezer.com,
         suffix: dub.co,
         suffix: edx.org,
         suffix: ets.org,
@@ -170,6 +171,7 @@ let
       pname(
         .Telegram-wrapped,
         Telegram,
+        tele,
         .Discord-wrapped,
         discord,
         .Vesktop-wrapped,
