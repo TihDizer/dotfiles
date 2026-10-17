@@ -6,7 +6,7 @@ let
       tproxy_port_protect: true
       log_level: info
       wan_interface: auto
-      lan_interface: auto
+      lan_interface: virbr0, auto
       auto_config_kernel_parameter: true
       dial_mode: domain++
       tls_implementation: utls
@@ -97,6 +97,7 @@ let
         suffix: berserk-games.com,
         suffix: britishcouncil.org,
         suffix: captcha-delivery.com,
+        suffix: cdn-perfprod.com,
         suffix: coursera.org,
         suffix: cyberia.is,
         suffix: dub.co,
@@ -106,12 +107,15 @@ let
         suffix: givefreely.com,
         suffix: glotorrents.pw,
         suffix: englishclub.com,
+        suffix: healthapp.google,
         suffix: hetzner.com,
         suffix: hetzner.de,
         suffix: hostbrr.com,
         suffix: jcode.sh,
         suffix: jetbrains.com,
         suffix: justwatch.com,
+        suffix: kali.download,
+        suffix: kali.org,
         suffix: kick.com,
         suffix: kinozal.me,
         suffix: kinozal.tv,
@@ -135,6 +139,7 @@ let
         suffix: primevideo.com,
         suffix: protondb.com,
         suffix: public.popcorn-tracker.org,
+        suffix: pyratelan.org,
         suffix: rapoo.com,
         suffix: roku.com,
         suffix: rutor.org,
