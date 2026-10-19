@@ -20,6 +20,7 @@
           DefaultTheme = "Dark";
           EnableSharing = true;
           EnableInsightsCollector = false;
+          ScanSchedule = "@every 10m";
         };
       };
     };
