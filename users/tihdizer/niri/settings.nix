@@ -8,6 +8,23 @@
 
     {
       programs.niri.settings = {
+        window-rules = [
+          {
+            matches = [
+              { is-window-cast-target = true; }
+            ];
+
+            border = {
+              active.color = scheme.base08;
+              inactive.color = scheme.base09;
+            };
+
+            tab-indicator = {
+              active.color = scheme.base08;
+              inactive.color = scheme.base09;
+            };
+          }
+        ];
         cursor = {
           hide-after-inactive-ms = 3000;
           hide-when-typing = true;
