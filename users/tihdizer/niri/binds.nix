@@ -224,6 +224,7 @@
             "Mod+F".action = maximize-column;
             "Mod+Ctrl+F".action = expand-column-to-available-width;
             "Mod+Shift+F".action = fullscreen-window;
+            "Mod+Shift+Ctrl+F".action = toggle-windowed-fullscreen;
             "Mod+Shift+V".action = toggle-window-floating;
             "Mod+V".action = switch-focus-between-floating-and-tiling;
 
