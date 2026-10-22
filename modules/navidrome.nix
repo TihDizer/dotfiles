@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.modules.nixos.navidrome =
-    { ... }:
+    { pkgs, ... }:
     {
       users.users.navidrome = {
         isSystemUser = true;
@@ -12,6 +12,11 @@
 
       services.navidrome = {
         enable = true;
+        
+        plugins = [
+          pkgs.pkgsCross.wasi32.navidromePlugins.lyrics-plugin
+        ];
+
         settings = {
           Address = "127.0.0.1";
           Port = 4533;
@@ -21,6 +26,8 @@
           EnableSharing = true;
           EnableInsightsCollector = false;
           ScanSchedule = "@every 10m";
+          
+          LyricsPriority = "embedded,lyrics-plugin";
         };
       };
     };
