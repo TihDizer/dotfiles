@@ -12,9 +12,12 @@
         music-reverse-proxy
         music-litestream
         music-r2-mount
+        music-beets
+        music-filebrowser
 
         sops
         navidrome
+        slskd
         ssh
         yazi
       ];
