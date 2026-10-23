@@ -27,6 +27,7 @@ in
         package = pkgs.chromium;
         commandLineArgs = [
           "--enable-app-mode-extensions"
+          "--disable-quic"
         ];
         extensions = map (id: { inherit id; }) extensionIds;
       };
