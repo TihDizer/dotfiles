@@ -8,7 +8,7 @@ let
     nativeBuildInputs = [ pkgs.pkg-config pkgs.wrapGAppsHook4 ];
     buildInputs = [ pkgs.gtk4 pkgs.gtk4-layer-shell pkgs.libxkbcommon ];
 
-    cargoHash = "sha256-yFaL40TfxhbBD36+GOlByTnSY2g1kz+lin+UQN+IB8o=";
+    cargoHash = "sha256-Ya9P2nP0Z2LX0Rmun/J3llh+Q4EBE0pM88rCVtYBT4w=";
   };
 
   defaultColors = {
