@@ -134,6 +134,7 @@ let
         suffix: ororo.tv,
         suffix: oup.com,
         suffix: oxfordlearnersdictionaries.com,
+        suffix: polarbyte.com,
         suffix: p4p.arenabg.com,
         suffix: pages.dev,
         suffix: perplexity.ai,
