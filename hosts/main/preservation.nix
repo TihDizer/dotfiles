@@ -94,6 +94,8 @@
                 ".local/share/containers"
                 ".local/share/omniroute"
                 ".config/cli-proxy-api"
+                ".config/oh-my-cpa"
+                ".local/share/oh-my-cpa"
                 ".local/share/transmission"
                 ".local/share/chrome-server"
 
