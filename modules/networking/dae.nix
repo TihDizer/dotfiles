@@ -57,6 +57,11 @@ let
         filter: name(regex: '.*(AI).*')
         policy: min_moving_avg
       }
+
+      germany {
+        filter: name(regex: '(?i).*(германия).*')
+        policy: min_moving_avg
+      }
     }
 
     routing {
