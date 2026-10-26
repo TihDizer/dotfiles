@@ -14,6 +14,7 @@
         music-r2-mount
         music-beets
         music-filebrowser
+        music-aven-server
 
         sops
         navidrome

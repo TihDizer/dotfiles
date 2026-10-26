@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "aven": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792967630,
+        "narHash": "sha256-A63uQi4qBuv2Q6OInwtf6Geb+Dmt3u/JTPiF2cmBxL4=",
+        "owner": "raine",
+        "repo": "aven",
+        "rev": "d28c669f190a83ebf273d67999f6496f2550b6bb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "raine",
+        "repo": "aven",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -782,6 +802,7 @@
     },
     "root": {
       "inputs": {
+        "aven": "aven",
         "daeuniverse": "daeuniverse",
         "disko": "disko",
         "flake-file": "flake-file",

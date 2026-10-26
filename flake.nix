@@ -24,6 +24,10 @@
     };
 
   inputs = {
+    aven = {
+      url = "github:raine/aven";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     daeuniverse = {
       url = "github:daeuniverse/flake.nix";
       inputs.nixpkgs.follows = "nixpkgs";

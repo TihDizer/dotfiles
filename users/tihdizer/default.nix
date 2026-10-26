@@ -44,6 +44,7 @@
         torlink
         fuzzel
         anki
+        aven
       ])
       ++ [
         inputs.niri.homeModules.niri
