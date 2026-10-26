@@ -58,8 +58,43 @@ let
         mainProgram = "cpa-quota-inspector";
       };
     };
+
+  ohMyCpa =
+    pkgs:
+    pkgs.stdenv.mkDerivation rec {
+      pname = "oh-my-cpa";
+      version = "0.3.9";
+
+      src = pkgs.fetchurl {
+        url = "https://github.com/WizisCool/oh-my-cpa/releases/download/v${version}/oh-my-cpa_${version}_linux_amd64.tar.gz";
+        hash = "sha256-8E3U4XeCY9kaUtLxLUb6R/HKslj+7118F3cVVFSHdqk=";
+      };
+
+      sourceRoot = ".";
+
+      installPhase = ''
+        runHook preInstall
+        mkdir -p $out/bin
+        install -Dm755 oh-my-cpa $out/bin/oh-my-cpa
+        runHook postInstall
+      '';
+
+      meta = with pkgs.lib; {
+        description = "Self-hosted management and usage observability for CLIProxyAPI";
+        homepage = "https://github.com/WizisCool/oh-my-cpa";
+        platforms = [ "x86_64-linux" ];
+        mainProgram = "oh-my-cpa";
+      };
+    };
 in
 {
+  flake-file.inputs = {
+    oh-my-cpa-src = {
+      url = "github:WizisCool/oh-my-cpa";
+      flake = false;
+    };
+  };
+
   flake.packages.x86_64-linux.CLIProxyAPI = cliproxyapi (
     import inputs.nixpkgs {
       system = "x86_64-linux";
@@ -74,12 +109,20 @@ in
     }
   );
 
+  flake.packages.x86_64-linux.oh-my-cpa = ohMyCpa (
+    import inputs.nixpkgs {
+      system = "x86_64-linux";
+      config.allowUnfree = true;
+    }
+  );
+
   flake.modules.nixos.cli-proxy-api =
     { pkgs, ... }:
     {
       environment.systemPackages = [
         (cliproxyapi pkgs)
         (quotaInspector pkgs)
+        (ohMyCpa pkgs)
       ];
     };
 
@@ -89,6 +132,7 @@ in
       home.packages = [
         (cliproxyapi pkgs)
         (quotaInspector pkgs)
+        (ohMyCpa pkgs)
       ];
 
       systemd.user.services.cli-proxy-api = {
@@ -101,6 +145,28 @@ in
           ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/.config/cli-proxy-api";
           ExecStart = "${cliproxyapi pkgs}/bin/cli-proxy-api -config config.yaml";
           WorkingDirectory = "%h/.config/cli-proxy-api";
+          Restart = "on-failure";
+          RestartSec = "5s";
+        };
+        Install = {
+          WantedBy = [ "default.target" ];
+        };
+      };
+
+      systemd.user.services.oh-my-cpa = {
+        Unit = {
+          Description = "Oh My CPA Management Dashboard";
+          After = [
+            "network.target"
+            "cli-proxy-api.service"
+          ];
+          Wants = [ "cli-proxy-api.service" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/.local/share/oh-my-cpa %h/.config/oh-my-cpa";
+          ExecStart = "${ohMyCpa pkgs}/bin/oh-my-cpa";
+          WorkingDirectory = "%h/.config/oh-my-cpa";
           Restart = "on-failure";
           RestartSec = "5s";
         };

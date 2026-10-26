@@ -75,6 +75,10 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    oh-my-cpa-src = {
+      url = "github:WizisCool/oh-my-cpa";
+      flake = false;
+    };
     preservation.url = "github:nix-community/preservation";
     sops-nix = {
       url = "github:Mic92/sops-nix";

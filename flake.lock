@@ -729,6 +729,22 @@
         "type": "github"
       }
     },
+    "oh-my-cpa-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792923252,
+        "narHash": "sha256-mufV0qvu5pTNn27tF1f0GmOkzJD5fxtrXNO2HJ2WKIo=",
+        "owner": "WizisCool",
+        "repo": "oh-my-cpa",
+        "rev": "4b0061377c2c133a13d8ad5277964a905bcce746",
+        "type": "github"
+      },
+      "original": {
+        "owner": "WizisCool",
+        "repo": "oh-my-cpa",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -781,6 +797,7 @@
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_2",
         "nvf": "nvf",
+        "oh-my-cpa-src": "oh-my-cpa-src",
         "preservation": "preservation",
         "sops-nix": "sops-nix",
         "stylix": "stylix",

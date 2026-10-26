@@ -31,7 +31,7 @@
         nixcord
         shell
         television
-        omniroute
+        cli-proxy-api
         jcode
         nirimap
         niri-sidebar
