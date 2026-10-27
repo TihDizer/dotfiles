@@ -13,7 +13,7 @@
         onlyoffice-desktopeditors # Office suite
         helix
         feishin
-        picard
+        pureref
       ];
     };
 }
