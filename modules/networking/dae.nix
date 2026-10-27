@@ -54,7 +54,7 @@ let
       }
 
       ai {
-        filter: name(regex: '.*(AI).*')
+        filter: name(regex: '(?i).*(ai).*')
         policy: min_moving_avg
       }
 
@@ -197,11 +197,14 @@ let
 
       #ai
       domain(
-        geosite: openai,
+        geosite: openai
+      ) -> proxy
+
+      domain(
         geosite: anthropic,
-        
-        suffix: auth.openai.com,
-        suffix: chatgpt.com,
+
+        suffix: oaiusercontent.com,
+        suffix: oaistatic.com,
         suffix: claude.ai,
         suffix: claude.com,
         suffix: anthropic.com,
