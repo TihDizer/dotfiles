@@ -30,6 +30,7 @@
               "/var/lib/docker"
               "/var/lib/containers"
               "/var/lib/sunshine"
+              "/var/lib/aven"
               "/var/lib/dae"
               "/var/lib/OpenRGB"
               "/etc/NetworkManager/system-connections"
