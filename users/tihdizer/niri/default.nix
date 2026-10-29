@@ -122,7 +122,7 @@
         gnome-keyring
         # Clipboard-specific
         wl-clipboard
-        cliphist
+        # cliphist
         # Image Viewer
         imv
         # XWayland/Wayland

@@ -61,6 +61,26 @@
           }
           {
             matches = [
+              { app-id = "clipboard"; }
+              { app-id = "copyq"; }
+            ];
+            open-floating = true;
+            default-floating-position = {
+              x = 0;
+              y = 180;
+              relative-to = "top";
+            };
+            default-column-width = {
+              proportion = 1. / 3.;
+            };
+            default-window-height = {
+              proportion = 2. / 3.;
+            };
+            min-height = 100;
+            block-out-from = "screencast";
+          }
+          {
+            matches = [
               { app-id = "jetbrains-rustrover"; }
               { app-id = "obsidian"; }
               { app-id = "chromium-browser"; }

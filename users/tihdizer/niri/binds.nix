@@ -12,7 +12,7 @@
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
       playerctl = "${pkgs.playerctl}/bin/playerctl";
       launcher = getExe pkgs.fuzzel;
-      clipboard = "cliphist-fuzzel";
+      copyq = getExe pkgs.copyq;
       term = getExe pkgs.kitty;
       logout = getExe pkgs.wlogout;
       niri = getExe config.programs.niri.package;
@@ -178,7 +178,7 @@
             "Mod+B".action.spawn = [ browser ];
             "Mod+A".action.spawn = [ telegram ];
             "Mod+D".action.spawn = [ launcher ];
-            "Mod+Y".action.spawn = [ clipboard ];
+            "Mod+Y".action.spawn = [ copyq "toggle" ];
             "Mod+P".action.spawn = [ volume ];
             "Mod+Escape".action.spawn = [ btm ];
             "Mod+Shift+Escape".action.spawn = [ logout ];

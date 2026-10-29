@@ -18,6 +18,7 @@
         tihdizer-mime
 
         sops
+        copyq
         dev
         firefox
         chrome
