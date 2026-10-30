@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  daeConfigTemplate = subscriptionUrl: ''
+  daeConfigTemplate = sub1: sub2: sub3: ''
     global {
       tproxy_port: 12345
       tproxy_port_protect: true
@@ -20,7 +20,9 @@ let
     }
 
     subscription {
-      proxy: '${subscriptionUrl}'
+      sub1: '${sub1}'
+      # sub2: '${sub2}'
+      sub3: '${sub3}'
     }
 
     dns {
@@ -226,7 +228,7 @@ let
         suffix: mail.google.com,
         suffix: antigravity.google,
         suffix: cloudcode-pa.googleapis.com
-      ) -> ai
+      ) ->  ai
 
       dip(
         77.88.8.8,
@@ -272,10 +274,15 @@ in
         package = inputs.daeuniverse.packages.${pkgs.stdenv.hostPlatform.system}.dae;
       };
 
-      sops.secrets.subscription = { };
+      sops.secrets.sub1 = { };
+      sops.secrets.sub2 = { };
+      sops.secrets.sub3 = { };
 
       sops.templates."dae-config.dae" = {
-        content = daeConfigTemplate "${config.sops.placeholder.subscription}";
+        content = daeConfigTemplate 
+            config.sops.placeholder.sub1
+            config.sops.placeholder.sub2
+            config.sops.placeholder.sub3;
         mode = "0600";
         owner = "root";
       };
@@ -283,7 +290,6 @@ in
       systemd.services.dae = {
         restartTriggers = [
           config.sops.templates."dae-config.dae".path
-          (builtins.hashString "sha256" (daeConfigTemplate ""))
         ];
         serviceConfig = {
           Type = lib.mkForce "exec";
