@@ -47,25 +47,11 @@
           "${config.stylix.fonts.sansSerif.name}:size=${toString (config.stylix.fonts.sizes.popups or 12)}"
         else
           "DejaVu Sans:size=12";
-
-      cliphist-fuzzel = pkgs.writeShellScriptBin "cliphist-fuzzel" ''
-        item="$(${pkgs.cliphist}/bin/cliphist list | ${lib.getExe config.programs.fuzzel.package} --dmenu --prompt="󰅌  " --lines=15 --width=60)"
-        status=$?
-
-        if [ $status -eq 0 ] && [ -n "$item" ]; then
-          printf '%s' "$item" | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
-        elif [ $status -eq 10 ] && [ -n "$item" ]; then
-          printf '%s' "$item" | ${pkgs.cliphist}/bin/cliphist delete
-        fi
-      '';
     in
     {
       stylix = lib.mkIf (options ? stylix) {
         targets.fuzzel.enable = false;
       };
-
-      home.packages = [ cliphist-fuzzel ];
-
       programs.fuzzel = {
         enable = true;
         settings = {
